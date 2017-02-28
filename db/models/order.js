@@ -18,29 +18,19 @@ const Order = db.define('orders', {
     }
 },
 {
-  hooks: {
-    afterCreate: function(){
-        this.getProductLines()
+  setterMethods: {
+    setTotalCost: function(orders){
+        orders.getProductLines()
         .then(function(lines){
           let sum = 0
           lines.forEach(function(line){
             sum +=line.totalCost
           })
-          this.totalCost = sum
+          orders.totalCost = sum
         })
-    },
-    afterUpdate: function(){
-        this.getProductLines()
-        .then(function(lines){
-          let sum = 0
-          lines.forEach(function(line){
-            sum +=line.totalCost
-          })
-          this.totalCost = sum
-        })
+     }
     }
-  }
-})
+  })
 
 module.exports = Order
 

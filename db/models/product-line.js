@@ -23,11 +23,11 @@ const ProductLine = db.define('productLines', {
 },
 {
   hooks: {
-    afterCreate: function(){
-      this.totalCost = this.unitCost*this.quantity;
+    beforeCreate: function(productLines){
+      productLines.totalCost = productLines.unitCost * productLines.quantity
     },
-    afterUpdate: function(){
-      this.totalCost = this.unitCost*this.quantity;
+    afterUpdate: function(productLines){
+      productLines.totalCost = productLines.unitCost * productLines.quantity
     }
   }
 })

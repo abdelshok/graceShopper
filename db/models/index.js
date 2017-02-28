@@ -12,7 +12,8 @@ const ProductLine = require('./product-line')
 const Order = require('./order')
 
 
-Product.belongsTo(Artist)
+User.hasMany(Order)
+Product.belongsTo(Artist, {as: 'artist'})
 ProductLine.belongsTo(Product)
 ProductLine.belongsTo(Order)
 Order.hasMany(ProductLine)
@@ -21,4 +22,4 @@ OAuth.belongsTo(User)
 User.hasOne(OAuth)
 
 
-module.exports = {User, Product, Artist}
+module.exports = {User, Product, Artist, Order, ProductLine}
