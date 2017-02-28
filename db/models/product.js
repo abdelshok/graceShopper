@@ -2,7 +2,7 @@
 /* eslint-disable camelcase */
 
 // bcrypt docs: https://www.npmjs.com/package/bcrypt
-const bcrypt = require('bcryptjs')
+
 const Sequelize = require('sequelize')
 const db = require('APP/db')
 
