@@ -41,7 +41,7 @@ const Product = db.define('products', {
     }
   },
   dimensions: {
-    type: Sequelize.ARRAY(Sequelize.STRING), //ARRAY(Sequelize.INTEGER),
+    type: Sequelize.ARRAY(Sequelize.INTEGER), //ARRAY(Sequelize.INTEGER),
     validate: {
       notEmpty: true
     }

@@ -8,11 +8,17 @@ const User = require('./user')
 const OAuth = require('./oauth')
 const Product = require('./product')
 const Artist = require('./artist')
+const ProductLine = require('./product-line')
+const Order = require('./order')
 
 
 Product.belongsTo(Artist)
-
+ProductLine.belongsTo(Product)
+ProductLine.belongsTo(Order)
+Order.hasMany(ProductLine)
 
 OAuth.belongsTo(User)
 User.hasOne(OAuth)
+
+
 module.exports = {User, Product, Artist}
