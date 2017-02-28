@@ -19,6 +19,7 @@ Please change it in ${__dirname}/package.json
   ~ xoxo, bones
 ********************************************************************`
 
+// test branch
 const reasonableName = /^[a-z0-9\-_]+$/
 // RegExp.text docs: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test
 if (!reasonableName.test(pkg.name)) {

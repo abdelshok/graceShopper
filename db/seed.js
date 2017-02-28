@@ -11,6 +11,7 @@ const seedUsers = () => db.Promise.map([
 ], user => db.model('users').create(user))
 
 const seedProducts = () => db.Promise.map([
+
 	//Frank Stella
 	{title: 'Ifafa I', artist: {name: 'Frank Stella' }, year: 1968, url: '', price: 500, tags: ['Frank Stella', 'V Series', 'Print', 'Blue', 'Pink', 'Geometric'], description: 'Geometric lithograph from the V Series.', medium: 'Print', dimensions: [49.1, 0, 28.2], quantity: 1 },
 	{title: 'Ifafa II', artist: {name: 'Frank Stella' }, year: 1968, url: '', price: 500, tags: ['Frank Stella', 'V Series', 'Print', 'Blue', 'Orange', 'Geometric'], description: 'Geometric lithograph from the V Series.', medium: 'Print', dimensions: [49.1, 0, 28.2], quantity: 1 },
@@ -57,6 +58,7 @@ const seedProducts = () => db.Promise.map([
 // const seedOrders = () => db.Promise.map([
 
 // 	], orders => db.model('order').create(order))
+
 
 
 db.didSync

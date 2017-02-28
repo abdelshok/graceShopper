@@ -1,0 +1,55 @@
+'use strict'; // eslint-disable-line semi
+/* eslint-disable camelcase */
+
+// bcrypt docs: https://www.npmjs.com/package/bcrypt
+
+const Sequelize = require('sequelize')
+const db = require('APP/db')
+
+const Product = db.define('products', {
+  title: {
+    type: Sequelize.STRING,
+    validate: {
+      notEmpty: true
+    }
+    },
+  year: {
+    type: Sequelize.INTEGER
+  },
+  url: {
+    type: Sequelize.STRING,
+    validate: {
+      notEmpty: true
+    }
+  },
+  price: {
+    type: Sequelize.FLOAT,
+    validate: {
+      notEmpty: true
+    }
+  },
+  tags: {
+    type: Sequelize.ARRAY(Sequelize.STRING)
+  },
+  description: {
+    type: Sequelize.TEXT
+  },
+  medium: {
+    type: Sequelize.STRING,
+    validate: {
+      notEmpty: true
+    }
+  },
+  dimensions: {
+    type: Sequelize.ARRAY(Sequelize.STRING), //ARRAY(Sequelize.INTEGER),
+    validate: {
+      notEmpty: true
+    }
+  },
+  quantity: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  }
+})
+
+module.exports = Product
