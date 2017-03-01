@@ -32,7 +32,6 @@ const productReducer = (products = [], action) => {
 			console.log('loading new state')
 			console.log(action.products)
 			return action.products;
-			break;
 
 		default: 
 			return products;

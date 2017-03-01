@@ -2,10 +2,11 @@ import React from 'react'
 
 
 export default function ShoppingCartComponent (props) {
+const totalCost = props.productLines.reduce((a, b) => a.totalCost + b.totalCost)
 
 	return (
 		<div>
-		{console.log(props)}
+
 		<h1>Shopping Cart</h1>
 
 		<table className="shopping-cart">
@@ -27,14 +28,14 @@ export default function ShoppingCartComponent (props) {
 			<td>{productLine.image}</td>
 			<td>{productLine.title}</td>
 			<td>{productLine.quantity}</td>
-			<td>{productLine.unitCost}</td>
-			<td>{productLine.totalCost}</td>
+			<td>${productLine.unitCost}</td>
+			<td>${productLine.totalCost}</td>
 			<td><input type="button" value="REMOVE ITEM" /></td>
 			</tr>
 		)})}
 		</tbody>
 		</table>
-		<p>{props.TotalCost}</p>
+		<p>Order Total Cost: ${totalCost}</p>
 		<input type="submit" value="CHECKOUT" />
 		</div>
 		

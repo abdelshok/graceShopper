@@ -28,7 +28,7 @@ class ShoppingCartContainer extends Component {
 
 
 	render() {
-		if (this.props.productLines) {
+		if (this.props.productLines.length) {
 			return (
 				<div>
 					<ShoppingCartComponent {...this.props} />

@@ -46,11 +46,14 @@ const initialState = {
 }
 
 
-export const setCurrentCart = () => 
+export const setCurrentCart = (userId) => 
   dispatch => 
-    axios.get('/api/orders/1/cart')
+    axios.get(`/api/orders/${userId}/cart`)
         .then(res => res.data)
-        .then(cart => dispatch(setCart({productLines: cart.productLines, status: 'cart', totalCost: cart.totalCost})))
+        .then(cart => {
+          console.log('CART:', cart.productLines)
+          dispatch(setCart({productLines: cart.productLines, status: 'cart', totalCost: cart.totalCost}))
+        })
         .catch(() => dispatch(setCart(initialState)))
 
 

@@ -34,7 +34,6 @@ render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={ExampleApp}>
-        <IndexRedirect to="/productList" />
         <Route path="/jokes" component={Jokes} />
         <Route path="/productList" component={ProductListContainer} onEnter={onProductEnter} />
         <Route path="/cart" component={ShoppingCartContainer} />
