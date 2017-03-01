@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ShoppingCartComponent from './ShoppingCartComponent'
 import {connect} from 'react-redux'
 
+
 const MapStateToProps = (state) => {
 	const cart = state.cart
 	return {
@@ -15,14 +16,15 @@ const MapStateToProps = (state) => {
 
 
 
+
 class ShoppingCartContainer extends Component {
 
 	constructor(props) {
 		super(props)
 		this.state = {
-			
+
 		}}
-	
+
 
 
 	render() {
@@ -44,4 +46,6 @@ class ShoppingCartContainer extends Component {
 
 }
 
+
 export default connect(MapStateToProps)(ShoppingCartContainer)
+
