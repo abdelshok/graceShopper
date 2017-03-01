@@ -3,8 +3,6 @@ import React from 'react'
 
 export default function ProductListComponent (props) {
 
-console.log(props,'hi')
-	console.log("products in component", props.products)
     return (
         <div>
         <h1> Paintings </h1>
@@ -17,7 +15,7 @@ console.log(props,'hi')
         	<div> {painting.year} </div>
         	<div> ${painting.price} </div>
         	</li>
-        	
+
         	)
        	})}
        	</ul>

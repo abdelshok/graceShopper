@@ -22,12 +22,7 @@ export const loadAllProducts = function() {
 	}
 }
 
-
-//REDUCER AND INITIAL STATE
-// const initialState = {
-// 	products: []
-// }
-
+//REDUCER
 const productReducer = (products = [], action) => {
 
 
