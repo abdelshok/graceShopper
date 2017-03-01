@@ -9,7 +9,9 @@ import Jokes from './components/Jokes'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 
-import itemListContainer from './components/itemListContainer';
+import ProductListContainer from './components/ProductListContainer';
+
+import {loadAllProducts} from './reducers/product'
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -23,15 +25,21 @@ const ExampleApp = connect(
     </div>
 )
 
+const onProductEnter = function(nextRouterState) {
+  store.dispatch(loadAllProducts())
+}
+
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={ExampleApp}>
-        <IndexRedirect to="/itemList" />
+        <IndexRedirect to="/productList" />
         <Route path="/jokes" component={Jokes} />
-        <Route path="/itemList" component={itemListContainer} />
+        <Route path="/productList" component={ProductListContainer} onEnter={onProductEnter} />
       </Route>
     </Router>
   </Provider>,
   document.getElementById('main')
 )
+
+
