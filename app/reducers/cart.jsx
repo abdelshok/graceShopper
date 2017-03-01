@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const SETCART = 'FETCHCART'
+const SETCART = 'SETCART'
 const ADDPRODUCTLINE = 'ADDPRODUCTLINE'
 const UPDATEQUANTITY = 'UPDATEPRODUCTLINE'
 const DELETEPRODUCTLINE = 'DELETEPRODUCTLINE'
@@ -38,11 +38,21 @@ export const updateTotalCost = totalCost => ({
   totalCost
 })
 
+//DO NOT DELETE ME!!!!!
 const initialState = {
   productLines: [],
   status: 'cart',
   totalCost: 0
 }
+
+
+export const setCurrentCart = () => 
+  dispatch => 
+    axios.get('/api/orders/1/cart')
+        .then(res => res.data)
+        .then(cart => dispatch(setCart({productLines: cart.productLines, status: 'cart', totalCost: cart.totalCost})))
+        .catch(() => dispatch(setCart(initialState)))
+
 
 
 const reducer = (state = initialState, action) => {

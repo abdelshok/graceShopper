@@ -10,8 +10,9 @@ import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 
 import ProductListContainer from './components/ProductListContainer';
-
 import {loadAllProducts} from './reducers/product'
+import ShoppingCartContainer from './components/ShoppingCartContainer'
+
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -36,6 +37,7 @@ render(
         <IndexRedirect to="/productList" />
         <Route path="/jokes" component={Jokes} />
         <Route path="/productList" component={ProductListContainer} onEnter={onProductEnter} />
+        <Route path="/cart" component={ShoppingCartContainer} />
       </Route>
     </Router>
   </Provider>,
