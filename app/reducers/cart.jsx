@@ -5,6 +5,7 @@ const ADDPRODUCTLINE = 'ADDPRODUCTLINE'
 const UPDATEQUANTITY = 'UPDATEPRODUCTLINE'
 const DELETEPRODUCTLINE = 'DELETEPRODUCTLINE'
 const CHECKOUT = 'CHECKOUT'
+const UPDATETOTALCOST = 'UPDATETOTALCOST'
 
 export const setCart = cart => ({
   type: SETCART,
@@ -13,7 +14,7 @@ export const setCart = cart => ({
 
 export const addProductLine = productLine => ({
   type: ADDPRODUCTLINE,
-  productLine
+  productLines: [productLine]
 })
 
 export const updateQuantity = (productLine, quantity) => ({
@@ -32,19 +33,25 @@ export const checkout = status => ({
   status
 })
 
-const hardCodedCart = {
+export const updateTotalCost = totalCost => ({
+  type: UPDATETOTALCOST,
+  totalCost
+})
+
+const initialState = {
   productLines: [],
-  status: "cart",
+  status: 'cart',
   totalCost: 0
 }
 
-const reducer = (state = null, action) => {
+
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case SETCART:
      return action.cart
 
     case ADDPRODUCTLINE:
-      return ///???
+      return  Object.assign({}, state, {productLines: state.productLines.concat(action.productLines)})
 
     case UPDATEQUANTITY:
       return ///???
@@ -55,6 +62,9 @@ const reducer = (state = null, action) => {
     case CHECKOUT:
       return ///???
 
+    case UPDATETOTALCOST:
+      return
+
     default:
       return state
   }
@@ -62,5 +72,4 @@ const reducer = (state = null, action) => {
 
 export default reducer
 
-/// Update Total Cost????
 
