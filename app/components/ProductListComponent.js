@@ -11,6 +11,8 @@ export default function ProductListComponent (props) {
         {props.products && props.products.map(painting => {
         	return (
         	<li key={painting.title}>
+        	<div> {painting.id} </div> 
+        	<img src={painting.url}   />
         	<div> {painting.title}</div>
         	<div> {painting.year} </div>
         	<div> ${painting.price} </div>
