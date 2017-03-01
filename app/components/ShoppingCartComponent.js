@@ -5,6 +5,7 @@ export default function ShoppingCartComponent (props) {
 
 	return (
 		<div>
+		{console.log(props)}
 		<h1>Shopping Cart</h1>
 
 		<table className="shopping-cart">
