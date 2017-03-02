@@ -2,7 +2,7 @@
 
 const db = require('APP/db')
 //const User = db.model('users')
-const Products = db.model('products')
+const Artists = db.model('artists')
 
 //const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 
@@ -12,25 +12,18 @@ module.exports = router
 
 
 router.get('/', function( req, res, next) {
-  console.log('first route entered, paintings rendered')
-  Products.findAll({
-    include: [{model: Artist, as:'artists'}]
-  })
-  .then(function(products) {
-    console.log('rendered paintings')
-    res.send(products) // switch it to jSON??
-
+  Artists.findAll()
+  .then(function(artists) {
+    res.send(artists)
   }
   )
   .catch(next)
 })
 
-
 router.get('/:id', function(req, res, next) {
-    Products.findById(req.params.id)
-    .then(function(product){
-      res.send(product) // res.json or send, why?
+    Artists.findById(req.params.id)
+    .then(function(artist){
+      res.send(artist);
     })
     .catch(next)
 })
-
