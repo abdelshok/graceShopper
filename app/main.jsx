@@ -13,7 +13,6 @@ import ProductListContainer from './components/ProductListContainer';
 import {loadAllProducts} from './reducers/product'
 import ShoppingCartContainer from './components/ShoppingCartContainer'
 
-
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
 )(
@@ -34,7 +33,6 @@ render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={ExampleApp}>
-        <Route path="/jokes" component={Jokes} />
         <Route path="/productList" component={ProductListContainer} onEnter={onProductEnter} />
         <Route path="/cart" component={ShoppingCartContainer} />
       </Route>

@@ -14,19 +14,25 @@ router.get('/Hello', function (req, res, next) {
   res.send("Here");
 })
 
+
 router.get('/', function( req, res, next) {
-  Products.findAll()
+  console.log('first route entered, paintings rendered')
+  Products.findAll({where: req.params})
   .then(function(products) {
-    res.send(products)
+    console.log('rendered paintings')
+    res.send(products) // switch it to jSON??
+
   }
   )
   .catch(next)
 })
 
+
 router.get('/:id', function(req, res, next) {
     Products.findById(req.params.id)
     .then(function(product){
-      res.send(product);
+      res.send(product); // switch it to jSON??
     })
     .catch(next)
 })
+
