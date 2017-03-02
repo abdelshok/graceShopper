@@ -6,6 +6,7 @@ import thunkMiddleware from 'redux-thunk'
 
 import {whoami} from './reducers/auth'
 import {setCurrentCart} from './reducers/cart'
+import {loadAllProducts} from './reducers/product'
 
 const store = createStore(
   rootReducer,
@@ -21,4 +22,7 @@ export default store
 
 // Set the auth info at start
 store.dispatch(whoami())
+.then(() => store.dispatch(loadAllProducts()))
 .then(() => store.dispatch(setCurrentCart(store.getState().auth.id)))
+
+

@@ -25,15 +25,15 @@ const ExampleApp = connect(
     </div>
 )
 
-const onProductEnter = function(nextRouterState) {
-  store.dispatch(loadAllProducts())
-}
+// const onProductEnter = function(nextRouterState) {
+//   store.dispatch(loadAllProducts())
+// }
 
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={ExampleApp}>
-        <Route path="/productList" component={ProductListContainer} onEnter={onProductEnter} />
+        <Route path="/productList" component={ProductListContainer}  />
         <Route path="/cart" component={ShoppingCartContainer} />
       </Route>
     </Router>

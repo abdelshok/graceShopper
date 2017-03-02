@@ -22,16 +22,6 @@ export const loadAllProducts = function() {
 	}
 }
 
-// export const loadSelectedProduct = (title) => {
-// 	return dispatch => {
-// 		axios.get(`/api/products/name/${title}`)
-// 		.then(res => {
-// 		console.log('express route entered, and axios call returned', res.data)
-// 		dispatch(loadProducts(res.data))
-// 		})
-// 	}
-// }
-
 
 //REDUCER
 const productReducer = (products = [], action) => {

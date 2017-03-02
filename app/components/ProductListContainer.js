@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ProductListComponent from './ProductListComponent'
 import {connect} from 'react-redux'
-import SearchBarComponent from './SearchBarComponent'
+import FilterInputComponent from './FilterInputComponent'
 import {loadSelectedProduct} from '../reducers/product'
 
 
@@ -10,8 +10,6 @@ const mapStateToProps = ({products}) => {
 	return {
 		products
 	}
-
-
 }
 
 const mapDispatchToProps = (dispatch) => ({
@@ -28,7 +26,7 @@ class ProductListContainer extends Component {
 
 	constructor(props) {
 		super(props)
-		this.state = {}
+		this.state = { inputValue: '' }
 	    this.handleSubmit = this.handleSubmit.bind(this);
 	    this.handleChange = this.handleChange.bind(this)
 	}
@@ -39,21 +37,20 @@ class ProductListContainer extends Component {
 	}
 
 	handleChange(evt) {
-		evt.preventDefault()
-		const title = evt.target.value
-		this.setState({title})
-		console.log(this.state, 'logging the state')
-		if (this.state.title) {
-		this.props.productSearch(this.state)
-		}
-	}
+		console.log(evt.target.value, 'this is the event')
+	    this.setState({
+	      inputValue: evt.target.value
+	    });
+  	}
 
 	render() {
+	   const inputValue = this.state.inputValue;
+	   var filteredProducts = this.props.products.filter(product => product.title.match(inputValue))
 		return (
 			<div> 
 			<h1> Search Bar </h1>
-			<SearchBarComponent handleChange={this.handleChange} />
-			<ProductListComponent {...this.props} handleSubmit={this.handleSubmit} />
+			<FilterInputComponent handleChange={this.handleChange} />
+			<ProductListComponent products={filteredProducts} handleSubmit={this.handleSubmit} inputValue={inputValue} />
 			</div>
 
 		)
