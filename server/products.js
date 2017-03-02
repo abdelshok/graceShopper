@@ -17,7 +17,9 @@ router.get('/Hello', function (req, res, next) {
 
 router.get('/', function( req, res, next) {
   console.log('first route entered, paintings rendered')
-  Products.findAll({where: req.params})
+  Products.findAll({
+    include: [{model: Artist, as:'artists'}]
+  })
   .then(function(products) {
     console.log('rendered paintings')
     res.send(products) // switch it to jSON??

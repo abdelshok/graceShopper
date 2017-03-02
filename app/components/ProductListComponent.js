@@ -21,7 +21,7 @@ export default function ProductListComponent (props) {
         	<li key={painting.title}> 
         	<div> {painting.id} </div> 
         	<img src={painting.url} style={divStyle}  />
-        	<div  > {painting.title}</div>
+        	<div  > {painting.title}, {painting.artistName}  </div>
         	<div> {painting.year} </div>
         	<div> ${painting.price} </div>
         	<button type="submit" onClick={handleSubmit}> Add to Cart </button>

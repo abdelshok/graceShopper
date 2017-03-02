@@ -49,7 +49,10 @@ const Product = db.define('products', {
   quantity: {
     type: Sequelize.INTEGER,
     defaultValue: 0
-  }
+  }, 
+  artistName: {
+    type: Sequelize.STRING 
+   }
 })
 
 module.exports = Product

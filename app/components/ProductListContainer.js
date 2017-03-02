@@ -45,7 +45,7 @@ class ProductListContainer extends Component {
 
 	render() {
 	   const inputValue = this.state.inputValue;
-	   var filteredProducts = this.props.products.filter(product => product.title.match(inputValue))
+	   var filteredProducts = this.props.products.filter(product => product.artistName.match(inputValue))
 		return (
 			<div> 
 			<h1> Search Bar </h1>
