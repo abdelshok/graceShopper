@@ -9,7 +9,7 @@ export const loadProducts = products => {
 	console.log(products)
 	return {
 	type: LOAD_PRODUCTS,
-	products} 
+	products}
 }
 
 export const loadAllProducts = function() {
@@ -34,11 +34,11 @@ const productReducer = (products = [], action) => {
 			console.log(action.products)
 			return action.products;
 
-		default: 
+		default:
 			return products;
 	}
-
 }
 
+//Single Product Reducer
 
 export default productReducer

@@ -7,6 +7,7 @@ import {loadSelectedProduct} from '../reducers/product'
 
 
 const mapStateToProps = ({products}) => {
+  console.log("IN MAP TO STATE")
 	return {
 		products
 	}
