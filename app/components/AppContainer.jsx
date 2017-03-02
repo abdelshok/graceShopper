@@ -35,7 +35,6 @@ class AppContainer extends Component {
                 {this.props.user ? <Tab label="Orders" onActive={()=> this.onClick('/orders')}/> : ''}
               </Tabs>
                {this.props.user ? <WhoAmI /> : <Login />}
-               {browserHistory.push('/productList')}
             </div>
     )
   }
