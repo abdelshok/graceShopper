@@ -24,6 +24,7 @@ router.get('/', function( req, res, next) {
   .catch(next)
 })
 
+
 router.get('/:userId/cart', function(req, res, next) {
     Orders.findOne({
       where: {
@@ -31,8 +32,20 @@ router.get('/:userId/cart', function(req, res, next) {
         status: 'cart'
       }, include: [{model: ProductLines, as:'productLines'}]
     })
-    .then(function(order){
-      res.send(order)
-    })
+    .then(order => res.send(order))
     .catch(next)
+})
+
+router.post('/addProduct', function(req, res, next){
+  ProductLines.create(req.body)
+  .then(createdProductLine => res.send(createdProductLine))
+  .catch(next)
+})
+
+router.delete('/delete/:id', function(req, res, next){
+  console.log('I made it to the route:', req.params.id)
+  ProductLines.findById(req.params.id)
+  .then(productLine => productLine.destroy())
+  .then(res.sendStatus(200))
+  .catch(next)
 })

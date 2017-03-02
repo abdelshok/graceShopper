@@ -26,7 +26,7 @@ router.get('/', function( req, res, next) {
 router.get('/:id', function(req, res, next) {
     Products.findById(req.params.id)
     .then(function(product){
-      res.send(product);
+      res.send(product)
     })
     .catch(next)
 })

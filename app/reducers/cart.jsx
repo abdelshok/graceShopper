@@ -1,31 +1,36 @@
 import axios from 'axios'
+import store from '../store'
 
-const SETCART = 'SETCART'
-const ADDPRODUCTLINE = 'ADDPRODUCTLINE'
-const UPDATEQUANTITY = 'UPDATEPRODUCTLINE'
-const DELETEPRODUCTLINE = 'DELETEPRODUCTLINE'
+
+//CONSTANTS
+const SET_CART = 'SET_CART'
+const ADD_PRODUCTLINE = 'ADD_PRODUCTLINE'
+const UPDATE_QUANTITY = 'UPDATE_PRODUCTLINE'
+const DELETE_PRODUCTLINE = 'DELETE_PRODUCTLINE'
 const CHECKOUT = 'CHECKOUT'
-const UPDATETOTALCOST = 'UPDATETOTALCOST'
+const UPDATE_TOTAL_COST = 'UPDATE_TOTAL_COST'
 
+
+//ACTION CREATORS
 export const setCart = cart => ({
-  type: SETCART,
+  type: SET_CART,
   cart
 })
 
 export const addProductLine = productLine => ({
-  type: ADDPRODUCTLINE,
-  productLines: [productLine]
+  type: ADD_PRODUCTLINE,
+  productLine: [productLine]
 })
 
 export const updateQuantity = (productLine, quantity) => ({
-  type: UPDATEQUANTITY,
+  type: UPDATE_QUANTITY,
   productLine,
   quantity
 })
 
-export const deleteProductLine = productLine => ({
-  type: DELETEPRODUCTLINE,
-  productLine
+export const deleteProductLine = id => ({
+  type: DELETE_PRODUCTLINE,
+  id
 })
 
 export const checkout = status => ({
@@ -34,48 +39,68 @@ export const checkout = status => ({
 })
 
 export const updateTotalCost = totalCost => ({
-  type: UPDATETOTALCOST,
+  type: UPDATE_TOTAL_COST,
   totalCost
 })
 
+
 //DO NOT DELETE ME!!!!!
 const initialState = {
+  id: null,
   productLines: [],
   status: 'cart',
   totalCost: 0
 }
 
-
-export const setCurrentCart = (userId) => 
-  dispatch => 
+//THUNK FUNCTIONS
+export const setCurrentCart = (userId) =>
+  dispatch =>
     axios.get(`/api/orders/${userId}/cart`)
         .then(res => res.data)
-        .then(cart => {
-          console.log('CART:', cart.productLines)
-          dispatch(setCart({productLines: cart.productLines, status: 'cart', totalCost: cart.totalCost}))
-        })
+        .then(cart => dispatch(setCart({id: cart.id, productLines: cart.productLines, status: 'cart', totalCost: 0 })))
         .catch(() => dispatch(setCart(initialState)))
 
+export const addProductToCart = (productId) =>
+  dispatch =>
+    axios.get(`/api/products/${productId}`)
+        .then(res => res.data)
+        .then(product => {
+          let currentOrderId = store.getState().cart.id
+          axios.post('/api/orders/addProduct', {
+            quantity: product.quantity,
+            unitCost: product.cost,
+            productId: product.id,
+            orderId: currentOrderId
+            })
+            .then(createdProductLine => dispatch(addProductLine(createdProductLine)))
+            .catch(error => console.error(error.message))
+          })
 
+export const deleteProductLineFromCart = (id) => 
+    dispatch => 
+    axios.delete(`/api/orders/delete/${id}`)
+    .then(() => dispatch(deleteProductLine(id)))
+    .catch(error => console.error('could not delete product', error))
 
+//REDUCER 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case SETCART:
+    case SET_CART:
      return action.cart
 
-    case ADDPRODUCTLINE:
-      return  Object.assign({}, state, {productLines: state.productLines.concat(action.productLines)})
+    case ADD_PRODUCTLINE:
+      return  Object.assign({}, state, {productLines: state.productLines.concat(action.productLine)})
 
-    case UPDATEQUANTITY:
+    case UPDATE_QUANTITY:
       return ///???
 
-    case DELETEPRODUCTLINE:
-      return ///???
+    case DELETE_PRODUCTLINE:
+      return Object.assign({}, state, {productLines: state.productLines.filter(el => el.id !== action.id)})
 
     case CHECKOUT:
       return ///???
 
-    case UPDATETOTALCOST:
+    case UPDATE_TOTAL_COST:
       return
 
     default:

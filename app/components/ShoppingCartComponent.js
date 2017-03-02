@@ -2,7 +2,6 @@ import React from 'react'
 
 
 export default function ShoppingCartComponent (props) {
-const totalCost = props.productLines.reduce((a, b) => a.totalCost + b.totalCost)
 
 	return (
 		<div>
@@ -30,12 +29,12 @@ const totalCost = props.productLines.reduce((a, b) => a.totalCost + b.totalCost)
 			<td>{productLine.quantity}</td>
 			<td>${productLine.unitCost}</td>
 			<td>${productLine.totalCost}</td>
-			<td><input type="button" value="REMOVE ITEM" /></td>
+			<td><input type="button" value="REMOVE ITEM" onClick={() => props.onClick(productLine.id)} /></td>
 			</tr>
 		)})}
 		</tbody>
 		</table>
-		<p>Order Total Cost: ${totalCost}</p>
+		<p>Order Total Cost: $ </p>
 		<input type="submit" value="CHECKOUT" />
 		</div>
 		
