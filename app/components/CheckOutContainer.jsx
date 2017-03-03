@@ -31,7 +31,7 @@ class CheckOutContainer extends Component {
         </thead>
         <tbody>
         {this.props.cart.productLines && this.props.cart.productLines.map(productLine => {
-          return (<tr key={productLine.id}>
+          return (<tr key={productLine.product.id}>
           <td>{productLine.id}</td>
           <td>{productLine.image}</td>
           <td>{productLine.product.title}</td>
