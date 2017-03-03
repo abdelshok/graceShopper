@@ -11,6 +11,7 @@ injectTapEventPlugin()
 
 import ProductListContainer from './components/ProductListContainer'
 import SingleProductContainer from './components/SingleProductContainer'
+import PaymentComponent from './components/PaymentComponent'
 
 import store from './store'
 import AppCont from './components/AppContainer'
@@ -43,6 +44,7 @@ const AppRoutes = (
     <Route path="/products" component={ProductListContainer} onEnter={onProductEnter} />
     <Route path="/products/:productId" component={SingleProductContainer} onEnter={onSingleProductEnter} />
     <Route path="/cart" component={ShoppingCartContainer} />
+    <Route path="/payment" component={PaymentComponent} />
   </Route>
 )
 
