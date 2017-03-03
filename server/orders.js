@@ -34,7 +34,15 @@ router.get('/:userId/cart', function(req, res, next) {
 
 router.post('/addProduct', function(req, res, next){
   ProductLines.create(req.body)
-  .then(createdProductLine => res.send(createdProductLine))
+  .then(createdProductLine => {
+    return createdProductLine.setOrder(req.body.order_Id)
+  })
+  .then(createdProductLine => {
+    return createdProductLine.setProduct(req.body.product_Id)
+  })
+  .then(createdProductLine => {
+   res.send(createdProductLine)
+  })
   .catch(next)
 })
 
@@ -44,3 +52,4 @@ router.delete('/:id', function(req, res, next){
   .then(res.sendStatus(200))
   .catch(next)
 })
+

@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import SingleProductComponent from './SingleProductComponent'
 import {connect} from 'react-redux'
+import {addProductToCart} from '../reducers/cart'
 
 const mapStateToProps = ({product}) => {
 	return {
@@ -9,10 +10,39 @@ const mapStateToProps = ({product}) => {
 	}
 }
 
+const mapDispatchToProps = (dispatch) => {
+	return {
+		addToCart: (productId) => {
+			dispatch(addProductToCart(productId))
+		}
+	}
+}
+
+class SingleProductContainer extends Component {
+
+	constructor(props) {
+		super(props)
+		this.state = {}
+		this.handleClick = this.handleClick.bind(this)
+	}
+
+	handleClick(productId) {
+		this.props.addToCart(productId)
+	}
+
+	render() {
+		return (
+			<div>
+			<SingleProductComponent {...this.props} handleClick={this.handleClick} />
+			</div>
+		)
+	}
+}
 
 export default connect(
-	mapStateToProps
-	)(SingleProductComponent)
+	mapStateToProps,
+	mapDispatchToProps
+	)(SingleProductContainer)
 
 
 

@@ -66,11 +66,12 @@ export const addProductToCart = (productId) =>
           let currentOrderId = getState().cart.id
           axios.post('/api/orders/addProduct', {
             quantity: product.quantity,
-            unitCost: product.cost,
-            productId: product.id,
-            orderId: currentOrderId
+            unitCost: product.price,
+            product_Id: product.id,
+            order_Id: currentOrderId
             })
             .then(createdProductLine => dispatch(addProductLine(createdProductLine)))
+            .then(() => dispatch(setCurrentCart(getState().auth.id))) 
             .catch(error => console.error(error.message))
           })
 

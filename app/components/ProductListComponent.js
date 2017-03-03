@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Link} from 'react-router'
 
 const divStyle = {
 	height: 200,
@@ -7,35 +7,20 @@ const divStyle = {
 }
 
 export default function ProductListComponent (props) {
-
-	const handleSubmit = props.handleSubmit;
-	console.log(props.handleSubmit)
-
     return (
         <div>
-        <h1> Paintings </h1>
-
-        <ul> 
+        <h1> The Collection </h1>
+        <ul>
         {props.products && props.products.map(painting => {
-        	return (
-        	<li key={painting.title}> 
-        	<div> {painting.id} </div> 
-        	<img src={painting.url} style={divStyle}  />
-        	<div  > {painting.title}, {painting.artistName}  </div>
-        	<div> {painting.year} </div>
-        	<div> ${painting.price} </div>
-        	<button type="submit" onClick={handleSubmit}> Add to Cart </button>
-        	</li>
-        	)
-       	})}
-       	</ul>
-
+            return (
+                <li key={painting.title}>
+                <Link to={`/products/${painting.id}`}>
+                <img src={painting.url} style={divStyle}  />
+                </Link>
+                </li>
+                )
+        })}
+        </ul>
         </div>
-    )
-
-
-
+        )
 }
-
-
-
