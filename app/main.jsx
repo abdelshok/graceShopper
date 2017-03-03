@@ -29,9 +29,9 @@ const ExampleApp = connect(
     </div>
 )
 
-// const onProductEnter = function(nextRouterState) {
-//   store.dispatch(loadAllProducts())
-// }
+const onProductEnter = function(nextRouterState) {
+  store.dispatch(loadAllProducts())
+}
 
 const onSingleProductEnter = function(nextRouterState) {
   const productId = nextRouterState.params.productId
@@ -40,7 +40,7 @@ const onSingleProductEnter = function(nextRouterState) {
 
 const AppRoutes = (
   <Route path="/" component={ExampleApp}>
-    <Route path="/productList" component={ProductListContainer} onEnter={onProductEnter} />
+    <Route path="/products" component={ProductListContainer} onEnter={onProductEnter} />
     <Route path="/products/:productId" component={SingleProductContainer} onEnter={onSingleProductEnter} />
     <Route path="/cart" component={ShoppingCartContainer} />
   </Route>

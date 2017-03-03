@@ -4,6 +4,7 @@ const db = require('APP/db')
 //const User = db.model('users')
 const Products = db.model('products')
 
+
 //const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 
 const express = require('express')
@@ -13,9 +14,7 @@ module.exports = router
 
 router.get('/', function( req, res, next) {
   console.log('first route entered, paintings rendered')
-  Products.findAll({
-    include: [{model: Artist, as:'artists'}]
-  })
+  Products.findAll()
   .then(function(products) {
     console.log('rendered paintings')
     res.send(products) // switch it to jSON??
