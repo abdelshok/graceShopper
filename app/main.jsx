@@ -18,6 +18,7 @@ import AppCont from './components/AppContainer'
 import {loadAllProducts} from './reducers/product'
 import {loadSingleProduct} from './reducers/singleProduct'
 import ShoppingCartContainer from './components/ShoppingCartContainer'
+import CheckOutContainer from './components/CheckOutContainer'
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -43,6 +44,7 @@ const AppRoutes = (
     <Route path="/products" component={ProductListContainer} onEnter={onProductEnter} />
     <Route path="/products/:productId" component={SingleProductContainer} onEnter={onSingleProductEnter} />
     <Route path="/cart" component={ShoppingCartContainer} />
+    <Route path="/checkout" component={CheckOutContainer} />
   </Route>
 )
 

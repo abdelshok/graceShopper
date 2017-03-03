@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ShoppingCartComponent from './ShoppingCartComponent'
 import {connect} from 'react-redux'
+import { browserHistory } from 'react-router'
 
 import {deleteProductLineFromCart} from '../reducers/cart'
 
@@ -36,6 +37,11 @@ clickHandler (productLineId) {
 	this.props.deleteProduct(productLineId)
 }
 
+checkoutHandler () {
+  event.preventDefault()
+  browserHistory.push('/checkout')
+}
+
 setTotalCost () {
 	return this.props.productLines.length.reduce((a, b) => a.totalCost + b.totalCost)
 }
@@ -47,7 +53,7 @@ setTotalCost () {
 				<div>
 					<ShoppingCartComponent {...this.props} onClick={this.clickHandler}  />
 					<p>Order Total Cost: $</p>
-					<input type="submit" value="CHECKOUT" />
+					<input type="submit" value="CHECKOUT" onClick={() => this.checkoutHandler()}/>
 				</div>
 			)
 		} else {
