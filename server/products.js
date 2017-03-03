@@ -13,7 +13,6 @@ module.exports = router
 
 
 router.get('/', function( req, res, next) {
-  console.log('first route entered, paintings rendered')
   Products.findAll()
   .then(function(products) {
     console.log('rendered paintings')

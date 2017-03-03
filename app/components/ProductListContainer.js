@@ -7,7 +7,6 @@ import {loadSelectedProduct} from '../reducers/product'
 
 
 const mapStateToProps = ({products}) => {
-  console.log("IN MAP TO STATE")
 	return {
 		products
 	}
@@ -15,11 +14,10 @@ const mapStateToProps = ({products}) => {
 
 const mapDispatchToProps = (dispatch) => ({
 		onToClick() {
-			console.log('yeahhhh')
+		throw Error('to do')	
 		},
 		productSearch(title) {
-			console.log('about to dispatch', title)
-			dispatch(loadSelectedProduct(title))
+		dispatch(loadSelectedProduct(title))
 		}
 })
 
@@ -28,17 +26,11 @@ class ProductListContainer extends Component {
 	constructor(props) {
 		super(props)
 		this.state = { inputValue: '' }
-	    this.handleSubmit = this.handleSubmit.bind(this);
 	    this.handleChange = this.handleChange.bind(this)
 	}
 
-	handleSubmit(evt) {
-		evt.preventDefault();
-		console.log('yeah')
-	}
 
 	handleChange(evt) {
-		console.log(evt.target.value, 'this is the event')
 	    this.setState({
 	      inputValue: evt.target.value
 	    });
@@ -48,15 +40,14 @@ class ProductListContainer extends Component {
 	   const inputValue = this.state.inputValue;
 	   var filteredProducts = this.props.products.filter(product => product.artistName.match(inputValue))
 		return (
-			<div> 
+			<div>
 			<h1> Search Bar </h1>
 			<FilterInputComponent handleChange={this.handleChange} />
-			<ProductListComponent products={filteredProducts} handleSubmit={this.handleSubmit} inputValue={inputValue} />
+			<ProductListComponent products={filteredProducts} inputValue={inputValue} />
 			</div>
 
 		)
 	}
-
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductListContainer)

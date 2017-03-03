@@ -30,7 +30,7 @@ const ExampleApp = connect(
     </div>
 )
 
-const onProductEnter = function(nextRouterState) {
+const onProductEnter = function(nextRouterStateo) {
   store.dispatch(loadAllProducts())
 }
 

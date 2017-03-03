@@ -26,9 +26,11 @@ export default function ShoppingCartComponent (props) {
 		<tbody>
 		{props.productLines && props.productLines.map(productLine => {
 			return (<tr key={productLine.id}>
+
 			<td>{productLine.product.id}</td>
 			<img src={productLine.product.url} style={divStyle}  />
       <td>{productLine.product.title}</td>
+
 			<td>{productLine.quantity}</td>
 			<td>${productLine.unitCost}</td>
 			<td>${productLine.totalCost}</td>
