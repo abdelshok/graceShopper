@@ -17,7 +17,6 @@ class CheckOutContainer extends Component {
   render() {
     return (
       <div>
-      {console.log("PROPS!!!: ", this.props)}
         <h1>Please confirm your order</h1>
         <table className="shopping-ckeckout">
         <thead>
