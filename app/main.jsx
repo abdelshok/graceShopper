@@ -5,9 +5,9 @@ import {render} from 'react-dom'
 import {connect, Provider} from 'react-redux'
 
 //imports for Material UI config
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import injectTapEventPlugin from 'react-tap-event-plugin'
+injectTapEventPlugin()
 
 import ProductListContainer from './components/ProductListContainer'
 import SingleProductContainer from './components/SingleProductContainer'
@@ -54,5 +54,4 @@ render(
   </MuiThemeProvider>,
   document.getElementById('main')
 )
-
 

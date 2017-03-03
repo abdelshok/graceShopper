@@ -5,7 +5,6 @@ import createLogger from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 
 import {whoami} from './reducers/auth'
-import {setCurrentCart} from './reducers/cart'
 import {loadAllProducts} from './reducers/product'
 
 const store = createStore(
@@ -20,9 +19,6 @@ const store = createStore(
 
 export default store
 
-// Set the auth info at start
+// Set the auth info and load products at start
 store.dispatch(whoami())
-.then(() => store.dispatch(loadAllProducts()))
-.then(() => store.dispatch(setCurrentCart(store.getState().auth.id)))
-
-
+store.dispatch(loadAllProducts())

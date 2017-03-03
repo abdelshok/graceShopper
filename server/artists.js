@@ -23,7 +23,7 @@ router.get('/', function( req, res, next) {
 router.get('/:id', function(req, res, next) {
     Artists.findById(req.params.id)
     .then(function(artist){
-      res.send(artist);
+      res.send(artist)
     })
     .catch(next)
 })

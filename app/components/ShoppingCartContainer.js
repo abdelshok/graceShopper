@@ -26,9 +26,8 @@ class ShoppingCartContainer extends Component {
 
 	constructor(props) {
 		super(props)
-		this.state = {
-	}
 this.clickHandler = this.clickHandler.bind(this)
+this.setTotalCost = this.setTotalCost.bind(this)
 }
 
 
@@ -37,12 +36,18 @@ clickHandler (productLineId) {
 	this.props.deleteProduct(productLineId)
 }
 
+setTotalCost () {
+	return this.props.productLines.length.reduce((a, b) => a.totalCost + b.totalCost)
+}
 
 	render() {
 		if (this.props.productLines.length) {
+
 			return (
 				<div>
 					<ShoppingCartComponent {...this.props} onClick={this.clickHandler}  />
+					<p>Order Total Cost: $</p>
+					<input type="submit" value="CHECKOUT" />
 				</div>
 			)
 		} else {

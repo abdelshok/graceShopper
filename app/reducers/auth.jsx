@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import setCurrentCart from './cart'
+import {setCurrentCart} from './cart'
 
 const AUTHENTICATED = 'AUTHENTICATED'
 
@@ -18,11 +18,18 @@ export const authenticated = user => ({
 })
 
 export const whoami = () =>
-  dispatch =>
+  (dispatch, getState) =>
     axios.get('/api/auth/whoami')
       .then(response => {
         const user = response.data
         dispatch(authenticated(user))
+      })
+      .then(() => {
+        if (getState().auth !== ''){
+          dispatch(setCurrentCart(getState().auth.id))
+        } else {
+          dispatch(setCurrentCart())
+        }
       })
       .catch(() => dispatch(authenticated(null)))
 
@@ -37,7 +44,6 @@ export const logout = () =>
   dispatch =>
     axios.post('/api/auth/logout')
       .then(() => dispatch(whoami()))
-      .then(()=> dispatch(setCurrentCart()))
       .catch(() => dispatch(whoami()))
 
 export default reducer

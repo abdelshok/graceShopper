@@ -33,7 +33,7 @@ const initialProductState = {
 //Single Product Reducer
 const singleProductReducer = ( state = initialProductState, action) => {
 
-  const newState = Object.assign({}, state);
+  const newState = Object.assign({}, state)
 
 	switch (action.type) {
 

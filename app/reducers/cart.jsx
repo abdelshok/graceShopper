@@ -1,6 +1,4 @@
 import axios from 'axios'
-import store from '../store'
-
 
 //CONSTANTS
 const SET_CART = 'SET_CART'
@@ -61,11 +59,11 @@ export const setCurrentCart = (userId) =>
         .catch(() => dispatch(setCart(initialState)))
 
 export const addProductToCart = (productId) =>
-  dispatch =>
+  (dispatch, getState) =>
     axios.get(`/api/products/${productId}`)
         .then(res => res.data)
         .then(product => {
-          let currentOrderId = store.getState().cart.id
+          let currentOrderId = getState().cart.id
           axios.post('/api/orders/addProduct', {
             quantity: product.quantity,
             unitCost: product.cost,
@@ -76,13 +74,13 @@ export const addProductToCart = (productId) =>
             .catch(error => console.error(error.message))
           })
 
-export const deleteProductLineFromCart = (id) => 
-    dispatch => 
-    axios.delete(`/api/orders/delete/${id}`)
+export const deleteProductLineFromCart = (id) =>
+    dispatch =>
+    axios.delete(`/api/orders/${id}`)
     .then(() => dispatch(deleteProductLine(id)))
     .catch(error => console.error('could not delete product', error))
 
-//REDUCER 
+//REDUCER
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_CART:
@@ -109,5 +107,4 @@ const reducer = (state = initialState, action) => {
 }
 
 export default reducer
-
 

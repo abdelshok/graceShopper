@@ -2,7 +2,6 @@ import React from 'react'
 
 
 export default function ShoppingCartComponent (props) {
-
 	return (
 		<div>
 
@@ -11,9 +10,8 @@ export default function ShoppingCartComponent (props) {
 		<table className="shopping-cart">
 		<thead>
 		<tr>
-		
 		<th>Product ID</th>
-		<th></th>
+		<th />
 		<th>Product</th>
 		<th>Quantity</th>
 		<th>Unit Cost</th>
@@ -23,7 +21,7 @@ export default function ShoppingCartComponent (props) {
 		<tbody>
 		{props.productLines && props.productLines.map(productLine => {
 			return (<tr key={productLine.id}>
-			<td>{productLine.id}</td>	
+			<td>{productLine.id}</td>
 			<td>{productLine.image}</td>
 			<td>{productLine.title}</td>
 			<td>{productLine.quantity}</td>
@@ -34,12 +32,7 @@ export default function ShoppingCartComponent (props) {
 		)})}
 		</tbody>
 		</table>
-		<p>Order Total Cost: $ </p>
-		<input type="submit" value="CHECKOUT" />
 		</div>
-		
+
 	)
-
-
-
 }
