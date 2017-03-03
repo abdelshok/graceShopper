@@ -19,6 +19,7 @@ import AppCont from './components/AppContainer'
 import {loadAllProducts} from './reducers/product'
 import {loadSingleProduct} from './reducers/singleProduct'
 import ShoppingCartContainer from './components/ShoppingCartContainer'
+import CheckOutContainer from './components/CheckOutContainer'
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -30,7 +31,7 @@ const ExampleApp = connect(
     </div>
 )
 
-const onProductEnter = function(nextRouterState) {
+const onProductEnter = function(nextRouterStateo) {
   store.dispatch(loadAllProducts())
 }
 
@@ -45,6 +46,7 @@ const AppRoutes = (
     <Route path="/products/:productId" component={SingleProductContainer} onEnter={onSingleProductEnter} />
     <Route path="/cart" component={ShoppingCartContainer} />
     <Route path="/payment" component={PaymentComponent} />
+    <Route path="/checkout" component={CheckOutContainer} />
   </Route>
 )
 
