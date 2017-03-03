@@ -2,6 +2,11 @@ import React from 'react'
 
 
 export default function ShoppingCartComponent (props) {
+  const divStyle = {
+    height: 50,
+    width: 50
+}
+
 	return (
 		<div>
 
@@ -22,8 +27,8 @@ export default function ShoppingCartComponent (props) {
 		{props.productLines && props.productLines.map(productLine => {
 			return (<tr key={productLine.id}>
 			<td>{productLine.id}</td>
-			<td>{productLine.image}</td>
-			<td>{productLine.title}</td>
+			<img src={productLine.product.url} style={divStyle}  />
+      <td>{productLine.product.title}</td>
 			<td>{productLine.quantity}</td>
 			<td>${productLine.unitCost}</td>
 			<td>${productLine.totalCost}</td>

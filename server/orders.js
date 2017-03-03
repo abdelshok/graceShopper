@@ -4,6 +4,7 @@ const db = require('APP/db')
 const User = db.model('users')
 const Orders = db.model('orders')
 const ProductLines = db.model('productLines')
+const Product = db.model('products')
 
 //const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 
@@ -26,7 +27,12 @@ router.get('/:userId/cart', function(req, res, next) {
       where: {
         user_id: req.params.userId,
         status: 'cart'
-      }, include: [{model: ProductLines, as: 'productLines'}]
+      }, include: [{
+        model: ProductLines, as: 'productLines',
+        include: [{
+          model: Product, as: 'product'
+        }]
+      }]
     })
     .then(order => res.send(order))
     .catch(next)

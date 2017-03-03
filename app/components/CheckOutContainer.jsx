@@ -17,16 +17,16 @@ class CheckOutContainer extends Component {
   render() {
     return (
       <div>
-        <h1>Please confirm your order</h1>
+        <h1>Order Confirmation</h1>
         <table className="shopping-ckeckout">
         <thead>
         <tr>
         <th>Product ID</th>
         <th />
         <th>Product</th>
-        <th>Quantity</th>
-        <th>Unit Cost</th>
-        <th>Total Cost</th>
+        <th>Qty</th>
+        <th>Unit</th>
+        <th>Total</th>
         </tr>
         </thead>
         <tbody>
@@ -34,7 +34,7 @@ class CheckOutContainer extends Component {
           return (<tr key={productLine.id}>
           <td>{productLine.id}</td>
           <td>{productLine.image}</td>
-          <td>{productLine.title}</td>
+          <td>{productLine.product.title}</td>
           <td>{productLine.quantity}</td>
           <td>${productLine.unitCost}</td>
           <td>${productLine.totalCost}</td>
@@ -42,7 +42,7 @@ class CheckOutContainer extends Component {
         )})}
         </tbody>
         </table>
-        <h3>Order total Cost: ${this.props.cart.totalCost}</h3>
+        <h3>Order Total Cost: ${this.props.cart.totalCost}</h3>
         <h2>Payment info:</h2>
         <p>Credit Card</p>
         <input type="text" value="Type here"/><br/><br/>
