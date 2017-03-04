@@ -39,8 +39,6 @@ const styles = {
   }
 }
 
-const user = ''
-
 const CheckOutInfo= (props) => (
   <div>
     {!props.auth ? (

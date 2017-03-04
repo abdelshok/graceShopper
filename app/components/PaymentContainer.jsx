@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import PaymentComponent from './PaymentComponent'
 import { browserHistory } from 'react-router'
+import { convertCartToOrder } from '../reducers/cart'
+
 
 const MapStateToProps = (state) => {
   const cart = state.cart
@@ -9,6 +11,14 @@ const MapStateToProps = (state) => {
   return {
     cart,
     auth
+  }
+}
+
+const MapDispatchToProps = (dispatch) => {
+  return {
+    pushCartToOrder: (cartId) => {
+      dispatch(convertCartToOrder(cartId))
+    }
   }
 }
 
@@ -20,6 +30,7 @@ class PaymentContainer extends Component {
 
   pushOrder() {
     event.preventDefault()
+    this.props.pushCartToOrder(this.props.cart.id)
   }
 
   render () {
@@ -29,4 +40,4 @@ class PaymentContainer extends Component {
   }
 }
 
-export default connect(MapStateToProps)(PaymentContainer)
+export default connect(MapStateToProps, MapDispatchToProps)(PaymentContainer)

@@ -60,6 +60,18 @@ export const setCurrentCart = (userId) =>
         .catch(() => dispatch(setCart(initialState)))
   }
 
+export const convertCartToOrder = (cartId) =>
+    (dispatch) => {
+    axios.put(`/api/orders/checkout/${cartId}`)
+    .then(res => {
+      if (res.data.length>0){
+        dispatch(setCart(initialState))
+        }
+      }
+    )
+  .catch(error => console.error('Order failed', error))
+}
+
 export const addProductToCart = (productId) =>
   (dispatch, getState) =>
     axios.get(`/api/products/${productId}`)
@@ -74,7 +86,7 @@ export const addProductToCart = (productId) =>
             })
             .then(res => res.data)
             .then(createdProductLine => dispatch(addProductLine(createdProductLine)))
-            .then(() => { 
+            .then(() => {
               if (getState().auth !== ''){
 
                 dispatch(setCurrentCart(getState().auth.id))
