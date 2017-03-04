@@ -2,9 +2,9 @@ import React from 'react'
 
 
 export default function ShoppingCartComponent (props) {
-	return (
+	
+		return (
 		<div>
-
 		<h1>Shopping Cart</h1>
 
 		<table className="shopping-cart">
@@ -33,6 +33,5 @@ export default function ShoppingCartComponent (props) {
 		</tbody>
 		</table>
 		</div>
-
-	)
+	)	
 }

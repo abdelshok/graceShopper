@@ -18,8 +18,7 @@ export const loadSingleProduct = productId => {
 		.then(response => {
       axios.get(`/api/artists/${response.data.artist_id}`)
 			.then(artist =>{
-        console.log("in loadSingleProduct: ", response.data);
-			  dispatch(loadProduct(response.data, artist.data));
+			  dispatch(loadProduct(response.data, artist.data))
 	  	})
   })
   }
@@ -38,9 +37,6 @@ const singleProductReducer = ( state = initialProductState, action) => {
 	switch (action.type) {
 
 		case LOAD_PRODUCT:
-			console.log('loading selected product')
-			console.log(action.product)
-      console.log(action.artist)
       newState.product = action.product
       newState.artist = action.artist
 			return newState

@@ -27,7 +27,7 @@ export const whoami = () =>
       .then(() => {
         if (getState().auth !== ''){
           dispatch(setCurrentCart(getState().auth.id))
-        } else {
+        } else if (getState().auth === '') {
           dispatch(setCurrentCart())
         }
       })

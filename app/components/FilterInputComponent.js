@@ -8,7 +8,7 @@ export default function FilterInputComponent (props) {
 		<form>
 		<input
 		onChange={handleChange}
-		inputValue={inputValue}
+		value={inputValue}
 		className="form-control"
 		placeholder="Enter Painting Title"
 		/>

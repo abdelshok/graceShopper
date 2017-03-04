@@ -13,7 +13,7 @@ export default function ProductListComponent (props) {
         <ul>
         {props.products && props.products.map(painting => {
             return (
-                <li key={painting.title}>
+                <li key={painting.id}>
                 <Link to={`/products/${painting.id}`}>
                 <img src={painting.url} style={divStyle}  />
                 </Link>

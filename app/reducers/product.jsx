@@ -25,7 +25,6 @@ const productReducer = (products = [], action) => {
 	switch (action.type) {
 
 		case LOAD_PRODUCTS:
-		console.log(action.products)
 		return action.products
 
 		default:

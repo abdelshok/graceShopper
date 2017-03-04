@@ -51,12 +51,17 @@ const initialState = {
 }
 
 //THUNK FUNCTIONS
+
 export const setCurrentCart = (userId) =>
-  dispatch =>
+  (dispatch, getState) => {
+    if (getState().auth.id){
     axios.get(`/api/orders/${userId}/cart`)
         .then(res => res.data)
         .then(cart => dispatch(setCart({id: cart.id, productLines: cart.productLines, status: 'cart', totalCost: 0 })))
         .catch(() => dispatch(setCart(initialState)))
+      
+    }
+  }
 
 export const addProductToCart = (productId) =>
   (dispatch, getState) =>
@@ -71,7 +76,11 @@ export const addProductToCart = (productId) =>
             order_Id: currentOrderId
             })
             .then(createdProductLine => dispatch(addProductLine(createdProductLine)))
-            .then(() => dispatch(setCurrentCart(getState().auth.id))) 
+            .then(() => { 
+              if (getState().auth.id !== null){
+                dispatch(setCurrentCart(getState().auth.id))
+            }
+          })
             .catch(error => console.error(error.message))
           })
 

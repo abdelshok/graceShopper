@@ -9,8 +9,9 @@ import {deleteProductLineFromCart} from '../reducers/cart'
 const MapStateToProps = (state) => {
 	const cart = state.cart
 	return {
+		cart,
 		productLines: cart.productLines,
-		totalCost: cart.totalCost
+		totalCost: cart.totalCost,
 	}
 }
 
@@ -28,7 +29,6 @@ class ShoppingCartContainer extends Component {
 	constructor(props) {
 		super(props)
 this.clickHandler = this.clickHandler.bind(this)
-this.setTotalCost = this.setTotalCost.bind(this)
 }
 
 
@@ -42,19 +42,14 @@ checkoutHandler () {
   browserHistory.push('/checkout')
 }
 
-setTotalCost () {
-	return this.props.productLines.length.reduce((a, b) => a.totalCost + b.totalCost)
-}
 
 	render() {
-		if (this.props.productLines.length) {
-
-			return (
-				<div>
-					<ShoppingCartComponent {...this.props} onClick={this.clickHandler}  />
-					<p>Order Total Cost: $</p>
-					<input type="submit" value="CHECKOUT" onClick={() => this.checkoutHandler()}/>
-				</div>
+	 if (this.props.productLines.length){
+				return (
+					<div>
+						<ShoppingCartComponent {...this.props} onClick={this.clickHandler}  />
+						<input type="submit" value="CHECKOUT" onClick={() => this.checkoutHandler()} />
+					</div>
 			)
 		} else {
 			return (
