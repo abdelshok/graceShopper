@@ -54,13 +54,10 @@ const initialState = {
 
 export const setCurrentCart = (userId) =>
   (dispatch, getState) => {
-    if (getState().auth.id){
     axios.get(`/api/orders/${userId}/cart`)
         .then(res => res.data)
         .then(cart => dispatch(setCart({id: cart.id, productLines: cart.productLines, status: 'cart', totalCost: 0 })))
         .catch(() => dispatch(setCart(initialState)))
-      
-    }
   }
 
 export const addProductToCart = (productId) =>
@@ -75,9 +72,10 @@ export const addProductToCart = (productId) =>
             product_Id: product.id,
             order_Id: currentOrderId
             })
+            .then(res => res.data)
             .then(createdProductLine => dispatch(addProductLine(createdProductLine)))
             .then(() => { 
-              if (getState().auth.id !== null){
+              if (getState().auth !== ''){
                 dispatch(setCurrentCart(getState().auth.id))
             }
           })

@@ -38,6 +38,8 @@ router.get('/:userId/cart', function(req, res, next) {
     .catch(next)
 })
 
+
+
 router.post('/addProduct', function(req, res, next){
   ProductLines.create(req.body)
   .then(createdProductLine => {
@@ -46,9 +48,15 @@ router.post('/addProduct', function(req, res, next){
   .then(createdProductLine => {
     return createdProductLine.setProduct(req.body.product_Id)
   })
-  .then(createdProductLine => {
-   res.send(createdProductLine)
-  })
+  .then(createdProductLine =>
+    ProductLines.findOne({
+      where: {
+        id: createdProductLine.id
+      }, include: [{
+        model: Product, as:'product'
+      }]
+    }))
+  .then(finalCreatedProductLine => res.send(finalCreatedProductLine))
   .catch(next)
 })
 
