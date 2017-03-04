@@ -4,6 +4,7 @@ import {blueGrey300, gray500} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';
 import Divider from 'material-ui/Divider';
+import Subheader from 'material-ui/Subheader';
 import Paper from 'material-ui/Paper';
 
 const style = {
@@ -18,7 +19,8 @@ const buttonStyle = {
   margin: 12
 }
 const containerStyle = {
-  width: 300
+  width: 300,
+  margin: 20
 }
 
 const styles = {
@@ -37,9 +39,55 @@ const styles = {
   }
 }
 
-const TextFieldExampleCustomize = () => (
+const user = ''
+
+const CheckOutInfo= (props) => (
   <div>
+    {!props.auth ? (
+      <Paper zDepth={2} style={containerStyle}>
+      <Subheader>CUSTOMER:</Subheader>
+      <TextField
+        floatingLabelText="Name"
+        floatingLabelStyle={styles.floatingLabelStyle}
+        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+      /><br />
+      <TextField
+        floatingLabelText="Email"
+        floatingLabelStyle={styles.floatingLabelStyle}
+        floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+      /><br />
+      </Paper>
+    ) : ''}
     <Paper zDepth={2} style={containerStyle}>
+    <Subheader>SHIPPING:</Subheader>
+    <TextField
+      floatingLabelText="Adress 1"
+      floatingLabelStyle={styles.floatingLabelStyle}
+      floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+    /><br />
+    <TextField
+      floatingLabelText="Adress 2"
+      floatingLabelStyle={styles.floatingLabelStyle}
+      floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+    /><br />
+    <TextField
+      floatingLabelText="City"
+      floatingLabelStyle={styles.floatingLabelStyle}
+      floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+    /><br />
+     <TextField
+      floatingLabelText="State"
+      floatingLabelStyle={styles.floatingLabelStyle}
+      floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+    /><br/>
+      <TextField
+      floatingLabelText="ZIP"
+      floatingLabelStyle={styles.floatingLabelStyle}
+      floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+    /><br/>
+    </Paper>
+    <Paper zDepth={2} style={containerStyle}>
+    <Subheader>PAYMENT:</Subheader>
     <TextField
       floatingLabelText="Name on card"
       floatingLabelStyle={styles.floatingLabelStyle}
@@ -65,12 +113,11 @@ const TextFieldExampleCustomize = () => (
       floatingLabelStyle={styles.floatingLabelStyle}
       floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
     /><br/>
-    <RaisedButton label="Submit" primary={true} style={buttonStyle} />
-
-
-
+    </Paper>
+    <Paper zDepth={2} style={containerStyle}>
+      <RaisedButton label="Submit" primary={true} style={buttonStyle} onClick={() => props.pushOrder()} />
     </Paper>
   </div>
-);
+)
 
-export default TextFieldExampleCustomize;
+export default CheckOutInfo;

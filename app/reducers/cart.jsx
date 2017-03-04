@@ -76,6 +76,7 @@ export const addProductToCart = (productId) =>
             .then(createdProductLine => dispatch(addProductLine(createdProductLine)))
             .then(() => { 
               if (getState().auth !== ''){
+
                 dispatch(setCurrentCart(getState().auth.id))
             }
           })

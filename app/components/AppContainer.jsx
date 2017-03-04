@@ -32,9 +32,7 @@ class AppContainer extends Component {
               <Tabs >
                 <Tab label="Home" onActive={()=> this.onClick('/products')}/>
                 <Tab label="Cart" onActive={()=> this.onClick('/cart')} />
-                <Tab label="Payment" onActive={()=> this.onClick('/payment')} />
                 {this.props.user ? <Tab label="Account" onActive={()=> this.onClick('/orders')}/> : ''}
-
               </Tabs>
                {this.props.user ? <WhoAmI /> : <Login />}
             </div>
