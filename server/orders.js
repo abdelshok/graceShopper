@@ -79,14 +79,4 @@ router.put('/checkout/:cartId', function(req, res, next){
   .catch(next)
 })
 
-/*
-Post.update({
-  updatedAt: null,
-}, {
-  where: {
-    deletedAt: {
-      $ne: null
-    }
-  }
-});
-*/
+
