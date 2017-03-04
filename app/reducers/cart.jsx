@@ -59,8 +59,10 @@ export const setCurrentCart = (userId) =>
         .then(res => res.data)
         .then(cart => dispatch(setCart({id: cart.id, productLines: cart.productLines, status: 'cart', totalCost: 0 })))
         .catch(() => dispatch(setCart(initialState)))
-      
+    } else {
+      dispatch(setCart(initialState))
     }
+
   }
 
 export const addProductToCart = (productId) =>
@@ -76,7 +78,7 @@ export const addProductToCart = (productId) =>
             order_Id: currentOrderId
             })
             .then(createdProductLine => dispatch(addProductLine(createdProductLine)))
-            .then(() => { 
+            .then(() => {
               if (getState().auth.id !== null){
                 dispatch(setCurrentCart(getState().auth.id))
             }
