@@ -28,7 +28,7 @@ class ShoppingCartContainer extends Component {
 
 	constructor(props) {
 		super(props)
-this.clickHandler = this.clickHandler.bind(this)
+		this.clickHandler = this.clickHandler.bind(this)
 }
 
 

@@ -20,6 +20,8 @@ import {loadAllProducts} from './reducers/product'
 import {loadSingleProduct} from './reducers/singleProduct'
 import ShoppingCartContainer from './components/ShoppingCartContainer'
 import CheckOutContainer from './components/CheckOutContainer'
+import SignUpPageContainer from './components/SignUpPageContainer'
+
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -47,6 +49,7 @@ const AppRoutes = (
     <Route path="/cart" component={ShoppingCartContainer} />
     <Route path="/payment" component={PaymentContainer} />
     <Route path="/checkout" component={CheckOutContainer} />
+    <Route path="/signUp" component={SignUpPageContainer} />
   </Route>
 )
 

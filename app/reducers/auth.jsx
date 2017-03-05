@@ -14,7 +14,8 @@ const reducer = (state = null, action) => {
 }
 
 export const authenticated = user => ({
-  type: AUTHENTICATED, user
+  type: AUTHENTICATED, 
+  user
 })
 
 export const whoami = () =>
