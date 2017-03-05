@@ -17,23 +17,23 @@ export const userAlreadyExists = () => ({
 })
 
 export const createUser = (newUser) => 
-	(dispatch) => {
-		axios.post('/api/users', newUser)
-		.then(response => {
-			dispatch(createNewUser())
-		})
-		.catch(response => {
+(dispatch) => {
+	axios.post('/api/users', newUser)
+	.then(response => {
+		dispatch(createNewUser())
+	})
+	.catch(response => {
 			// now here i catch the error if the user email already exissts
 			// and it will dispatch an action creator which is going to change
 			// the state from userExists: false to true
 			// which is going to be used in the container
 			// it works 
 			if (response.data === undefined) {
-			dispatch(userAlreadyExists())
+				dispatch(userAlreadyExists())
 			}
 		})
-	}
-	
+}
+
 const reducer = (state = initialState, action) => {
 
 	switch (action.type) {
