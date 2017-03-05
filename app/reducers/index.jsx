@@ -4,13 +4,15 @@ import guest from './guest'
 import cart from './cart'
 import products from './product'
 import product from './singleProduct'
+import account from './account'
 
 const rootReducer = combineReducers({
   auth: auth,
   guest: guest,
   cart: cart,
   products: products,
-  product: product
+  product: product,
+  account: account
 })
 
 export default rootReducer
