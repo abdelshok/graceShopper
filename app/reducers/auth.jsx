@@ -52,7 +52,7 @@ export const whoami = () =>
           }
         }
       })
-      .catch(() => dispatch(authenticated(null)))
+      .catch(() => dispatch(authenticated('')))
 
 export const login = (username, password) =>
   dispatch =>

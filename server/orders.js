@@ -67,16 +67,63 @@ router.delete('/:id', function(req, res, next){
   .catch(next)
 })
 
-router.put('/checkout/:cartId', function(req, res, next){
+router.put('/checkoutAuth', function(req, res, next){
+  let affected;
   Orders.update({
     status: 'order',
   }, {
     where: {
-      id: req.params.cartId
+      id: req.body.cartId
     }
   })
-  .then(affectedRows => res.json(affectedRows))
+  .then(affectedRows => {
+    affected = affectedRows
+    return Orders.create({
+      date: new Date(),
+      status: 'cart',
+      totalCost: 0,
+      user_id: req.body.userId
+    })
+  })
+  .then((newCart) => {
+    res.json([affected, newCart])
+  })
   .catch(next)
 })
+
+router.put('/checkoutGuest', function(req, res, next){
+  let order
+  const orderLines = req.body.cart.productLines
+
+  Orders.create({
+    date: new Date(),
+    status: 'order',
+    totalCost: 0,
+    user_id: null
+  })
+  .then((newOrder) =>{
+      order = newOrder
+  })
+  .then(() => {
+      orderLines.forEach((line) => {
+        ProductLines.create({
+          quantity: line.quantity,
+          unitCost: line.unitCost,
+          totalCost: line.totalCost
+        })
+          .then(createdProductLine => {
+            return createdProductLine.setOrder(order.id)
+          })
+          .then(createdProductLine => {
+            return createdProductLine.setProduct(line.product.id)
+          })
+      })
+  })
+  .then(()=> {
+      res.json(order)
+  })
+  .catch(next)
+})
+
 
 

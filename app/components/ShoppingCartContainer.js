@@ -44,7 +44,7 @@ checkoutHandler () {
 
 
 	render() {
-	 if (this.props.productLines.length){
+	 if (this.props.productLines && this.props.productLines.length){
 				return (
 					<div>
 						<ShoppingCartComponent {...this.props} onClick={this.clickHandler}  />

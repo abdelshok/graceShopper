@@ -60,20 +60,36 @@ export const setCurrentCart = (userId) =>
         .catch(() => dispatch(setCart(initialState)))
   }
 
-export const convertCartToOrder = (cartId) =>
-    (dispatch) => {
-    axios.put(`/api/orders/checkout/${cartId}`)
-    .then(res => {
-      if (res.data.length>0){
-        dispatch(setCart(initialState))
+export const convertCartToOrderAuth = (cartId) =>
+    (dispatch, getState) => {
+      axios.put(`/api/orders/checkoutAuth`, {
+        cartId: cartId,
+        userId: getState().auth.id
+      })
+      .then(res => {
+        if (res.data.length>1){
+          dispatch(setCart(initialState))
+          }
         }
-      }
-    )
-  .catch(error => console.error('Order failed', error))
+      )
+      .catch(error => console.error('Order failed', error))
+}
+
+export const convertCartToOrderGuest = (cart) =>
+    (dispatch) => {
+      axios.put(`/api/orders/checkoutGuest`, {
+        cart
+      })
+      .then(res => {
+        dispatch(setCart(initialState))
+        window.localStorage.setItem('guest-cart-productLines', JSON.stringify([]))
+        }
+      )
+      .catch(error => console.error('Order failed', error))
 }
 
 export const addProductToCart = (productId) =>
-  (dispatch, getState) => 
+  (dispatch, getState) =>
   //fetch item from db using product id
     axios.get(`/api/products/${productId}`)
         .then(res => res.data)
@@ -94,7 +110,7 @@ export const addProductToCart = (productId) =>
                 dispatch(setCurrentCart(getState().auth.id))
             }
           })
-          //if not logged in, but instead a guest user 
+          //if not logged in, but instead a guest user
           } else {
             //create product line object from the product instance pulled from db
             let productLine = {
@@ -107,7 +123,7 @@ export const addProductToCart = (productId) =>
             //add that product to the store/state
             dispatch(addProductLine(productLine))
             //then add save record of that product in browser localstorage
-            //first create array to hold productLine obj 
+            //first create array to hold productLine obj
             let productLineArr = []
             productLineArr.push(productLine)
             //check if guest user already has productLines saved
