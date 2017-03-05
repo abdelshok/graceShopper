@@ -17,10 +17,12 @@ export const userAlreadyExists = () => ({
 })
 
 export const createUser = (newUser) => 
-(dispatch) => {
+(dispatch, getState) => {
 	axios.post('/api/users', newUser)
 	.then(response => {
+		console.log('USER:',response)
 		dispatch(createNewUser())
+
 	})
 	.catch(response => {
 			// now here i catch the error if the user email already exissts
@@ -30,9 +32,11 @@ export const createUser = (newUser) =>
 			// it works 
 			if (response.data === undefined) {
 				dispatch(userAlreadyExists())
+
 			}
 		})
 }
+
 
 const reducer = (state = initialState, action) => {
 
