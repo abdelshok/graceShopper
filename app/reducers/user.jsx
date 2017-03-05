@@ -17,10 +17,9 @@ export const userAlreadyExists = () => ({
 })
 
 export const createUser = (newUser) => 
-(dispatch, getState) => {
+(dispatch) => {
 	axios.post('/api/users', newUser)
 	.then(response => {
-		console.log('USER:',response)
 		dispatch(createNewUser())
 
 	})

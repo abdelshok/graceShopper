@@ -2,7 +2,6 @@ import React, { Component }  from 'react'
 import {Tabs, Tab} from 'material-ui'
 import { browserHistory } from 'react-router'
 import {connect} from 'react-redux'
-import Login from './Login'
 import WhoAmI from './WhoAmI'
 import SignInPageContainer from './SignInPageContainer'
 
