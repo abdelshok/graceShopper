@@ -54,6 +54,7 @@ const initialState = {
 
 export const setCurrentCart = (userId) =>
   (dispatch, getState) => {
+    console.log('called in set cart')
     axios.get(`/api/orders/${userId}/cart`)
         .then(res => res.data)
         .then(cart => dispatch(setCart({id: cart.id, productLines: cart.productLines, status: 'cart', totalCost: 0 })))
@@ -126,13 +127,20 @@ export const addProductToCart = (productId) =>
         .catch(error => console.error(error.message))
 
 
-
-
 export const deleteProductLineFromCart = (id) =>
-    dispatch =>
-    axios.delete(`/api/orders/${id}`)
-    .then(() => dispatch(deleteProductLine(id)))
-    .catch(error => console.error('could not delete product', error))
+    (dispatch, getState) => {
+      if (getState.auth !== ''){ // not sure why this expression is working. . . 
+        let currentProductLines = JSON.parse(window.localStorage.getItem('guest-cart-productLines'))
+        currentProductLines = currentProductLines.filter(el => el.id !== id)
+        window.localStorage.setItem('guest-cart-productLines', JSON.stringify(currentProductLines))
+        dispatch(deleteProductLine(id))
+      } else {
+        axios.delete(`/api/orders/${id}`)
+        .then(() => dispatch(deleteProductLine(id)))
+        .catch(error => console.error('could not delete product', error))
+      }
+    }
+
 
 //REDUCER
 const reducer = (state = initialState, action) => {

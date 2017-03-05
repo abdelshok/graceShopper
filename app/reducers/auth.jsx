@@ -5,7 +5,7 @@ import {guestUser} from './guest'
 
 const AUTHENTICATED = 'AUTHENTICATED'
 
-const reducer = (state = null, action) => {
+const reducer = (state = '', action) => {
   switch (action.type) {
     case AUTHENTICATED:
       return action.user
@@ -31,13 +31,13 @@ export const whoami = () =>
       })
       .then(() => {
         //if someone is logged in, fetch their cart from db and set it on the state
-        if (getState().auth !== ''){
+        if (getState().auth.id){
           dispatch(setCurrentCart(getState().auth.id))
         //if no one is logged in, check localStorage for a guest user id
-        } else if (getState().auth === '') {
+        } else if (!getState().auth.id) {
           if (window.localStorage.getItem('art-store-guest-id')){
             //if a guest user id is find in local storage, add the guest user id to the state
-            dispatch(guestUser(window.localStorage.getItem('art-store-guest-id')))
+            dispatch(guestUser(JSON.parse(window.localStorage.getItem('art-store-guest-id'))))
             //find out if they have any past productLine saved in local storage, fetch them
             //and add them to the state
             let productLines = window.localStorage.getItem('guest-cart-productLines')
@@ -52,7 +52,7 @@ export const whoami = () =>
           }
         }
       })
-      .catch(() => dispatch(authenticated(null)))
+      .catch(() => dispatch(authenticated('')))
 
 export const login = (username, password) =>
   dispatch =>
