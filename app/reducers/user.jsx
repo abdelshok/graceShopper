@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {login} from './auth'
+import {setCurrentCart} from './cart'
 
 const USER_EXISTS = 'USER_EXISTS'
 
@@ -16,6 +17,12 @@ export const createUser = (newUser) =>
 	axios.post('/api/users', newUser)
 	.then(response => {
 		dispatch(login(response.data.email, response.data.password))
+		console.log('new user created', response.data)
+		return response
+	})
+	.then(response => {
+		console.log('about to set current cart with id', response.data.id)
+		dispatch(setCurrentCart(response.data.id))
 	})
 	.catch(response => {
 			// here, if the user already exists, it will catch the error
