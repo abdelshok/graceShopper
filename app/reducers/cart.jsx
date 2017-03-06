@@ -96,21 +96,52 @@ export const addProductToCart = (productId) =>
         .then(res => res.data)
         .then(product => {
           //check if anyone is logged in if they are continue with lines 82-96
+          console.log("product", product.id)
           if (getState().auth !== '') {
+            console.log(getState().cart)
           let currentOrderId = getState().cart.id
-          axios.post('/api/orders/addProduct', {
-            quantity: product.quantity,
-            unitCost: product.price,
-            product_Id: product.id,
-            order_Id: currentOrderId
+          console.log("CURRENT ORDER ID", currentOrderId)
+          //Get the current order
+          axios.get(`/api/orders/order/${currentOrderId}`)
+          .then(order => {
+
+
+            //Search through the product lines in the current order to check if any of them contain the product that user is currently adding to the cart. If the product is already in the cart, foundProductLine will be be assigned the value of that productLine, otherwise it will be assigned undefined.
+            let productLines = order.data.productLines
+            let foundProductLine = productLines.find(function (line){
+                return (line.product_id === product.id)
             })
-            .then(res => res.data)
-            .then(createdProductLine => dispatch(addProductLine(createdProductLine)))
-            .then(() => {
-              if (getState().auth !== ''){
-                dispatch(setCurrentCart(getState().auth.id))
+
+            // if foundProduct is not already in the cart, create a new product line with quantity 1
+            if (foundProductLine === undefined){
+              console.log("product is not already in the cart")
+                axios.post('/api/orders/addProduct', {
+                  quantity: 1,
+                  unitCost: product.price,
+                  product_Id: product.id,
+                  order_Id: currentOrderId
+              })
+              .then(res => res.data)
+              .then(createdProductLine => dispatch(addProductLine(createdProductLine)))
+              .then(() => {
+                if (getState().auth !== ''){
+                  dispatch(setCurrentCart(getState().auth.id))
+              }
+            })
+            // Else: Product is already in the cart, so update the quantity by 1
+            } else {
+              console.log("Product is already in cart!", foundProductLine)
+              axios.put(`/api/orders/order/${currentOrderId}/${foundProductLine.product_id}`)
+              .then(updatedLine => {
+                console.log('Updated Quantity:', updatedLine.data)
+                if (getState().auth !== ''){
+                  dispatch(setCurrentCart(getState().auth.id))
+              }
+              })
             }
           })
+
+
           //if not logged in, but instead a guest user
           } else {
             //create product line object from the product instance pulled from db
@@ -145,7 +176,7 @@ export const addProductToCart = (productId) =>
 
 export const deleteProductLineFromCart = (id) =>
     (dispatch, getState) => {
-      if (getState.auth !== ''){ // not sure why this expression is working. . . 
+      if (getState.auth !== ''){ // not sure why this expression is working. . .
         let currentProductLines = JSON.parse(window.localStorage.getItem('guest-cart-productLines'))
         currentProductLines = currentProductLines.filter(el => el.id !== id)
         window.localStorage.setItem('guest-cart-productLines', JSON.stringify(currentProductLines))

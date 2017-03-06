@@ -38,7 +38,7 @@ router.get('/:userId/cart', function(req, res, next) {
     .catch(next)
 })
 
-//Return all product lines associated with a given user
+//Return all orders and products lines associated with a given user
 router.get('/:userId', function(req, res, next){
   Orders.findAll({
     where: {user_id: req.params.userId},
@@ -55,6 +55,44 @@ router.get('/:userId', function(req, res, next){
   .catch(next)
 })
 
+
+//return an individual order
+router.get('/order/:orderId', function(req, res, next){
+  console.log("Inside return individual order")
+  Orders.findById(req.params.orderId,{
+   where: {user_id: req.params.userId},
+    include: [{
+        model: ProductLines, as: 'productLines',
+        include: [{
+          model: Product, as: 'product'
+        }]
+    }]
+  })
+  .then(order => {
+      res.send(order);
+  })
+  .catch(next)
+ })
+
+router.put('/order/:orderId/:productId', function(req, res, next){
+  //Updates the quantity of a given product line by one
+    ProductLines.findOne({ where: {
+      order_id: req.params.orderId,
+      product_id: req.params.productId
+     }
+    })
+    .then(productLine => {
+      return productLine.update({ //update the quantity and total cost by one unit
+        quantity: productLine.quantity + 1,
+        totalCost: productLine.totalCost + productLine.unitCost
+      })
+      .then(updatedLine => {
+        res.send(updatedLine)
+      })
+      .catch(next)
+    })
+    .catch(next)
+})
 
 
 

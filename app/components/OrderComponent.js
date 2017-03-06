@@ -13,9 +13,6 @@ const imageStyle = {
 export default function Order (props) {
 
 
-
-
-
   //Set the seletced order and the product lines in that order
   const currentOrder = props.orders[props.orderNumber]
   const productLines = currentOrder.productLines
