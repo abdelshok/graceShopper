@@ -47,25 +47,26 @@ const initialState = {
   id: null,
   productLines: [],
   status: 'cart',
-  totalCost: 0
+  totalCost: 0,
+  otherDetails: {}
 }
 
 //THUNK FUNCTIONS
 
 export const setCurrentCart = (userId) =>
   (dispatch, getState) => {
-    console.log('called in set cart')
     axios.get(`/api/orders/${userId}/cart`)
         .then(res => res.data)
-        .then(cart => dispatch(setCart({id: cart.id, productLines: cart.productLines, status: 'cart', totalCost: 0 })))
+        .then(cart => dispatch(setCart({id: cart.id, productLines: cart.productLines, status: 'cart', totalCost: 0, otherDetails: {} })))
         .catch(() => dispatch(setCart(initialState)))
   }
 
-export const convertCartToOrderAuth = (cartId) =>
+export const convertCartToOrderAuth = (cartId, details) =>
     (dispatch, getState) => {
       axios.put(`/api/orders/checkoutAuth`, {
         cartId: cartId,
-        userId: getState().auth.id
+        userId: getState().auth.id,
+        details: details
       })
       .then(res => {
         if (res.data.length>1){
@@ -76,10 +77,11 @@ export const convertCartToOrderAuth = (cartId) =>
       .catch(error => console.error('Order failed', error))
 }
 
-export const convertCartToOrderGuest = (cart) =>
+export const convertCartToOrderGuest = (cart, details) =>
     (dispatch) => {
       axios.put(`/api/orders/checkoutGuest`, {
-        cart
+        cart,
+        details
       })
       .then(res => {
         dispatch(setCart(initialState))
@@ -95,7 +97,8 @@ export const addProductToCart = (productId) =>
     axios.get(`/api/products/${productId}`)
         .then(res => res.data)
         .then(product => {
-          //check if anyone is logged in if they are continue with lines 82-96
+          //check if anyone is logged in if they are continue with lines 99-113
+          console.log('In Add Product', product)
           if (getState().auth !== '') {
           let currentOrderId = getState().cart.id
 
@@ -143,7 +146,7 @@ export const addProductToCart = (productId) =>
               id: product.id,
               quantity: 1,
               unitCost: product.price,
-              totlCost: product.price * product.quantity,
+              totelCost: product.price * product.quantity,
               product: product
             }
             //add that product to the store/state

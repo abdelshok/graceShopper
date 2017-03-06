@@ -1,7 +1,8 @@
 import axios from 'axios'
+import { browserHistory } from 'react-router'
 
 import {login} from './auth'
-import {setCurrentCart} from './cart'
+import {setCurrentCart, addProductLine} from './cart'
 
 const USER_EXISTS = 'USER_EXISTS'
 
@@ -14,17 +15,32 @@ export const userAlreadyExists = () => ({
 })
 
 export const createUser = (newUser) => 
-(dispatch) => {
+(dispatch, getState) => {
 	axios.post('/api/users', newUser)
 	.then(response => {
-
 		dispatch(login(response.data.email, response.data.password))
 		console.log('new user created', response.data)
 		return response
 	})
 	.then(response => {
-		console.log('about to set current cart with id', response.data.id)
-		dispatch(setCurrentCart(response.data.id))
+		axios.post('/api/orders/addCart', {user_id: response.data.id, status: 'cart'})
+		.then(cartForUser => {
+			let guestCartProductLines = JSON.parse(window.localStorage.getItem('guest-cart-productLines'))
+				guestCartProductLines.map(productLine => {
+					console.log('PRODUCTLINE:', productLine)
+					axios.post('/api/orders/addProduct', {
+						quantity: productLine.product.quanity,
+						unitCost: productLine.product.price,
+						product_id: productLine.product.id,
+						order_id: cartForUser.data.id
+					})
+					.then(res => res.data)
+					.then(createdProductLine => {
+						dispatch(addProductLine(createdProductLine))
+						browserHistory.push('/payment')
+					})
+				})
+	})
 	})
 	.catch(response => {
 			// here, if the user already exists, it will catch the error
@@ -35,7 +51,6 @@ export const createUser = (newUser) =>
 			}
 		})
 }
-
 
 const reducer = (state = initialState, action) => {
 

@@ -50,11 +50,10 @@ router.get('/:userId', function(req, res, next){
     }]
   })
   .then(orders => {
-      res.send(orders);
+      res.send(orders)
   })
   .catch(next)
 })
-
 
 //return an individual order
 router.get('/order/:orderId', function(req, res, next){
@@ -95,6 +94,11 @@ router.put('/order/:orderId/:productId', function(req, res, next){
 })
 
 
+router.post('/addCart', function (req, res, next){
+  Orders.create(req.body)
+  .then(createdOrder => res.send(createdOrder))
+  .catch(next)
+})
 
 router.post('/addProduct', function(req, res, next){
   ProductLines.create(req.body)
@@ -109,7 +113,7 @@ router.post('/addProduct', function(req, res, next){
       where: {
         id: createdProductLine.id
       }, include: [{
-        model: Product, as:'product'
+        model: Product, as: 'product'
       }]
     }))
   .then(finalCreatedProductLine => res.send(finalCreatedProductLine))
@@ -127,6 +131,7 @@ router.put('/checkoutAuth', function(req, res, next){
   let affected;
   Orders.update({
     status: 'order',
+    otherDetails: req.body.details
   }, {
     where: {
       id: req.body.cartId
@@ -155,7 +160,8 @@ router.put('/checkoutGuest', function(req, res, next){
     date: new Date(),
     status: 'order',
     totalCost: 0,
-    user_id: null
+    user_id: null,
+    otherDetails: req.body.details
   })
   .then((newOrder) =>{
       order = newOrder
