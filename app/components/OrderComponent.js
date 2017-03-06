@@ -5,8 +5,8 @@ import Paper from 'material-ui/Paper'
 
 
 const imageStyle = {
-	height: 200,
-	width: 200
+	height: 100,
+	width: 100
 }
 
 

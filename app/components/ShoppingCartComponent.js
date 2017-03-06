@@ -1,41 +1,51 @@
 import React from 'react'
-
+import {Link} from 'react-router'
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
+import Paper from 'material-ui/Paper'
+import RaisedButton from 'material-ui/RaisedButton';
 
 export default function ShoppingCartComponent (props) {
   const divStyle = {
-    height: 50,
-    width: 50
+    height: 100,
+    width: 100
   }
 
 	return (
 		<div>
-		<h1>Shopping Cart</h1>
+    <Paper zDepth={4}>
+		<h3>Shopping Cart</h3>
+    <Table displayRowCheckbox={false} >
+    <TableHeader displaySelectAll={false}>
+      <TableRow>
+        <TableHeaderColumn>Product</TableHeaderColumn>
+        <TableHeaderColumn>Artist</TableHeaderColumn>
+        <TableHeaderColumn>Title</TableHeaderColumn>
+        <TableHeaderColumn>price</TableHeaderColumn>
+        <TableHeaderColumn>Quantity</TableHeaderColumn>
+        <TableHeaderColumn>Total</TableHeaderColumn>
+        <TableHeaderColumn></TableHeaderColumn>
+      </TableRow>
+    </TableHeader>
+    <TableBody displayRowCheckbox={false}>
+    {props.productLines && props.productLines.map(productLine => {
+			return (<TableRow key={productLine.id}>
 
-		<table className="shopping-cart">
-		<thead>
-		<tr>
-		<th>Product ID</th>
-		<th />
-		<th>Product</th>
-		<th>Quantity</th>
-		<th>Unit Cost</th>
-		<th>Total Cost</th>
-		</tr>
-		</thead>
-		<tbody>
-		{props.productLines && props.productLines.map(productLine => {
-			return (<tr key={productLine.id}>
-				<td>{productLine.product.id}</td>
 				<img src={productLine.product.url} style={divStyle}  />
-				<td>{productLine.product.title}</td>
-				<td>{productLine.quantity}</td>
-				<td>${productLine.unitCost}</td>
-				<td>${productLine.totalCost}</td>
-				<td><input type="button" value="REMOVE ITEM" onClick={() => props.onClick(productLine.id)} /></td>
-				</tr>
+				<TableRowColumn>{productLine.product.artistName}</TableRowColumn>
+				<TableRowColumn>{productLine.product.title}</TableRowColumn>
+        <TableRowColumn>${productLine.product.price}</TableRowColumn>
+				<TableRowColumn>{productLine.quantity}</TableRowColumn>
+				<TableRowColumn>${productLine.totalCost}</TableRowColumn>
+				<TableRowColumn><RaisedButton label="REMOVE ITEM" onClick={() => props.onClick(productLine.id)} /></TableRowColumn>
+				</TableRow>
 				)})}
-		</tbody>
-		</table>
+        </TableBody>
+    </Table>
+    </Paper>
 		</div>
 		)
 }
+
+
+
+// <RaisedButton label="Submit" primary={true} style={buttonStyle} onClick={() => props.pushOrder()} />

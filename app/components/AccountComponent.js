@@ -55,7 +55,7 @@ class AccountComponent extends Component {
               <TableRowColumn>{order.id}</TableRowColumn>
               <TableRowColumn>{order.updated_at.slice(0, 10)}</TableRowColumn>
               <TableRowColumn>{order.status === 'cart' ? 'Open' : 'Completed' }</TableRowColumn>
-              <TableRowColumn>{order.totalCost}</TableRowColumn>
+              <TableRowColumn>${order.totalCost}</TableRowColumn>
           </TableRow>
         )})}
 
