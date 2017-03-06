@@ -63,7 +63,7 @@ class AccountComponent extends Component {
   </Table>
 </Paper>
 <Paper>
-  {(this.state.orderNumber >= 0  ) && <OrderComponent orders={orders} orderNumber={this.state.orderNumber} />}
+  {(this.state.orderNumber >= 0  ) && <OrderComponent orders={orders} orderNumber={this.state.orderNumber} totalCost={orders[this.state.orderNumber].totalCost}/>}
 </Paper>
 </div>
 )

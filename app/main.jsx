@@ -22,6 +22,7 @@ import AppCont from './components/AppContainer'
 import {loadAllProducts} from './reducers/product'
 import {loadSingleProduct} from './reducers/singleProduct'
 import {loadAccountOrders} from './reducers/account'
+import {loadCurrentOrder} from './reducers/order'
 import ShoppingCartContainer from './components/ShoppingCartContainer'
 import CheckOutContainer from './components/CheckOutContainer'
 import SignInPageContainer from './components/SignInPageContainer'
@@ -50,13 +51,19 @@ const onAccountEnter = function(nextRouterState) {
   store.dispatch(loadAccountOrders(userId))
 }
 
+const onConfirmationEnter = function(nextRouterState) {
+  const orderId = nextRouterState.params.orderId
+  store.dispatch(loadCurrentOrder(orderId))
+
+}
+
 const AppRoutes = (
   <Route path="/" component={ExampleApp}>
     <Route path="/products" component={ProductListContainer} onEnter={onProductEnter} />
     <Route path="/products/:productId" component={SingleProductContainer} onEnter={onSingleProductEnter} />
     <Route path="/cart" component={ShoppingCartContainer} />
     <Route path="/payment" component={PaymentContainer} />
-    <Route path="/confirm" component={OrderConfirmationContainer}/>
+    <Route path="/confirm/:orderId" component={OrderConfirmationContainer} onEnter={onConfirmationEnter}/>
     <Route path="/checkout" component={CheckOutContainer} />
     <Route path="/signUp" component={SignInPageContainer} />
     <Route path="/accounts/:userId" component={AccountContainer} onEnter={onAccountEnter}/>

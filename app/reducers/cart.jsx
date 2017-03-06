@@ -105,7 +105,7 @@ export const addProductToCart = (productId) =>
           //Get the current order
           axios.get(`/api/orders/order/${currentOrderId}`)
           .then(order => {
-
+            console.log("Authorized User")
             //Search through the product lines in the current order to check if any of them contain the product that user is currently adding to the cart. If the product is already in the cart, foundProductLine will be be assigned the value of that productLine, otherwise it will be assigned undefined.
             let productLines = order.data.productLines
             let foundProductLine = productLines.find(function (line){

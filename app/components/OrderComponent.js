@@ -16,12 +16,12 @@ export default function Order (props) {
   //Set the seletced order and the product lines in that order
   const currentOrder = props.orders[props.orderNumber]
   const productLines = currentOrder.productLines
-
+  const totalCost = props.totalCost
 
   return (
     <div>
     <Paper zDepth={4}>
-     <h3>Order Details {currentOrder.updated_at.slice(0, 10)} - {currentOrder.status === 'cart' ? 'Open' : 'Completed' }</h3>
+     <h3>Order Details {currentOrder.updated_at.slice(0, 10)} - {currentOrder.status === 'cart' ? 'Open' : 'Completed' } - ${totalCost}</h3>
      <h2></h2>
      <Table displayRowCheckbox={false} >
     <TableHeader displaySelectAll={false}>
@@ -40,7 +40,7 @@ export default function Order (props) {
               <TableRowColumn><img src={product.url} style={imageStyle} /></TableRowColumn>
               <TableRowColumn>{product.artistName}</TableRowColumn>
               <TableRowColumn>{product.title}</TableRowColumn>
-              <TableRowColumn>{product.quantity}</TableRowColumn>
+              <TableRowColumn>{productLine.quantity}</TableRowColumn>
               <TableRowColumn>{product.price}</TableRowColumn>
           </TableRow>
         )})}
