@@ -18,13 +18,14 @@ class AppContainer extends Component {
 
   constructor(props){
     super(props)
-
     this.onClick = this.onClick.bind(this)
   }
 
   onClick(value) {
   browserHistory.push(value)
 }
+
+
 
   render() {
     return (
@@ -33,7 +34,7 @@ class AppContainer extends Component {
               <Tabs >
                 <Tab label="Home" onActive={()=> this.onClick('/products')}/>
                 <Tab label="Cart" onActive={()=> this.onClick('/cart')} />
-                {this.props.user ? <Tab label="Account" onActive={()=> this.onClick('/orders')}/> : ''}
+                {this.props.user ? <Tab label="Account" onActive={()=> this.onClick(`/accounts/${this.props.user.id}`)}/> : ''}
               </Tabs>
                {this.props.user ? <WhoAmI /> : <SignInPageContainer/>}
             </div>

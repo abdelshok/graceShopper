@@ -12,16 +12,17 @@ injectTapEventPlugin()
 import ProductListContainer from './components/ProductListContainer'
 import SingleProductContainer from './components/SingleProductContainer'
 import PaymentContainer from './components/PaymentContainer'
+import AccountContainer from './components/AccountContainer'
 
 import store from './store'
 import AppCont from './components/AppContainer'
 
 import {loadAllProducts} from './reducers/product'
 import {loadSingleProduct} from './reducers/singleProduct'
+import {loadAccountOrders} from './reducers/account'
 import ShoppingCartContainer from './components/ShoppingCartContainer'
 import CheckOutContainer from './components/CheckOutContainer'
 import SignInPageContainer from './components/SignInPageContainer'
-
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -42,6 +43,11 @@ const onSingleProductEnter = function(nextRouterState) {
   store.dispatch(loadSingleProduct(productId))
 }
 
+const onAccountEnter = function(nextRouterState) {
+  const userId = nextRouterState.params.userId
+  store.dispatch(loadAccountOrders(userId))
+}
+
 const AppRoutes = (
   <Route path="/" component={ExampleApp}>
     <Route path="/products" component={ProductListContainer} onEnter={onProductEnter} />
@@ -50,6 +56,7 @@ const AppRoutes = (
     <Route path="/payment" component={PaymentContainer} />
     <Route path="/checkout" component={CheckOutContainer} />
     <Route path="/signUp" component={SignInPageContainer} />
+    <Route path="/accounts/:userId" component={AccountContainer} onEnter={onAccountEnter}/>
   </Route>
 )
 
