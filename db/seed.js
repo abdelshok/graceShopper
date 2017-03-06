@@ -3,7 +3,7 @@
 const db = require('APP/db')
 const amazonRoute = 'https://s3.amazonaws.com/art-auction/'
 
- 
+
 
 
 const seedUsers = () => db.Promise.map([
