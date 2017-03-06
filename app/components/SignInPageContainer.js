@@ -117,5 +117,5 @@ class SignInPageContainer extends Component {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpPageContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(SignInPageContainer)
 
