@@ -39,21 +39,21 @@ router.get('/:userId/cart', function(req, res, next) {
 })
 
 //Return all orders and products lines associated with a given user
-router.get('/:userId', function(req, res, next){
-  Orders.findAll({
-    where: {user_id: req.params.userId},
-    include: [{
-        model: ProductLines, as: 'productLines',
-        include: [{
-          model: Product, as: 'product'
-        }]
-    }]
-  })
-  .then(orders => {
-      res.send(orders)
-  })
-  .catch(next)
-})
+// router.get('/:userId', function(req, res, next){
+//   Orders.findAll({
+//     where: {user_id: req.params.userId},
+//     include: [{
+//         model: ProductLines, as: 'productLines',
+//         include: [{
+//           model: Product, as: 'product'
+//         }]
+//     }]
+//   })
+//   .then(orders => {
+//       res.send(orders)
+//   })
+//   .catch(next)
+// })
 
 //return an individual order
 router.get('/order/:orderId', function(req, res, next){

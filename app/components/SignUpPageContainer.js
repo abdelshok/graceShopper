@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import SignUpPageComponent from './SignUpPageComponent' 
 import {createUser} from '../reducers/user'
-import Login from './Login'
+import {browserHistory} from 'react-router'
+
 
 const mapStateToProps = (state) => {
 	const newUserCreated = state.user.newUserCreated
@@ -79,15 +80,15 @@ class SignInPageContainer extends Component {
 				password2: '',
 				passwordMismatch: false,
 				message: ''})
-
-			this.props.createNewUser(this.state)		
+			this.props.createNewUser(this.state)
 			}
+
 		}
+
 
 	render() {
 
 		const userExists = this.props.userExists
-		const userCreated = this.props.newUserCreated
 		let userMessage = ""
 
 		if (userExists) {
@@ -97,8 +98,6 @@ class SignInPageContainer extends Component {
 
 		return (
 			<div>
-			<h1> Login </h1>
-			<Login/>
 			<h1> Sign Up </h1>
 			<SignUpPageComponent 
 			nameHandleChange={this.nameHandleChange}  

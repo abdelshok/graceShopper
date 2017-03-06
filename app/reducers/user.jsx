@@ -27,7 +27,6 @@ export const createUser = (newUser) =>
 		.then(cartForUser => {
 			let guestCartProductLines = JSON.parse(window.localStorage.getItem('guest-cart-productLines'))
 				guestCartProductLines.map(productLine => {
-					console.log('PRODUCTLINE:', productLine)
 					axios.post('/api/orders/addProduct', {
 						quantity: productLine.product.quanity,
 						unitCost: productLine.product.price,

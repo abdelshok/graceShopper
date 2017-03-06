@@ -26,6 +26,7 @@ class CheckOutContainer extends Component {
 
   createUserHandler () {
     event.preventDefault()
+    browserHistory.push('/signIn')
   }
 
   render() {

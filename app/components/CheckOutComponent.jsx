@@ -39,6 +39,9 @@ export default function CheckOutComponent (props) {
             <Link to='/signUp'>
             <input type="submit" value="Create an Account" onClick={() => props.createUser()} />
             </Link> 
+            <Link to='/signUp'>
+            <input type="submit" value="Create an Account" onClick={() => props.createUser()} />
+            </Link> 
             <input type="submit" value="Continue as Guest" onClick={() => props.continue()} />
           </div>
         )
