@@ -5,15 +5,12 @@ import Paper from 'material-ui/Paper'
 
 
 const imageStyle = {
-	height: 200,
-	width: 200
+	height: 100,
+	width: 100
 }
 
 
 export default function Order (props) {
-
-
-
 
 
   //Set the seletced order and the product lines in that order

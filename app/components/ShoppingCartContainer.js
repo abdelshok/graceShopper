@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ShoppingCartComponent from './ShoppingCartComponent'
 import {connect} from 'react-redux'
 import { browserHistory } from 'react-router'
-
+import RaisedButton from 'material-ui/RaisedButton';
 import {deleteProductLineFromCart} from '../reducers/cart'
 
 
@@ -49,10 +49,14 @@ checkoutHandler () {
 				return (
 					<div>
 						<ShoppingCartComponent {...this.props} onClick={this.clickHandler}  />
+
             <h3>Total Cost: ${this.props.productLines && this.props.productLines.reduce(function(acc, val) {
               return acc + val.totalCost;
             }, 0)}</h3>
-						<input type="submit" value="CHECKOUT" onClick={() => this.checkoutHandler()} />
+						
+
+						<RaisedButton label="CHECKOUT" primary={true} style={{margin: 12}} onClick={() => this.checkoutHandler()} />
+
 					</div>
 			)
 		} else {
@@ -69,4 +73,3 @@ checkoutHandler () {
 
 
 export default connect(MapStateToProps, MapDispatchToProps)(ShoppingCartContainer)
-
