@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import SingleProductComponent from './SingleProductComponent'
 import {connect} from 'react-redux'
 import {addProductToCart} from '../reducers/cart'
+import { browserHistory } from 'react-router'
+
 
 const mapStateToProps = ({product}) => {
 	return {
@@ -28,6 +30,8 @@ class SingleProductContainer extends Component {
 
 	handleClick(productId) {
 		this.props.addToCart(productId)
+		browserHistory.push('/products')
+
 	}
 
 	render() {
