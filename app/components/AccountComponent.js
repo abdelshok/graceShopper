@@ -1,55 +1,34 @@
-import React from 'react'
-import TextField from 'material-ui/TextField'
-import {blueGrey300, gray500} from 'material-ui/styles/colors'
-import RaisedButton from 'material-ui/RaisedButton'
-import Divider from 'material-ui/Divider'
+import React, { Component } from 'react'
 import Paper from 'material-ui/Paper'
-import {List, ListItem} from 'material-ui/List'
-import MobileTearSheet from './MoblieTearSheet'
 import OrderComponent from './OrderComponent'
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
 
-const style = {
-  height: 100,
-  width: 500,
-  margin: 12,
-  textAlign: 'center',
-  display: 'inline-block',
-};
+class AccountComponent extends Component {
 
-const buttonStyle = {
-  margin: 12
-}
-const containerStyle = {
-  width: 300
-}
-
-const styles = {
-  errorStyle: {
-    color: gray500,
-  },
-  underlineStyle: {
-    borderColor: blueGrey300,
-  },
-  floatingLabelStyle: {
-    color: blueGrey300,
-    margin: 5
-  },
-  floatingLabelFocusStyle: {
-    color: blueGrey300,
+  constructor(props) {
+    super(props)
+    this.state = {
+      orderNumber: -1,
+    }
+    this.handleClick = this.handleClick.bind(this);
   }
+
+//Selects which order details to display
+  handleClick = function(row) {
+    //Only will change the state if the click is inside a valid row
+    if (row.length) {
+      this.setState({orderNumber: row})
+    }
 }
 
+  render() {
 
-export default function AccountComponent (props) {
 
-const user = props.user
-const orders = props.productLines
+    const orders = this.props.productLines
 
-  //console.log ("Account", orders)
-
-//Gives each order a totalCost key and value from the ProductLines table
-  orders.forEach(order =>{
+   //Gives each order a totalCost key and value from the ProductLines table
+   orders.forEach(order =>{
     let totalCost = 0
     order.productLines.forEach(productLine => {
         totalCost += productLine.totalCost
@@ -57,38 +36,40 @@ const orders = props.productLines
     order.totalCost = totalCost
   })
 
-  //console.log(orders);
-
-
    return (
-
-  <MobileTearSheet height={250}>
+  <div >
+  <Paper zDepth={4}>
      <h1>Order History</h1>
-      <table className="shopping-ckeckout">
-        <thead>
-          <tr>
-          <th>Date</th>
-
-          <th>Status</th>
-          <th>Order ID</th>
-          <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-        {orders && orders.map(order => {
-
-          return (<tr key={order.id}>
-            <td>{order.updated_at.slice(0, 10)}  </td>
-
-            <td>{order.status === 'cart' ? 'Open' : 'Completed' }</td>
-             <td>{order.id}</td>
-            <td>${order.totalCost}</td>
-            <OrderComponent productLines={order.productLines}/>
-          </tr>
+     <Table displayRowCheckbox={false} onRowSelection={this.handleClick}>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderColumn>ID</TableHeaderColumn>
+        <TableHeaderColumn>Date</TableHeaderColumn>
+        <TableHeaderColumn>Status</TableHeaderColumn>
+        <TableHeaderColumn>Cost</TableHeaderColumn>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+    {orders && orders.map(order => {
+          return (<TableRow key={order.id} >
+              <TableRowColumn>{order.id}</TableRowColumn>
+              <TableRowColumn>{order.updated_at.slice(0, 10)}</TableRowColumn>
+              <TableRowColumn>{order.status === 'cart' ? 'Open' : 'Completed' }</TableRowColumn>
+              <TableRowColumn>{order.totalCost}</TableRowColumn>
+          </TableRow>
         )})}
-        </tbody>
-      </table>
-  </MobileTearSheet>
-)}
+
+    </TableBody>
+  </Table>
+</Paper>
+<Paper>
+  {(this.state.orderNumber >= 0  ) && <OrderComponent orders={orders} orderNumber={this.state.orderNumber} />}
+</Paper>
+</div>
+)
+}
+}
+
+export default AccountComponent
 
 

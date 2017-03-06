@@ -38,24 +38,7 @@ router.get('/:userId/cart', function(req, res, next) {
     .catch(next)
 })
 
-//Route to retrieve all productLines from a given user
-// router.get('/:userId', function(req, res, next){
-//   Orders.findAll({where: {user_id: req.params.userId}})
-//   .then(orders => {
-//     console.log(orders.length)
-//     var ordersArray = orders.map(function(order){
-//       console.log(order.id)
-//       return ProductLines.findAll({where: {order_id: order.id}})
-//     })
-//     Promise.all(ordersArray)
-//     .then(values =>{
-//       res.send(values);
-//     })
-
-//   })
-//   .catch(next)
-// })
-
+//Return all product lines associated with a given user
 router.get('/:userId', function(req, res, next){
   Orders.findAll({
     where: {user_id: req.params.userId},

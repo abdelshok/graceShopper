@@ -4,7 +4,8 @@ import axios from 'axios'
 const LOAD_ACCOUNT = 'LOAD_ACCOUNT'
 
 
-//Single Product Action Creator
+//Load Account Action Creator
+//The state will contain the user and all of the product lines associated with that user
 export const loadAccount = (user, productLines) => {
   return {
     type: LOAD_ACCOUNT,
@@ -12,16 +13,13 @@ export const loadAccount = (user, productLines) => {
     productLines}
   }
 
-//Single Product Thunk Dispatcher
+//Load Account Thunk Dispatcher
 export const loadAccountOrders = userId => {
-  //console.log("IN THE THUNK, ", userId)
   return dispatch => {
 		axios.get(`/api/users/${userId}`)
 		.then(user => {
-     // console.log("User", user.data)
       axios.get(`/api/orders/${userId}`)
 			.then(productLines =>{
-     //   console.log("Product Lines:", productLines.data)
 			  dispatch(loadAccount(user.data, productLines.data))
 	  	})
   })
@@ -33,7 +31,7 @@ const initialProductState = {
   productLines: []
 }
 
-//Single Product Reducer
+//Load Account Reducer
 const accountReducer = ( state = initialProductState, action) => {
 
   const newState = Object.assign({}, state)
@@ -43,9 +41,7 @@ const accountReducer = ( state = initialProductState, action) => {
 		case LOAD_ACCOUNT:
       newState.user = action.user
       newState.productLines = action.productLines
-      //console.log("IN REDUCER, STATE= ", newState)
 			return newState
-
 		default:
 			return state
 	}

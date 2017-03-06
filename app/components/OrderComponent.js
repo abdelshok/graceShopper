@@ -1,35 +1,43 @@
-import React from 'react';
-import {Link} from 'react-router';
+import React from 'react'
+import {Link} from 'react-router'
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
+import Paper from 'material-ui/Paper'
 
 export default function Order (props) {
 
-  const productLines = props;
-  console.log("ProductLines", productLines);
+
+  //Set the seletced order and the product lines in that order
+  const currentOrder = props.orders[props.orderNumber]
+  const productLines = currentOrder.productLines
+
 
   return (
     <div>
-      <h3>Products</h3>
+    <Paper zDepth={4}>
+     <h3>Order Details {currentOrder.updated_at.slice(0, 10)} - {currentOrder.status === 'cart' ? 'Open' : 'Completed' }</h3>
+     <h2></h2>
+     <Table displayRowCheckbox={false} >
+    <TableHeader displaySelectAll={false}>
+      <TableRow>
+        <TableHeaderColumn>Artist</TableHeaderColumn>
+        <TableHeaderColumn>Title</TableHeaderColumn>
+        <TableHeaderColumn>Quantity</TableHeaderColumn>
+        <TableHeaderColumn>Cost</TableHeaderColumn>
+      </TableRow>
+    </TableHeader>
+    <TableBody displayRowCheckbox={false}>
+    {productLines && productLines.map(productLine => {
+        let product = productLine.product
+          return (<TableRow key={productLine.id}>
+              <TableRowColumn>{product.artistName}</TableRowColumn>
+              <TableRowColumn>{product.title}</TableRowColumn>
+              <TableRowColumn>{product.quantity}</TableRowColumn>
+              <TableRowColumn>{product.price }</TableRowColumn>
+          </TableRow>
+        )})}
+      </TableBody>
+    </Table>
+  </Paper>
     </div>
   )
 }
-
-  // <div>
-  //     <h3>Albums</h3>
-  //     <div className="row">
-  //       {
-  //         albums && albums.map(album => (
-  //           <div className="col-xs-4" key={ album.id }>
-  //             <Link className="thumbnail" to={`/albums/${album.id}`}>
-  //               <img src={ album.imageUrl }/>
-  //               <div className="caption">
-  //                 <h5>
-  //                   <span>{ album.name }</span>
-  //                 </h5>
-  //                 <small>{ album.songs.length } songs</small>
-  //               </div>
-  //             </Link>
-  //           </div>
-  //         ))
-  //       }
-  //     </div>
-  //   </div>
