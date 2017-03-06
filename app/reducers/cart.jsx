@@ -146,7 +146,11 @@ export const addProductToCart = (productId) =>
               id: product.id,
               quantity: 1,
               unitCost: product.price,
+
+            
+
               totelCost: product.price * product.quantity,
+
               product: product
             }
             //add that product to the store/state

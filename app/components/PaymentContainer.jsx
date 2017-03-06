@@ -32,6 +32,9 @@ class PaymentContainer extends Component {
     super(props)
     this.pushOrder = this.pushOrder.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    /*
+    In order to beign able to present a first version of the product in one of our demo-dead-lines all the shipping and payment info is beign stored in a JSON file in the database. This is not production ready. Will come back to it for a viable solution! :)
+    */
     this.details = {
        name: '',
        email: '',
