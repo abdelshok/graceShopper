@@ -29,6 +29,7 @@ class AppContainer extends Component {
   render() {
     return (
             <div>
+            <h1>MINIMALISTE</h1>
               <Tabs >
                 <Tab label="Home" onActive={()=> this.onClick('/products')}/>
                 <Tab label="Cart" onActive={()=> this.onClick('/cart')} />
