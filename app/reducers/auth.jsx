@@ -15,7 +15,8 @@ const reducer = (state = '', action) => {
 }
 
 export const authenticated = user => ({
-  type: AUTHENTICATED, user
+  type: AUTHENTICATED, 
+  user
 })
 
 //for tracking guest users

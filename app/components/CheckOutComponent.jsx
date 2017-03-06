@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router'
 
 
 export default function CheckOutComponent (props) {
@@ -35,7 +36,9 @@ export default function CheckOutComponent (props) {
           <input type="submit" value="Payment & Shipping" onClick={() => props.continue()} />
         ) : (
           <div>
+            <Link to='/signUp'>
             <input type="submit" value="Create an Account" onClick={() => props.createUser()} />
+            </Link> 
             <input type="submit" value="Continue as Guest" onClick={() => props.continue()} />
           </div>
         )
