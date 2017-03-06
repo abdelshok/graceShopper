@@ -3,7 +3,17 @@ import {Link} from 'react-router'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
 import Paper from 'material-ui/Paper'
 
+
+const imageStyle = {
+	height: 200,
+	width: 200
+}
+
+
 export default function Order (props) {
+
+
+
 
 
   //Set the seletced order and the product lines in that order
@@ -18,7 +28,8 @@ export default function Order (props) {
      <h2></h2>
      <Table displayRowCheckbox={false} >
     <TableHeader displaySelectAll={false}>
-      <TableRow>
+     <TableRow>
+        <TableHeaderColumn>Image</TableHeaderColumn>
         <TableHeaderColumn>Artist</TableHeaderColumn>
         <TableHeaderColumn>Title</TableHeaderColumn>
         <TableHeaderColumn>Quantity</TableHeaderColumn>
@@ -29,10 +40,11 @@ export default function Order (props) {
     {productLines && productLines.map(productLine => {
         let product = productLine.product
           return (<TableRow key={productLine.id}>
+              <TableRowColumn><img src={product.url} style={imageStyle} /></TableRowColumn>
               <TableRowColumn>{product.artistName}</TableRowColumn>
               <TableRowColumn>{product.title}</TableRowColumn>
               <TableRowColumn>{product.quantity}</TableRowColumn>
-              <TableRowColumn>{product.price }</TableRowColumn>
+              <TableRowColumn>{product.price}</TableRowColumn>
           </TableRow>
         )})}
       </TableBody>
