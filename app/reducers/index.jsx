@@ -5,6 +5,7 @@ import cart from './cart'
 import products from './product'
 import product from './singleProduct'
 import user from './user'
+import order from './order'
 
 import account from './account'
 
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   products: products,
   product: product,
   user: user,
-  account: account
+  account: account,
+  order: order
 })
 
 export default rootReducer

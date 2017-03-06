@@ -37,7 +37,13 @@ class CheckOutContainer extends Component {
 
   render() {
     return (
-      <CheckOutComponent {...this.props} continue={this.continueHandler} createUser={this.createUserHandler} signInUser={this.signInUserHandler}/>
+
+      <div>
+      <CheckOutComponent {...this.props} continue={this.continueHandler} createUser={this.createUserHandler} signInUser={this.signInUserHandler} />
+      <h3>Total Cost: ${this.props.cart.productLines && this.props.cart.productLines.reduce(function(acc, val) {
+              return acc + val.totalCost;
+            }, 0)}</h3>
+      </div>
     )
   }
 }

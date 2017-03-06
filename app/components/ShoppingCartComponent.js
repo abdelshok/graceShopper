@@ -29,8 +29,7 @@ export default function ShoppingCartComponent (props) {
     <TableBody displayRowCheckbox={false}>
     {props.productLines && props.productLines.map(productLine => {
 			return (<TableRow key={productLine.id}>
-
-				<img src={productLine.product.url} style={divStyle}  />
+				<TableRowColumn><img src={productLine.product.url} style={divStyle}/></TableRowColumn>
 				<TableRowColumn>{productLine.product.artistName}</TableRowColumn>
 				<TableRowColumn>{productLine.product.title}</TableRowColumn>
         <TableRowColumn>${productLine.product.price}</TableRowColumn>
@@ -42,10 +41,7 @@ export default function ShoppingCartComponent (props) {
         </TableBody>
     </Table>
     </Paper>
+
 		</div>
 		)
 }
-
-
-
-// <RaisedButton label="Submit" primary={true} style={buttonStyle} onClick={() => props.pushOrder()} />

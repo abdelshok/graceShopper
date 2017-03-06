@@ -36,7 +36,6 @@ export default function CheckOutComponent (props) {
         )})}
         </tbody>
       </table>
-      <h3>Order Total Cost: ${props.cart.totalCost}</h3>
       {
         props.auth ? (
           <RaisedButton label="Payment & Shipping" style={style} onClick={() => props.continue()} />
