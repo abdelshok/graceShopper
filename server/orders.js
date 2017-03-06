@@ -50,13 +50,16 @@ router.get('/:userId', function(req, res, next){
     }]
   })
   .then(orders => {
-      res.send(orders);
+      res.send(orders)
   })
   .catch(next)
 })
 
-
-
+router.post('/addCart', function (req, res, next){
+  Orders.create(req.body)
+  .then(createdOrder => res.send(createdOrder))
+  .catch(next)
+})
 
 router.post('/addProduct', function(req, res, next){
   ProductLines.create(req.body)
@@ -71,7 +74,7 @@ router.post('/addProduct', function(req, res, next){
       where: {
         id: createdProductLine.id
       }, include: [{
-        model: Product, as:'product'
+        model: Product, as: 'product'
       }]
     }))
   .then(finalCreatedProductLine => res.send(finalCreatedProductLine))

@@ -95,7 +95,8 @@ export const addProductToCart = (productId) =>
     axios.get(`/api/products/${productId}`)
         .then(res => res.data)
         .then(product => {
-          //check if anyone is logged in if they are continue with lines 82-96
+          //check if anyone is logged in if they are continue with lines 99-113
+          console.log('In Add Product', product)
           if (getState().auth !== '') {
           let currentOrderId = getState().cart.id
           axios.post('/api/orders/addProduct', {
@@ -118,7 +119,7 @@ export const addProductToCart = (productId) =>
               id: product.id,
               quantity: 1,
               unitCost: product.price,
-              totlCost: product.price * product.quantity,
+              totelCost: product.price * product.quantity,
               product: product
             }
             //add that product to the store/state

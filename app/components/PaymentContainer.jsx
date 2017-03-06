@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import PaymentComponent from './PaymentComponent'
 import { browserHistory } from 'react-router'
-import { convertCartToOrderAuth } from '../reducers/cart'
-import { convertCartToOrderGuest } from '../reducers/cart'
-
+import { convertCartToOrderAuth, convertCartToOrderGuest } from '../reducers/cart'
 
 const MapStateToProps = (state) => {
   const cart = state.cart
@@ -22,7 +20,7 @@ const MapDispatchToProps = (dispatch) => {
     pushCartToOrderAuth: (cartId) => {
       dispatch(convertCartToOrderAuth(cartId))
     },
-    pushCartToOrderGuest: (cart) =>{
+    pushCartToOrderGuest: (cart) => {
       dispatch(convertCartToOrderGuest(cart))
     }
   }
@@ -38,8 +36,10 @@ class PaymentContainer extends Component {
     event.preventDefault()
     if (this.props.auth !== ''){
       this.props.pushCartToOrderAuth(this.props.cart.id)
+      browserHistory.push('/confirm')
     } else {
       this.props.pushCartToOrderGuest(this.props.cart)
+      browserHistory.push('/confirm')
     }
 
   }
