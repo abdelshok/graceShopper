@@ -17,6 +17,7 @@ class CheckOutContainer extends Component {
     super(props)
     this.continueHandler = this.continueHandler.bind(this)
     this.createUserHandler = this.createUserHandler.bind(this)
+    this.signInUserHandler = this.signInUserHandler.bind(this)
   }
 
   continueHandler () {
@@ -26,12 +27,17 @@ class CheckOutContainer extends Component {
 
   createUserHandler () {
     event.preventDefault()
-    browserHistory.push('/signIn')
+    browserHistory.push('/signup')
+  }
+
+  signInUserHandler (){
+    event.preventDefault()
+    browserHistory.push('/login')
   }
 
   render() {
     return (
-      <CheckOutComponent {...this.props} continue={this.continueHandler} createUser={this.createUserHandler}/>
+      <CheckOutComponent {...this.props} continue={this.continueHandler} createUser={this.createUserHandler} signInUser={this.signInUserHandler}/>
     )
   }
 }

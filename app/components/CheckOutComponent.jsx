@@ -1,8 +1,14 @@
 import React from 'react'
 import {Link} from 'react-router'
+import RaisedButton from 'material-ui/RaisedButton'
 
 
 export default function CheckOutComponent (props) {
+
+  const style = {
+        margin: 12,
+      }
+
   return (
     <div>
       <h1>Order Confirmation</h1>
@@ -33,16 +39,13 @@ export default function CheckOutComponent (props) {
       <h3>Order Total Cost: ${props.cart.totalCost}</h3>
       {
         props.auth ? (
-          <input type="submit" value="Payment & Shipping" onClick={() => props.continue()} />
+          <RaisedButton label="Payment & Shipping" style={style} onClick={() => props.continue()} />
         ) : (
           <div>
-            <Link to='/signUp'>
-            <input type="submit" value="Create an Account" onClick={() => props.createUser()} />
-            </Link> 
-            <Link to='/signUp'>
-            <input type="submit" value="Create an Account" onClick={() => props.createUser()} />
-            </Link> 
-            <input type="submit" value="Continue as Guest" onClick={() => props.continue()} />
+             <RaisedButton label="Create an Account" style={style} onClick={() => props.createUser()} />
+            <RaisedButton label="Sign In" style={style} onClick={() => props.signInUser()} />
+             <RaisedButton label="Continue as Guest" style={style} onClick={() => props.continue()} />
+
           </div>
         )
       }
