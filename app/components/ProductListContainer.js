@@ -61,11 +61,7 @@ class ProductListContainer extends Component {
 					}
 				})
 			} else if (this.state.search === 'Medium'){
-				filteredProducts = this.props.products.filter(product => {
-					if (inputValue !== ''){
-						product.tags.includes(inputValue)
-					}
-				})
+				filteredProducts = this.props.products.filter(product => {product.medium.toLowerCase().match(inputValue)})
 			}
 
 		return (
