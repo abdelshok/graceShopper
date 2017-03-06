@@ -5,6 +5,7 @@
 
 const Sequelize = require('sequelize')
 const db = require('APP/db')
+const ProductLines = db.model('productLines')
 
 const Order = db.define('orders', {
     date: {
@@ -22,15 +23,21 @@ const Order = db.define('orders', {
 
 },
 {
-  setterMethods: {
-    setTotalCost: function(orders){
-        orders.getProductLines()
+  instanceMethods: {
+    setTotalCost: function(instance){
+        ProductLines.findAll({
+          where: {
+            order_id: instance.id
+          }
+        })
         .then(function(lines){
           let sum = 0
           lines.forEach(function(line){
             sum +=line.totalCost
           })
-          orders.totalCost = sum
+          instance.update({
+            totalCost: sum
+          })
         })
      }
     }

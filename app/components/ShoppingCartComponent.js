@@ -24,7 +24,7 @@ export default function ShoppingCartComponent (props) {
 		</thead>
 		<tbody>
 		{props.productLines && props.productLines.map(productLine => {
-			return (<tr key={productLine.id}>
+      return (<tr key={productLine.id}>
 				<td>{productLine.product.id}</td>
 				<img src={productLine.product.url} style={divStyle}  />
 				<td>{productLine.product.title}</td>
@@ -33,7 +33,8 @@ export default function ShoppingCartComponent (props) {
 				<td>${productLine.totalCost}</td>
 				<td><input type="button" value="REMOVE ITEM" onClick={() => props.onClick(productLine.id)} /></td>
 				</tr>
-				)})}
+				)}
+      )}
 		</tbody>
 		</table>
 		</div>

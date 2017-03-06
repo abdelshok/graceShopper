@@ -26,9 +26,10 @@ const MapDispatchToProps = (dispatch) => {
 
 class ShoppingCartContainer extends Component {
 
-	constructor(props) {
+constructor(props) {
 		super(props)
 		this.clickHandler = this.clickHandler.bind(this)
+
 }
 
 
@@ -48,6 +49,9 @@ checkoutHandler () {
 				return (
 					<div>
 						<ShoppingCartComponent {...this.props} onClick={this.clickHandler}  />
+            <h3>Total Cost: ${this.props.productLines && this.props.productLines.reduce(function(acc, val) {
+              return acc + val.totalCost;
+            }, 0)}</h3>
 						<input type="submit" value="CHECKOUT" onClick={() => this.checkoutHandler()} />
 					</div>
 			)

@@ -86,7 +86,7 @@ router.delete('/:id', function(req, res, next){
 })
 
 router.put('/checkoutAuth', function(req, res, next){
-  let affected;
+  let affectedR
   Orders.update({
     status: 'order',
     otherDetails: req.body.details
@@ -96,7 +96,13 @@ router.put('/checkoutAuth', function(req, res, next){
     }
   })
   .then(affectedRows => {
-    affected = affectedRows
+    affectedR = affectedRows
+    return Orders.findById(req.body.cartId)
+  })
+  .then((affectedOrder) => {
+    return affectedOrder.setTotalCost(affectedOrder)
+  })
+  .then(() => {
     return Orders.create({
       date: new Date(),
       status: 'cart',
@@ -105,7 +111,7 @@ router.put('/checkoutAuth', function(req, res, next){
     })
   })
   .then((newCart) => {
-    res.json([affected, newCart])
+    res.json([affectedR, newCart])
   })
   .catch(next)
 })
@@ -113,6 +119,7 @@ router.put('/checkoutAuth', function(req, res, next){
 router.put('/checkoutGuest', function(req, res, next){
   let order
   const orderLines = req.body.cart.productLines
+  const linesPromises = []
 
   Orders.create({
     date: new Date(),
@@ -123,24 +130,25 @@ router.put('/checkoutGuest', function(req, res, next){
   })
   .then((newOrder) =>{
       order = newOrder
-  })
-  .then(() => {
       orderLines.forEach((line) => {
-        ProductLines.create({
+        console.log(line)
+        const aLinePromise = ProductLines.create({
           quantity: line.quantity,
           unitCost: line.unitCost,
-          totalCost: line.totalCost
+          totalCost: line.totalCost,
+          order_id: order.id,
+          product_id: line.product.id
         })
-          .then(createdProductLine => {
-            return createdProductLine.setOrder(order.id)
-          })
-          .then(createdProductLine => {
-            return createdProductLine.setProduct(line.product.id)
-          })
+      linesPromises.push(aLinePromise)
       })
+      console.log('linesPromises.length',linesPromises.length)
+      return Promise.all(linesPromises)
   })
-  .then(()=> {
-      res.json(order)
+  .then((values) => {
+    return order.setTotalCost(order)
+  })
+  .then(() => {
+    res.json(order)
   })
   .catch(next)
 })

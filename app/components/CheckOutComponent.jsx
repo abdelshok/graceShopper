@@ -30,7 +30,6 @@ export default function CheckOutComponent (props) {
         )})}
         </tbody>
       </table>
-      <h3>Order Total Cost: ${props.cart.totalCost}</h3>
       {
         props.auth ? (
           <input type="submit" value="Payment & Shipping" onClick={() => props.continue()} />
@@ -38,7 +37,7 @@ export default function CheckOutComponent (props) {
           <div>
             <Link to='/signUp'>
             <input type="submit" value="Create an Account" onClick={() => props.createUser()} />
-            </Link> 
+            </Link>
             <input type="submit" value="Continue as Guest" onClick={() => props.continue()} />
           </div>
         )
