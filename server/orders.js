@@ -92,6 +92,7 @@ router.put('/checkoutAuth', function(req, res, next){
   let affected;
   Orders.update({
     status: 'order',
+    otherDetails: req.body.details
   }, {
     where: {
       id: req.body.cartId
@@ -120,7 +121,8 @@ router.put('/checkoutGuest', function(req, res, next){
     date: new Date(),
     status: 'order',
     totalCost: 0,
-    user_id: null
+    user_id: null,
+    otherDetails: req.body.details
   })
   .then((newOrder) =>{
       order = newOrder

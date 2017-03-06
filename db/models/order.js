@@ -15,7 +15,11 @@ const Order = db.define('orders', {
     },
     totalCost: {
       type: Sequelize.FLOAT
+    },
+    otherDetails: {
+      type: Sequelize.JSON
     }
+
 },
 {
   setterMethods: {
