@@ -8,8 +8,8 @@ export default function SignUpPageComponent (props) {
 	const handleSubmit = props.handleSubmit
 
 	return (
-		<form onSubmit={handleSubmit} > 
-		<label> 
+		<form onSubmit={handleSubmit} >
+		<label>
 		Name
 		<input type="text" placeholder="Name" onChange={nameHandleChange} />
 		</label>
@@ -28,8 +28,8 @@ export default function SignUpPageComponent (props) {
 		Type password again:
 		<input type="text" placeholder="password" onChange={confirmationPassChange} />
 		</label>
-	
-		<input type="submit" value="Submit" /> 
+
+		<input type="submit" value="Submit" />
 
 		</form>
 		)

@@ -19,11 +19,11 @@ const MapStateToProps = (state) => {
 
 const MapDispatchToProps = (dispatch) => {
   return {
-    pushCartToOrderAuth: (cartId) => {
-      dispatch(convertCartToOrderAuth(cartId))
+    pushCartToOrderAuth: (cartId, details) => {
+      dispatch(convertCartToOrderAuth(cartId, details))
     },
-    pushCartToOrderGuest: (cart) =>{
-      dispatch(convertCartToOrderGuest(cart))
+    pushCartToOrderGuest: (cart, details) =>{
+      dispatch(convertCartToOrderGuest(cart, details))
     }
   }
 }
@@ -32,21 +32,41 @@ class PaymentContainer extends Component {
   constructor(props) {
     super(props)
     this.pushOrder = this.pushOrder.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.details = {
+       name: '',
+       email: '',
+       adress1: '',
+       adress2: '',
+       city: '',
+       state: '',
+       zip: '',
+       cardName: '',
+       cardNumber: '',
+       cardExpiration: '',
+       cardCvc: '',
+       cardZip: ''
+    }
+  }
+
+  handleChange(event) {
+    event.preventDefault()
+    this.details[event.target.id] = event.target.value
   }
 
   pushOrder() {
     event.preventDefault()
     if (this.props.auth !== ''){
-      this.props.pushCartToOrderAuth(this.props.cart.id)
+      this.props.pushCartToOrderAuth(this.props.cart.id, this.details)
     } else {
-      this.props.pushCartToOrderGuest(this.props.cart)
+      this.props.pushCartToOrderGuest(this.props.cart, this.details)
     }
 
   }
 
   render () {
     return (
-      <PaymentComponent {...this.props} pushOrder={this.pushOrder} />
+      <PaymentComponent {...this.props} pushOrder={this.pushOrder} handleChange={this.handleChange}/>
     )
   }
 }
