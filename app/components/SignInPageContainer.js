@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import SignUpPageComponent from './SignUpPageComponent' 
 import {createUser} from '../reducers/user'
+import Login from './Login'
 
 const mapStateToProps = (state) => {
-	const newUserCreated = state.newUserCreated
-	const userExists = state.userExists
+	const newUserCreated = state.user.newUserCreated
+	const userExists = state.user.userExists
 	return {
 		newUserCreated,
 		userExists
@@ -61,37 +62,42 @@ class SignUpPageContainer extends Component {
 	confirmationPassChange(evt) {
 		this.setState({
 			password2: evt.target.value
-		})
-		
+		})	
 	}
 
 	handleSubmit(evt) {
 		evt.preventDefault()
 		if (this.state.password !== this.state.password2) {
-			 this.setState({passwordMismatch: true, message: "Passwords don't match"})
+			 this.setState({message: "Passwords don't match"})
 		} else if (this.state.password === this.state.password2 && this.state.password.length < 6) {
-			this.setState({passwordMismatch: false, message: "Password needs to be longer than 6 characters"})
+			this.setState({message: "Password needs to be longer than 6 characters"})
 		} else if (this.state.password === this.state.password2 && this.state.password !== "" && this.state.password.length >= 6) {
-			console.log('about to dispatch')
+				this.setState({
+				name: '',
+				email: '',
+				password: '',
+				password2: '',
+				passwordMismatch: false,
+				message: ''})
 			this.props.createNewUser(this.state)
-			this.setState({passwordMismatch: false, message: "Passwords match"})
+		
+			}
 		}
-	}
 
 	render() {
-		const message = this.state.message
 		const userExists = this.props.userExists
-		console.log('rendered once', this.props.userExists )
-		let userMessage = ''
-		if (this.props.userExists) {
-			return userMessage = "User Exists Already"
-		}
-		// the state is supposed to be re-rendered if user already exists
-		// and userExists is supposed to become true so this message shows
-		// but it does not work yet. I'm fixing it tomorrow. 
+		const userCreated = this.props.newUserCreated
+		let userMessage = ""
+
+		if (userExists) {
+			userMessage = <h5> User already exists </h5>
+		} 
+		
+
 		return (
 			<div>
 			<h1> Login </h1>
+			<Login/>
 			<h1> Sign Up </h1>
 			<SignUpPageComponent 
 			nameHandleChange={this.nameHandleChange}  
@@ -101,8 +107,8 @@ class SignUpPageContainer extends Component {
 			handleSubmit={this.handleSubmit}
 			passwordMismatch={this.state.passwordMismatch}
 			/>
-			<h5> {message} </h5>  
-			<h5> {userMessage} </h5>
+			<h5> {this.state.message} </h5>
+			{userMessage}
 			</div> 
 		)
 

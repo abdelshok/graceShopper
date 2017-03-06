@@ -1,16 +1,11 @@
 import axios from 'axios'
+import {login} from './auth'
 
-const CREATE_USER = 'CREATE_USER'
 const USER_EXISTS = 'USER_EXISTS'
 
 const initialState = {
-	newUserCreated: false,
 	userExists: false
 }
-
-export const createNewUser = () => ({
-	type: CREATE_USER
-})
 
 export const userAlreadyExists = () => ({
 	type: USER_EXISTS
@@ -20,26 +15,22 @@ export const createUser = (newUser) =>
 (dispatch) => {
 	axios.post('/api/users', newUser)
 	.then(response => {
-		dispatch(createNewUser())
+		dispatch(login(response.data.email, response.data.password))
 	})
 	.catch(response => {
-			// now here i catch the error if the user email already exissts
-			// and it will dispatch an action creator which is going to change
-			// the state from userExists: false to true
-			// which is going to be used in the container
-			// it works 
+			// here, if the user already exists, it will catch the error
+			// sent by our express route and dispatch this action creator
+			// which will change the state and show a message in our view
 			if (response.data === undefined) {
 				dispatch(userAlreadyExists())
 			}
 		})
 }
 
+
 const reducer = (state = initialState, action) => {
 
 	switch (action.type) {
-
-		case CREATE_USER:
-		return Object.assign({}, state, {newUserCreated: true})
 
 		case USER_EXISTS:
 		return Object.assign({}, state, {userExists: true})

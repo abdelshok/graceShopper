@@ -2,8 +2,8 @@ import React, { Component }  from 'react'
 import {Tabs, Tab} from 'material-ui'
 import { browserHistory } from 'react-router'
 import {connect} from 'react-redux'
-import Login from './Login'
 import WhoAmI from './WhoAmI'
+import SignInPageContainer from './SignInPageContainer'
 
 
 
@@ -34,7 +34,7 @@ class AppContainer extends Component {
                 <Tab label="Cart" onActive={()=> this.onClick('/cart')} />
                 {this.props.user ? <Tab label="Account" onActive={()=> this.onClick('/orders')}/> : ''}
               </Tabs>
-               {this.props.user ? <WhoAmI /> : <Login />}
+               {this.props.user ? <WhoAmI /> : <SignInPageContainer/>}
             </div>
     )
   }
