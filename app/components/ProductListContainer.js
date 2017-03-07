@@ -5,6 +5,11 @@ import FilterInputComponent from './FilterInputComponent'
 import {loadSelectedProduct} from '../reducers/product'
 import { RadioButton } from 'material-ui/RadioButton'
 
+const searchBar = {
+  color: 'black',
+  fontSize: 30
+}
+
 
 const mapStateToProps = ({products}) => {
 	return {
@@ -74,7 +79,7 @@ class ProductListContainer extends Component {
 			<div>
 			<h1> Search The Collection</h1>
 
-			<FilterInputComponent handleChange={this.handleChange} inputValue={inputValue} searchTerm={this.state.search} />
+			<FilterInputComponent handleChange={this.handleChange} inputValue={inputValue} searchTerm={this.state.search} style={searchBar} />
 			<div style={displayStyle} >
 			<RadioButton label="Artist Name" style={displayStyle} onClick={() => this.onClick('Artist Name')} />
 			<RadioButton label="Title" style={displayStyle} onClick={() => this.onClick('Title')} />

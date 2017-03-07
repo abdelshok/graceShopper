@@ -6,7 +6,20 @@ import WhoAmI from './WhoAmI'
 import SignUpPageContainer from './SignUpPageContainer'
 import RaisedButton from 'material-ui/RaisedButton'
 
+const navStyle = {
+  textAlign: 'center',
+}
 
+const buttonStyle = {
+  margin: 20,
+  float: 'right',
+  borderColor: 'white'
+}
+
+const navBar = {
+  background: 'white',
+  color: 'black'
+}
 
 const MapStateToProps = (state) => {
   return {
@@ -41,13 +54,13 @@ class AppContainer extends Component {
       }
     return (
             <div>
-            <h1>MINIMALISTE</h1>
+            <h1 style={navStyle} >KANDINSKY</h1>
             {this.props.user ? <WhoAmI /> : <div>
-            <RaisedButton label="Sign Up" style={style} onClick={this.onSignUpClick} />
-            <RaisedButton label="Log in" style={style} onClick={this.onLogInClick} /></div>}
-              <Tabs >
-                <Tab label="Home" onActive={()=> this.onClick('/products')}/>
-                <Tab label="Cart" onActive={()=> this.onClick('/cart')} />
+            <RaisedButton label="Sign Up" style={buttonStyle} onClick={this.onSignUpClick} />
+            <RaisedButton label="Log in" style={buttonStyle} onClick={this.onLogInClick} /></div>}
+              <Tabs style={navBar}>
+                <Tab label="Home"  style={navBar} onActive={()=> this.onClick('/products')}/>
+                <Tab label="Cart" style={navBar} onActive={()=> this.onClick('/cart')} />
                 {this.props.user ? <Tab label="Account" onActive={()=> this.onClick(`/accounts/${this.props.user.id}`)}/> : ''}
               </Tabs>
             </div>
