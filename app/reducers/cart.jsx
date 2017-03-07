@@ -97,15 +97,14 @@ export const addProductToCart = (productId) =>
     axios.get(`/api/products/${productId}`)
         .then(res => res.data)
         .then(product => {
-          //check if anyone is logged in if they are continue with lines 99-113
-          console.log('In Add Product', product)
+          //check if anyone is logged in if they are continue with lines
           if (getState().auth !== '') {
           let currentOrderId = getState().cart.id
 
           //Get the current order
           axios.get(`/api/orders/order/${currentOrderId}`)
           .then(order => {
-            console.log("Authorized User")
+
             //Search through the product lines in the current order to check if any of them contain the product that user is currently adding to the cart. If the product is already in the cart, foundProductLine will be be assigned the value of that productLine, otherwise it will be assigned undefined.
             let productLines = order.data.productLines
             let foundProductLine = productLines.find(function (line){
@@ -139,9 +138,7 @@ export const addProductToCart = (productId) =>
 
             //update inventory  - reduce quantity of product by 1
             axios.put(`/api/products/${product.id}`)
-            .then(updatedProduct => {
-              console.log("Updated quantity to:", updatedProduct.data.quantity)
-            })
+
 
           })
 
@@ -186,6 +183,7 @@ export const deleteProductLineFromCart = (id) =>
         window.localStorage.setItem('guest-cart-productLines', JSON.stringify(currentProductLines))
         dispatch(deleteProductLine(id))
       } else {
+        //Future feature to implement: restore the product quantity to the database
         axios.delete(`/api/orders/${id}`)
         .then(() => dispatch(deleteProductLine(id)))
         .catch(error => console.error('could not delete product', error))

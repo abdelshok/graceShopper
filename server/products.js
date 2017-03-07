@@ -34,7 +34,6 @@ router.get('/:id', function(req, res, next) {
 
 //Decrement the quantity in inventory by 1
 router.put('/:id', function(req, res, next) {
-
     Products.findById(req.params.id)
     .then(function(product){
       return product.update({quantity: product.quantity - 1})

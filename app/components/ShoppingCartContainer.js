@@ -35,6 +35,7 @@ constructor(props) {
 
 clickHandler (productLineId) {
 	event.preventDefault()
+  //Future feature to implement: pass in quantity of products to delete so that value can be restored in the database
 	this.props.deleteProduct(productLineId)
 }
 
@@ -53,7 +54,7 @@ checkoutHandler () {
             <h3>Total Cost: ${this.props.productLines && this.props.productLines.reduce(function(acc, val) {
               return acc + val.totalCost;
             }, 0)}</h3>
-						
+
 
 						<RaisedButton label="CHECKOUT" primary={true} style={{margin: 12}} onClick={() => this.checkoutHandler()} />
 
