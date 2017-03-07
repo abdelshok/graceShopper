@@ -5,10 +5,9 @@ import FilterInputComponent from './FilterInputComponent'
 import {loadSelectedProduct} from '../reducers/product'
 import { RadioButton } from 'material-ui/RadioButton'
 
-const searchBar = {
-  color: 'black',
-  fontSize: 30
-}
+
+
+
 
 
 const mapStateToProps = ({products}) => {
@@ -53,9 +52,10 @@ class ProductListContainer extends Component {
 	}
 
 	render() {
-		const styles = { block: { maxWidth: 250 }, checkbox: { marginBottom: 16 } }
+		const searchStyles = { display: 'inline-block' }
 		const inputValue = this.state.inputValue
-		const displayStyle = { display: 'inline-block'}
+		const displayStyle = { display: 'inline-block', marginTop: 20, marginLeft: 20}
+		const barStyle = { color: '#606060', fontSize: 30, marginLeft: 20 }
 
 		let filteredProducts = this.props.products.filter(product => product.artistName.toLowerCase().match(inputValue))
 		if (this.state.search === 'Artist Name'){
@@ -77,14 +77,14 @@ class ProductListContainer extends Component {
 		}
 		return (
 			<div>
-			<h1> Search The Collection</h1>
+			<h1 style={barStyle} > Browse </h1>
 
-			<FilterInputComponent handleChange={this.handleChange} inputValue={inputValue} searchTerm={this.state.search} style={searchBar} />
+			<FilterInputComponent handleChange={this.handleChange} inputValue={inputValue} searchTerm={this.state.search} />
 			<div style={displayStyle} >
-			<RadioButton label="Artist Name" style={displayStyle} onClick={() => this.onClick('Artist Name')} />
-			<RadioButton label="Title" style={displayStyle} onClick={() => this.onClick('Title')} />
-			<RadioButton label="Color" style={displayStyle} onClick={() => this.onClick('Color')} />
-			<RadioButton label="Medium" style={displayStyle} onClick={() => this.onClick('Medium')} />
+			<RadioButton label="Artist Name" style={searchStyles} onClick={() => this.onClick('Artist Name')} />
+			<RadioButton label="Title" style={searchStyles} onClick={() => this.onClick('Title')} />
+			<RadioButton label="Color" style={searchStyles} onClick={() => this.onClick('Color')} />
+			<RadioButton label="Medium" style={searchStyles} onClick={() => this.onClick('Medium')} />
 			</div>
 			<ProductListComponent products={filteredProducts} />
 			</div>

@@ -6,14 +6,16 @@ import WhoAmI from './WhoAmI'
 import SignUpPageContainer from './SignUpPageContainer'
 import RaisedButton from 'material-ui/RaisedButton'
 
-const navStyle = {
+const headerStyle = {
   textAlign: 'center',
+  fontsize: 100
 }
 
 const buttonStyle = {
   margin: 20,
   float: 'right',
-  borderColor: 'white'
+  borderColor: 'white',
+  borderStyle: 'none'
 }
 
 const navBar = {
@@ -26,7 +28,6 @@ const MapStateToProps = (state) => {
     user: state.auth,
   }
 }
-
 
 class AppContainer extends Component {
 
@@ -54,7 +55,7 @@ class AppContainer extends Component {
       }
     return (
             <div>
-            <h1 style={navStyle} >KANDINSKY</h1>
+            <h1 style={headerStyle} >KANDINSKY</h1>
             {this.props.user ? <WhoAmI /> : <div>
             <RaisedButton label="Sign Up" style={buttonStyle} onClick={this.onSignUpClick} />
             <RaisedButton label="Log in" style={buttonStyle} onClick={this.onLogInClick} /></div>}
