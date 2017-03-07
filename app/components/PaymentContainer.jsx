@@ -64,7 +64,9 @@ class PaymentContainer extends Component {
       browserHistory.push(`/confirm/${this.props.cart.id}`)
     } else {
       this.props.pushCartToOrderGuest(this.props.cart)
-      console.log("GUEST ORDER #linking to", this.props.cart.id);
+      console.log("GUEST ORDER #linking to", this.props.cart);
+      let x = window.localStorage.getItem('latest-order-id')
+      console.log("X", x)
       browserHistory.push(`/confirm/${this.props.cart.id}`)
 
     }

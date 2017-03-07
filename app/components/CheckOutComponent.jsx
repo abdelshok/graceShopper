@@ -1,41 +1,50 @@
 import React from 'react'
 import {Link} from 'react-router'
 import RaisedButton from 'material-ui/RaisedButton'
-
+import Paper from 'material-ui/Paper'
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
 
 export default function CheckOutComponent (props) {
 
   const style = {
-        margin: 12,
-      }
+    width: 800,
+    margin: 12,
+}
+
+  const imageStyle = {
+  	height: 100,
+	  width: 100
+}
+
+  console.log(props.cart.productLines)
 
   return (
     <div>
-      <h1>Order Confirmation</h1>
-      <table className="shopping-ckeckout">
-        <thead>
-          <tr>
-          <th>Product ID</th>
-          <th />
-          <th>Product</th>
-          <th>Qty</th>
-          <th>Unit</th>
-          <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
+      <Paper zDepth={4} style={style}>
+      <h3>Order Confirmation</h3>
+      <Table displayRowCheckbox={false}>
+          <TableHeader displaySelectAll={false}>
+          <TableRow>
+          <TableHeaderColumn>Product ID</TableHeaderColumn>
+          <TableHeaderColumn>Product</TableHeaderColumn>
+          <TableHeaderColumn>Qty</TableHeaderColumn>
+          <TableHeaderColumn>Unit</TableHeaderColumn>
+          <TableHeaderColumn>Total</TableHeaderColumn>
+          </TableRow>
+        </TableHeader>
+        <TableBody displayRowCheckbox={false}>
         {props.cart.productLines && props.cart.productLines.map(productLine => {
-          return (<tr key={productLine.product.id}>
-            <td>{productLine.product.id}</td>
-            <td>{productLine.image}</td>
-            <td>{productLine.product.title}</td>
-            <td>{productLine.quantity}</td>
-            <td>${productLine.unitCost}</td>
-            <td>${productLine.totalCost}</td>
-          </tr>
+          return (<TableRow key={productLine.product.id}>
+            <TableRowColumn>{productLine.product.id}</TableRowColumn>
+            <TableRowColumn>{productLine.product.title}</TableRowColumn>
+            <TableRowColumn>{productLine.quantity}</TableRowColumn>
+            <TableRowColumn>${productLine.unitCost}</TableRowColumn>
+            <TableRowColumn>${productLine.totalCost}</TableRowColumn>
+          </TableRow>
         )})}
-        </tbody>
-      </table>
+        </TableBody>
+      </Table>
+      </Paper>
       {
         props.auth ? (
           <RaisedButton label="Payment & Shipping" style={style} onClick={() => props.continue()} />
