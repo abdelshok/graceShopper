@@ -16,8 +16,6 @@ export default function CheckOutComponent (props) {
 	  width: 100
 }
 
-  console.log(props.cart.productLines)
-
   return (
     <div>
       <Paper zDepth={4} style={style}>

@@ -84,9 +84,6 @@ export const convertCartToOrderGuest = (cart, details) =>
         details
       })
       .then(res => {
-        let orderId = res.data.id
-        console.log("Newly added order", orderId)
-        window.localStorage.setItem('latest-order-id', orderId)
         dispatch(setCart(initialState))
         window.localStorage.setItem('guest-cart-productLines', JSON.stringify([]))
         }

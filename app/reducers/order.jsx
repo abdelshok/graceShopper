@@ -14,11 +14,9 @@ export const loadOrder = (order) => {
 
 //Load Order Thunk Dispatcher
 export const loadCurrentOrder = orderId => {
-  console.log("IN Dispatch", orderId)
   return dispatch => {
 		axios.get(`/api/orders/order/${orderId}`)
 		.then(order => {
-        console.log("ORDER INFRO FROM DB", order.data)
 			  dispatch(loadOrder(order.data))
 	  	})
   }

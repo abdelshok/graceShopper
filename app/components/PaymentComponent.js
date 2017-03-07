@@ -19,7 +19,7 @@ const buttonStyle = {
   margin: 20,
 }
 const containerStyle = {
-  width: 500,
+  width: 300,
   margin: 20,
   display: 'inline-block'
 }
@@ -43,7 +43,7 @@ const styles = {
 const CheckOutInfo= (props) => (
   <div>
     {!props.auth ? (
-      <Paper zDepth={2} style={containerStyle}>
+      <Paper zDepth={4} style={containerStyle}>
       <Subheader>CUSTOMER:</Subheader>
       <TextField
         id="name"
