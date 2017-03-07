@@ -1,0 +1,104 @@
+.header{
+	font-family:'Alfa Slab One', cursive;
+	font-size: 60px;
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 0px;
+}
+
+.jumbotron {
+	z-index:1;
+	background: center center;
+}
+
+.jumbotron-image {
+	position:relative;
+	text-align: center;
+	height: 100%;
+	width:100%;
+	margin-top: 0px;
+	margin-bottom:0px;
+}
+
+.search-bar-title{
+	margin-top: 10px;
+	text-align: center;
+	font-family:'Alfa Slab One', cursive;
+	font-size: 40px;
+}
+
+.radio-btn{
+	float:left;	
+	width:100px;
+	height:80px;
+	margin:10px;
+	display:block;
+}
+
+.radio-btn-master{
+	width:100%;
+	vertical-align: center;
+	float:left;
+
+}
+
+.radio-btn-container{
+	padding-left: 30%;
+	padding-right: 30%
+	width:100%;
+
+
+}
+
+.shop-header{
+	margin-top: 100px;
+	text-align: center;
+	font-family:'Alfa Slab One', cursive;
+	font-size: 40px;
+}
+
+.product-title{
+	text-align: center;
+	font-family:'Alfa Slab One', cursive;
+	font-size: 40px;
+}
+
+.single-product{
+	text-align: center;
+	width:100%;
+}
+
+.log-in-title{
+	text-align: center;
+	font-family:'Alfa Slab One', cursive;
+	font-size: 40px;
+}
+
+.log-in-form{
+	text-align: center;
+	padding-top: 40px;
+	width:100%;
+	height:300px;
+	background:#85888E;
+}
+
+.sign-up-title{
+	text-align: center;
+	font-family:'Alfa Slab One', cursive;
+	font-size: 40px;
+}
+
+.sign-up-form{
+	text-align: center;
+	padding-top: 40px;
+	width:100%;
+	height:300px;
+	background:#85888E;
+}
+
+.sign-up-form-element{
+	text-align: center;
+	width:100%;
+}
+
+

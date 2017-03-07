@@ -98,7 +98,8 @@ class SignInPageContainer extends Component {
 
 		return (
 			<div>
-			<h1> Sign Up </h1>
+			<div className="sign-up-form">
+			<h1 className="sign-up-title"> Sign Up </h1>
 			<SignUpPageComponent 
 			nameHandleChange={this.nameHandleChange}  
 			passwordHandleChange={this.passwordHandleChange} 
@@ -110,6 +111,7 @@ class SignInPageContainer extends Component {
 			<h5> {this.state.message} </h5>
 			{userMessage}
 			</div> 
+			</div>
 		)
 
 	}

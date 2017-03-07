@@ -3,8 +3,10 @@ import {Tabs, Tab} from 'material-ui'
 import { browserHistory } from 'react-router'
 import {connect} from 'react-redux'
 import WhoAmI from './WhoAmI'
-import SignUpPageContainer from './SignUpPageContainer'
+import JumbotronContainer from './JumbotronContainer'
 import RaisedButton from 'material-ui/RaisedButton'
+import Dialog from 'material-ui/Dialog'
+import FlatButton from 'material-ui/FlatButton'
 
 const navStyle = {
   textAlign: 'center',
@@ -48,21 +50,23 @@ class AppContainer extends Component {
   }
 
 
+
   render() {
-      const style = {
-        margin: 12,
-      }
+
     return (
             <div>
-            <h1 style={navStyle} >KANDINSKY</h1>
+            <div>
+            <h1 className="header">THE ART SHOP</h1>
             {this.props.user ? <WhoAmI /> : <div>
             <RaisedButton label="Sign Up" style={buttonStyle} onClick={this.onSignUpClick} />
-            <RaisedButton label="Log in" style={buttonStyle} onClick={this.onLogInClick} /></div>}
-              <Tabs style={navBar}>
+            <RaisedButton label="Log in" style={buttonStyle} onClick={this.onLogInClick} /> </div>} </div>
+              <Tabs style={navStyle}>
                 <Tab label="Home"  style={navBar} onActive={()=> this.onClick('/products')}/>
                 <Tab label="Cart" style={navBar} onActive={()=> this.onClick('/cart')} />
-                {this.props.user ? <Tab label="Account" onActive={()=> this.onClick(`/accounts/${this.props.user.id}`)}/> : ''}
+                {this.props.user ? <Tab label="Account" style={navBar} onActive={()=> this.onClick(`/accounts/${this.props.user.id}`)}/> : ''}
               </Tabs>
+
+
             </div>
     )
   }

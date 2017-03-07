@@ -4,6 +4,8 @@ import {connect} from 'react-redux'
 import FilterInputComponent from './FilterInputComponent'
 import {loadSelectedProduct} from '../reducers/product'
 import { RadioButton } from 'material-ui/RadioButton'
+import JumbotronContainer from './JumbotronContainer'
+
 
 const searchBar = {
   color: 'black',
@@ -55,7 +57,7 @@ class ProductListContainer extends Component {
 	render() {
 		const styles = { block: { maxWidth: 250 }, checkbox: { marginBottom: 16 } }
 		const inputValue = this.state.inputValue
-		const displayStyle = { display: 'inline-block'}
+		const displayStyle = { display: 'inline'}
 
 		let filteredProducts = this.props.products.filter(product => product.artistName.toLowerCase().match(inputValue))
 		if (this.state.search === 'Artist Name'){
@@ -77,15 +79,25 @@ class ProductListContainer extends Component {
 		}
 		return (
 			<div>
-			<h1> Search The Collection</h1>
-
-			<FilterInputComponent handleChange={this.handleChange} inputValue={inputValue} searchTerm={this.state.search} style={searchBar} />
-			<div style={displayStyle} >
+			<JumbotronContainer />
+			<h1 className="search-bar-title"> Search The Collection</h1>
+			<div className="radio-btn-master">
+			<div className="radio-btn-container">
+			<div className="radio-btn">
 			<RadioButton label="Artist Name" style={displayStyle} onClick={() => this.onClick('Artist Name')} />
+			</div>
+			<div className="radio-btn">
 			<RadioButton label="Title" style={displayStyle} onClick={() => this.onClick('Title')} />
+			</div>
+			<div className="radio-btn">
 			<RadioButton label="Color" style={displayStyle} onClick={() => this.onClick('Color')} />
+			</div>
+			<div className="radio-btn">
 			<RadioButton label="Medium" style={displayStyle} onClick={() => this.onClick('Medium')} />
 			</div>
+			</div>
+			</div>
+			<FilterInputComponent handleChange={this.handleChange} inputValue={inputValue} searchTerm={this.state.search} style={searchBar} />
 			<ProductListComponent products={filteredProducts} />
 			</div>
 			)

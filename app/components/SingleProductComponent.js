@@ -26,7 +26,7 @@ export default function SingleProductComponent (props) {
           key="1"
           label="Continue Shopping"
           primary={true}
-          onTouchTap={props.handleCloseShop}
+          onTouchTap={() => {props.handleCloseShop()}}
         />,
         <FlatButton
           key="2"
@@ -41,12 +41,14 @@ export default function SingleProductComponent (props) {
 
    return (
       <div>
-          <h1> {product.title} </h1>
+      <div className="single-product">
+          <h1 className="product-title"> {product.title} </h1>
           <img src={product.url} style={divStyle}  />
-           <div> Artist: {product.artistName} </div>
-           <div> Year: {product.year} </div>
-           <div> Price: ${product.price} </div>
-           <span> Description: {product.description} </span>
+           <div> {product.artistName} </div>
+           <div> {product.year} </div>
+           <div> ${product.price} </div>
+           <span> {product.description} </span>
+          <span> 
           <RaisedButton
           label="Add To Cart"
           style={style}
@@ -55,11 +57,13 @@ export default function SingleProductComponent (props) {
             handleOpen()
           }
           } />
+          </span>
         <Dialog
             actions={actions}
             modal={false}
             open={props.open}
             onRequestClose={props.action}> Added to Cart! </Dialog>
+       </div>
        </div>
    )
 }

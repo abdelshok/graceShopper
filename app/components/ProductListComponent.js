@@ -1,16 +1,18 @@
 import React from 'react'
 import {Link} from 'react-router'
 import {Grid, Row, Col} from 'react-bootstrap'
+import JumbotronContainer from './JumbotronContainer'
+
 
 const divStyle = {
-	height: 400,
-	width: 400
+	height: 500,
+	width: 500
 }
 
 export default function ProductListComponent (props) {
     return (
         <div>
-        <h1> Shop The Collection </h1>
+        <h1 className="shop-header"> Shop The Collection </h1>
         <Grid>
         <Row className = "show-grid">
         {props.products && props.products.map(painting => {
