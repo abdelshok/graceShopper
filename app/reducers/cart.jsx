@@ -136,6 +136,13 @@ export const addProductToCart = (productId) =>
               }
               })
             }
+
+            //update inventory  - reduce quantity of product by 1
+            axios.put(`/api/products/${product.id}`)
+            .then(updatedProduct => {
+              console.log("Updated quantity to:", updatedProduct.data.quantity)
+            })
+
           })
 
 

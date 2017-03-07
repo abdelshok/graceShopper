@@ -16,11 +16,12 @@ const style = {
 };
 
 const buttonStyle = {
-  margin: 12
+  margin: 20,
 }
 const containerStyle = {
-  width: 300,
-  margin: 20
+  width: 500,
+  margin: 20,
+  display: 'inline-block'
 }
 
 const styles = {
@@ -136,9 +137,9 @@ const CheckOutInfo= (props) => (
       floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
     /><br/>
     </Paper>
-    <Paper zDepth={2} style={containerStyle}>
+    <div>
       <RaisedButton label="Submit" primary={true} style={buttonStyle} onClick={() => props.pushOrder()} />
-    </Paper>
+    </div>
   </div>
 )
 

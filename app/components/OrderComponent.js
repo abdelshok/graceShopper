@@ -9,6 +9,10 @@ const imageStyle = {
 	width: 100
 }
 
+const style = {
+  width: 1000,
+  margin: 20
+}
 
 export default function Order (props) {
 
@@ -20,7 +24,7 @@ export default function Order (props) {
 
   return (
     <div>
-    <Paper zDepth={4}>
+    <Paper zDepth={4} style={style}>
      <h3>Order Details {currentOrder.updated_at.slice(0, 10)} - {currentOrder.status === 'cart' ? 'Open' : 'Completed' } - ${totalCost}</h3>
      <h2></h2>
      <Table displayRowCheckbox={false} >

@@ -48,8 +48,10 @@ export default function SingleProductComponent (props) {
            <div> Price: ${product.price} </div>
            <span> Description: {product.description} </span>
           <RaisedButton
-          label="Add To Cart"
+          id="Button"
+          label={product.quantity > 0 ? 'Add To Cart' : 'Sold out!'}
           style={style}
+          disabled={(product.quantity < 1)}
           onClick={() => {
             handleClick(product.id)
             handleOpen()

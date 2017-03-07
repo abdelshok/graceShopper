@@ -6,13 +6,17 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 export default function ShoppingCartComponent (props) {
   const divStyle = {
+
+  }
+
+  const imageStyle = {
     height: 100,
     width: 100
   }
 
 	return (
 		<div>
-    <Paper zDepth={4}>
+    <Paper zDepth={4} style={divStyle}>
 		<h3>Shopping Cart</h3>
     <Table displayRowCheckbox={false} >
     <TableHeader displaySelectAll={false}>
@@ -29,13 +33,13 @@ export default function ShoppingCartComponent (props) {
     <TableBody displayRowCheckbox={false}>
     {props.productLines && props.productLines.map(productLine => {
 			return (<TableRow key={productLine.id}>
-				<TableRowColumn><img src={productLine.product.url} style={divStyle}/></TableRowColumn>
+				<TableRowColumn><img src={productLine.product.url} style={imageStyle}/></TableRowColumn>
 				<TableRowColumn>{productLine.product.artistName}</TableRowColumn>
 				<TableRowColumn>{productLine.product.title}</TableRowColumn>
         <TableRowColumn>${productLine.product.price}</TableRowColumn>
 				<TableRowColumn>{productLine.quantity}</TableRowColumn>
 				<TableRowColumn>${productLine.totalCost}</TableRowColumn>
-				<TableRowColumn><RaisedButton label="REMOVE ITEM" onClick={() => props.onClick(productLine.id)} /></TableRowColumn>
+				<TableRowColumn><RaisedButton label="REMOVE ITEM"  onClick={() => props.onClick(productLine.id)} /></TableRowColumn>
 				</TableRow>
 				)})}
         </TableBody>
