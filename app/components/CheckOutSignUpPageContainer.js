@@ -23,7 +23,7 @@ const mapDispatchToProps = (dispatch) => {
 	}
 }
 
-class SignInPageContainer extends Component {
+class CheckOutSignUpPageContainer extends Component {
 
 	constructor(props) {
 		super(props)
@@ -116,5 +116,4 @@ class SignInPageContainer extends Component {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignInPageContainer)
-
+export default connect(mapStateToProps, mapDispatchToProps)(CheckOutSignUpPageContainer)
