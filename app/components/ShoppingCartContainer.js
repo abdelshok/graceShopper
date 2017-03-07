@@ -63,6 +63,7 @@ checkoutHandler () {
 			return (
 				<div>
 				<h1>Your Cart Is Empty!</h1>
+				<RaisedButton label="Let's Go Shopping!" primary={true} style={{margin: 12}} onClick={() => browserHistory.push('/products')} />
 				</div>
 				)
 		}

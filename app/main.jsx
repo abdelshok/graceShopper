@@ -23,10 +23,12 @@ import {loadAllProducts} from './reducers/product'
 import {loadSingleProduct} from './reducers/singleProduct'
 import {loadAccountOrders} from './reducers/account'
 import Login from './components/Login'
+import CheckOutLoginContainer from './components/CheckOutLoginContainer'
 import {loadCurrentOrder} from './reducers/order'
 import ShoppingCartContainer from './components/ShoppingCartContainer'
 import CheckOutContainer from './components/CheckOutContainer'
 import SignUpPageContainer from './components/SignUpPageContainer'
+import CheckOutSignUpPageContainer from './components/CheckOutSignUpPageContainer'
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -66,9 +68,11 @@ const AppRoutes = (
     <Route path="/payment" component={PaymentContainer} />
     <Route path="/confirm/:orderId" component={OrderConfirmationContainer} onEnter={onConfirmationEnter}/>
     <Route path="/checkout" component={CheckOutContainer} />
+    <Route path="/checkout-login" component={CheckOutLoginContainer} />
+    <Route path="/checkout-signup" component={CheckOutSignUpPageContainer} />
     <Route path="/signup" component={SignUpPageContainer} />
     <Route path="/login" component={Login} />
-    <Route path="/accounts/:userId" component={AccountContainer} onEnter={onAccountEnter}/>
+    <Route path="/accounts/:userId" component={AccountContainer} onEnter={onAccountEnter} />
   </Route>
 )
 

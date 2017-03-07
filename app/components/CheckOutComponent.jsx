@@ -42,7 +42,7 @@ export default function CheckOutComponent (props) {
         ) : (
           <div>
              <RaisedButton label="Create an Account" style={style} onClick={() => props.createUser()} />
-            <RaisedButton label="Sign In" style={style} onClick={() => props.signInUser()} />
+            <RaisedButton label="Log In" style={style} onClick={() => props.signInUser()} />
              <RaisedButton label="Continue as Guest" style={style} onClick={() => props.continue()} />
 
           </div>

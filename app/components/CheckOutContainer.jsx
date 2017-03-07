@@ -27,12 +27,12 @@ class CheckOutContainer extends Component {
 
   createUserHandler () {
     event.preventDefault()
-    browserHistory.push('/signup')
+    browserHistory.push('/checkout-signup')
   }
 
   signInUserHandler (){
     event.preventDefault()
-    browserHistory.push('/login')
+    browserHistory.push('/checkout-login')
   }
 
   render() {
@@ -41,7 +41,7 @@ class CheckOutContainer extends Component {
       <div>
       <CheckOutComponent {...this.props} continue={this.continueHandler} createUser={this.createUserHandler} signInUser={this.signInUserHandler} />
       <h3>Total Cost: ${this.props.cart.productLines && this.props.cart.productLines.reduce(function(acc, val) {
-              return acc + val.totalCost;
+              return acc + val.totalCost
             }, 0)}</h3>
       </div>
     )

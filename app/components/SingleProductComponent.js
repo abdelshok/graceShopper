@@ -1,14 +1,43 @@
 import React from 'react'
+import RaisedButton from 'material-ui/RaisedButton'
+import Dialog from 'material-ui/Dialog'
+import FlatButton from 'material-ui/FlatButton'
+import browserHistory from 'react-router'
+
 
 const divStyle = {
-    height: 200,
-    width: 200
+    height: 450,
+    width: 450
 }
+
+
+const style = {margin: 5}
+
 
 export default function SingleProductComponent (props) {
   const product = props.product.product
-  const artist = props.product.artist
   const handleClick = props.handleClick
+  const handleOpen = props.handleOpen
+  const handleCloseCheckout = props.handleCloseCheckout
+
+
+    const actions = [
+        <FlatButton
+          key="1"
+          label="Continue Shopping"
+          primary={true}
+          onTouchTap={props.handleCloseShop}
+        />,
+        <FlatButton
+          key="2"
+          label="Checkout"
+          primary={true}
+          keyboardFocused={true}
+          onTouchTap={() => {
+            handleCloseCheckout()
+          }}
+        />,
+      ]
 
    return (
       <div>
@@ -18,7 +47,19 @@ export default function SingleProductComponent (props) {
            <div> Year: {product.year} </div>
            <div> Price: ${product.price} </div>
            <span> Description: {product.description} </span>
-           <button type="submit" onClick={() => handleClick(product.id)}> Add to Cart </button>
+          <RaisedButton
+          label="Add To Cart"
+          style={style}
+          onClick={() => {
+            handleClick(product.id)
+            handleOpen()
+          }
+          } />
+        <Dialog
+            actions={actions}
+            modal={false}
+            open={props.open}
+            onRequestClose={props.action}> Added to Cart! </Dialog>
        </div>
    )
 }

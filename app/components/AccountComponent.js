@@ -11,7 +11,7 @@ class AccountComponent extends Component {
     this.state = {
       orderNumber: -1,
     }
-    this.handleClick = this.handleClick.bind(this);
+    this.handleClick = this.handleClick.bind(this)
   }
 
 //Selects which order details to display
@@ -28,7 +28,7 @@ class AccountComponent extends Component {
     const orders = this.props.productLines
 
    //Gives each order a totalCost key and value from the ProductLines table
-   orders.forEach(order =>{
+   orders.forEach(order => {
     let totalCost = 0
     order.productLines.forEach(productLine => {
         totalCost += productLine.totalCost
@@ -37,7 +37,7 @@ class AccountComponent extends Component {
   })
 
    return (
-  <div >
+  <div>
   <Paper zDepth={4}>
      <h1>Order History</h1>
      <Table displayRowCheckbox={false} onRowSelection={this.handleClick}>
@@ -51,14 +51,15 @@ class AccountComponent extends Component {
     </TableHeader>
     <TableBody>
     {orders && orders.map(order => {
+      if (order.status === 'order'){
           return (<TableRow key={order.id} >
               <TableRowColumn>{order.id}</TableRowColumn>
               <TableRowColumn>{order.updated_at.slice(0, 10)}</TableRowColumn>
               <TableRowColumn>{order.status === 'cart' ? 'Open' : 'Completed' }</TableRowColumn>
               <TableRowColumn>${order.totalCost}</TableRowColumn>
           </TableRow>
-        )})}
-
+        )}}
+      )}
     </TableBody>
   </Table>
 </Paper>

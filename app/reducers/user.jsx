@@ -36,7 +36,6 @@ export const createUser = (newUser) =>
 					.then(res => res.data)
 					.then(createdProductLine => {
 						dispatch(addProductLine(createdProductLine))
-						browserHistory.push('/payment')
 					})
 				})
 	})
