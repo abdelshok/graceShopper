@@ -141,7 +141,7 @@ router.put('/checkoutAuth', function(req, res, next){
     return Orders.findById(req.body.cartId)
   })
   .then((affectedOrder) => {
-    return affectedOrder.setTotalCost(affectedOrder)
+    return affectedOrder.setTotalCost()
   })
   .then(() => {
     return Orders.create({
@@ -186,7 +186,7 @@ router.put('/checkoutGuest', function(req, res, next){
       return Promise.all(linesPromises)
   })
   .then((values) => {
-    return order.setTotalCost(order)
+    return order.setTotalCost()
   })
   .then(() => {
     res.json(order)

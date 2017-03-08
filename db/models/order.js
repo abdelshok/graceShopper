@@ -24,10 +24,12 @@ const Order = db.define('orders', {
 },
 {
   instanceMethods: {
-    setTotalCost: function(instance){
+    setTotalCost: function(){
+      console.log("this in setTotalCost", this);
+        const that = this
         ProductLines.findAll({
           where: {
-            order_id: instance.id
+            order_id: this.id
           }
         })
         .then(function(lines){
@@ -35,13 +37,13 @@ const Order = db.define('orders', {
           lines.forEach(function(line){
             sum +=line.totalCost
           })
-          instance.update({
+          that.update({
             totalCost: sum
           })
         })
      }
-    }
-  })
+  }
+})
 
 module.exports = Order
 

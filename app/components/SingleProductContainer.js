@@ -2,13 +2,14 @@
 import React, { Component } from 'react'
 import SingleProductComponent from './SingleProductComponent'
 import {connect} from 'react-redux'
-import {addProductToCart} from '../reducers/cart'
+import { addProductToCart, addProductToCartGuest } from '../reducers/cart'
 import {browserHistory} from 'react-router'
 
 
-const mapStateToProps = ({product}) => {
+const mapStateToProps = ({product, auth}) => {
 	return {
-		product
+		product,
+    auth
 	}
 }
 
@@ -16,7 +17,10 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		addToCart: (productId) => {
 			dispatch(addProductToCart(productId))
-		}
+		},
+    addToCartGuest: (product) => {
+      dispatch(addProductToCartGuest(product, dispatch))
+    }
 	}
 }
 
@@ -34,8 +38,11 @@ class SingleProductContainer extends Component {
 	}
 
 	handleClick(productId) {
-		this.props.addToCart(productId)
-
+    if(this.props.auth === ''){
+      this.props.addToCartGuest(this.props.product.product)
+    } else {
+		  this.props.addToCart(this.props.product.product)
+    }
 	}
 
 	handleCloseShop (){
