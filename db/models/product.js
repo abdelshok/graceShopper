@@ -55,4 +55,5 @@ const product = db.define('products', {
   }
 })
 
-module.exports = Product
+module.exports = product // changed it from Product to product because UpperCase implies 
+// constructor function
