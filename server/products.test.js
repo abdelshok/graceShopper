@@ -15,19 +15,19 @@ describe('api/products', () => {
 
 	describe('GET /', () => {
 
-		it('serves up all products ', ()=> {
+		it('serves up all products ', () => {
 
 			Product.create({
-				title: "Eternal",
+				title: 'Eternal',
 				year: 2017,
 				url:'www.daliMuseum.com',
 				price: 9999,
 				tags: ['red'],
-				description: "Ignorance is bliss",
-				medium: "Painting",
-				dimensions: [108,0,109],
+				description: 'Ignorance is bliss',
+				medium: 'Painting',
+				dimensions: [108, 0, 109],
 				quantity: 1,
-				artistName: "Dali"
+				artistName: 'Dali'
 			})
 			.then(newProduct => {
 				request(app)
@@ -45,21 +45,21 @@ describe('api/products', () => {
 
 	})
 
-	describe('GET /:id', ()=> {
+	describe('GET /:id', () => {
 
 		it ('serves specific product', () => {
 
 			Product.create({
-				title: "Solitude",
+				title: 'Solitude',
 				year: 2017,
 				url:'www.daliMuseum.com',
 				price: 9999,
 				tags: ['red'],
-				description: "And Damnation",
-				medium: "Painting",
+				description: 'And Damnation',
+				medium: 'Painting',
 				dimensions: [108,0,109],
 				quantity: 2,
-				artistName: "Dali"
+				artistName: 'Dali'
 			})
 			.then(newProduct => {
 				request(app)
@@ -83,16 +83,16 @@ describe('api/products', () => {
 		it('decrements the quantity in inventory by 1', () => {
 
 			Product.create({
-				title: "Spotless",
+				title: 'Spotless',
 				year: 2017,
 				url:'www.daliMuseum.com',
 				price: 9999,
 				tags: ['red'],
-				description: "Mind",
-				medium: "Painting",
+				description: 'Mind',
+				medium: 'Painting',
 				dimensions: [108,0,109],
 				quantity: 2,
-				artistName: "Dali"
+				artistName: 'Dali'
 			})
 			.then(newProduct => {
 				request(app)
@@ -105,31 +105,28 @@ describe('api/products', () => {
 		it('redirects to the product it updated', () => {
 
 			Product.create({
-				title: "Beautiful",
+				title: 'Beautiful',
 				year: 2017,
 				url:'www.daliMuseum.com',
 				price: 9999,
 				tags: ['red'],
-				description: "Mind",
-				medium: "Painting",
+				description: 'Mind',
+				medium: 'Painting',
 				dimensions: [108,0,109],
 				quantity: 2,
-				artistName: "Dali"
+				artistName: 'Dali'
 			})
 			.then(newProduct => {
 				request(app)
 				.put('/api/products/4')
 				.redirects(1)
 				.then(res=> expect(res.body).to.contain({
-					title: "Beautiful"
+					title: 'Beautiful'
 				}))
 			})
 
 		})
 
-
-
 	})
-
 
 })

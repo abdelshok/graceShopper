@@ -1,5 +1,4 @@
 const db = require('APP/db')
-const Order = require('./order')
 const ProductLine = require('./product-line')
 import chai from 'chai'
 const expect = chai.expect
@@ -10,7 +9,7 @@ describe('Product Line', () => {
   beforeEach('Await database sync', () => db.didSync)
   afterEach('Clear the tables', () => db.truncate({cascade: true}))
 
-  describe('definition', ()=> {
+  describe('definition', () => {
 
     it('has expected quantity definition', () => {
       expect(ProductLine.attributes.quantity).to.be.an('object')
@@ -43,10 +42,6 @@ describe('Product Line', () => {
 
         })
       })
-     
-
     })
-
   })
-
 })  

@@ -1,17 +1,15 @@
 const db = require('APP/db')
 const Order = require('./order')
-const ProductLine = require('./product-line')
 import chai from 'chai'
 const expect = chai.expect
 
 
 describe('Order', () => {
 
-beforeEach('Await database sync', ()=> db.didSync)
+beforeEach('Await database sync', () => db.didSync)
 afterEach('Clear the tables', () => db.truncate({cascade: true}))
 
 	describe('definition', () => {
-
 
 		it('has expected date definition', () => {
 			expect(Order.attributes.date).to.be.an('object')
@@ -21,7 +19,7 @@ afterEach('Clear the tables', () => db.truncate({cascade: true}))
 			expect(Order.attributes.status).to.be.an('object')
 		})
 
-		it('has expected totalCost definition', ()=> {
+		it('has expected totalCost definition', () => {
 			expect(Order.attributes.totalCost).to.be.an('object')
 		})
 
@@ -36,18 +34,16 @@ afterEach('Clear the tables', () => db.truncate({cascade: true}))
 
 		describe('setTotalCost', () => {
 
-			let testOrder, testProductLine;
+			let testOrder
 			beforeEach(() => {
 				testOrder = Order.build({
 					date: null,
 					status: 'cart',
 					totalCost: 1000
 				})
-
-			
 			})
 
-			it('exists', ()=> {
+			it('exists', ()  => {
 				expect(testOrder.setTotalCost).to.be.a('function')
 			})
 

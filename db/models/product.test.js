@@ -3,13 +3,10 @@ const Product = require('./product')
 import chai from 'chai'
 const expect = chai.expect
 
-
 describe ('Product', () => {
 
-
-beforeEach('Await database sync', ()=> db.didSync)
-afterEach('Clear the tables', () => db.truncate({cascade: true}))
-
+	beforeEach('Await database sync', () => db.didSync)
+	afterEach('Clear the tables', () => db.truncate({cascade: true}))
 
 	describe ('definition', () => {
 
@@ -59,23 +56,11 @@ afterEach('Clear the tables', () => db.truncate({cascade: true}))
 
 	describe('validations', () => {
 
-
 		it ('defaults quantity to 0', () => {
 			const product = Product.build()
 			expect(product.quantity).to.be.equal(0)
 		})
- 
-		// requires title
 		
-
-
 	})	
 
-
-
 })
-
-
-
-
-

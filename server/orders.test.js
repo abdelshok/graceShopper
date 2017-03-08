@@ -4,11 +4,9 @@ const request = require('supertest')
 const {expect} = require('chai')
 const db = require('APP/db')
 const app = require('./start')
-const Order = require('../db/models/order')
-const ProductLine = require('../db/models/product-line')
 
 
-describe('api/orders', ()=> {
+describe('api/orders', () => {
 
 	before('Await database sync', () => db.didSync)
 	afterEach('Clear the tables', () => db.truncate({cascade: true}))
@@ -22,14 +20,13 @@ describe('api/orders', ()=> {
 	// with the right info. for now, it will be empty
 	describe('GET /', () => {
 
-		it('serves up all orders in the right format', ()=> {
+		it('serves up all orders in the right format', () => {
 			request(app)
 			.get('/api/orders')
 			.expect(200)
 			.then(res => {
-				expect(res.body).to.be.an('array');
-				expect(res.body.length).to.be.equal(0);
-
+				expect(res.body).to.be.an('array')
+				expect(res.body.length).to.be.equal(0)
 			})
 
 		})
@@ -37,7 +34,7 @@ describe('api/orders', ()=> {
 	})
 
 
-	describe('GET /:userId/cart', ()=> {
+	describe('GET /:userId/cart', () => {
 
 		it ('returns the open cart of user', () => {
 			request(app)
@@ -51,7 +48,7 @@ describe('api/orders', ()=> {
 
 	})
 
-	describe('GET /:userId', ()=> {
+	describe('GET /:userId', () => {
 
 		it ('returns all orders and product lines associated w user', () => {
 			request(app)
@@ -67,21 +64,21 @@ describe('api/orders', ()=> {
 
 
 	describe('GET /order/:orderId', () => {
-		it ('returns individual order', () => {
-					request(app)
-					.get('/api/orders/order/1')
-					.expect(200)
-					.then(res => {
-						expect(res.body).to.be.an('object')
-						expect(res.body.length).to.be.equal(undefined)
-					})
-				})
 
+		it ('returns individual order', () => {
+			request(app)
+			.get('/api/orders/order/1')
+			.expect(200)
+			.then(res => {
+				expect(res.body).to.be.an('object')
+				expect(res.body.length).to.be.equal(undefined)
+			})
+		})
 	})
 
 
 	describe('POST /addCart', () => {
-		
+
 		it ('adds a product to the cart', () => 
 			request(app)
 			.post('/api/orders/addCart')
@@ -91,8 +88,7 @@ describe('api/orders', ()=> {
 				totalCost: 5000
 			})
 			.expect(200)
-		)
-
+			)
 	})
 
 	describe('POST /addProduct', () =>  {
@@ -106,10 +102,8 @@ describe('api/orders', ()=> {
 				
 			})
 			.expect(200)
-		)
-	
+			)
+		
 	})
-
-	  
 
 })

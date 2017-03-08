@@ -6,22 +6,20 @@ const db = require('APP/db')
 const app = require('./start')
 const Artist = require('../db/models/artist')
 
-describe('api/artists', ()=> {
+describe('api/artists', () => {
 
 	before('Await database sync', () => db.didSync)
 	afterEach('Clear the tables', () => db.truncate({cascade: true}))
 
 	describe('GET /', () => {
 
-
-
 		it('serves up all artists in the right format', ()=> {
 
 			Artist.create({
-				name: "Picasso",
-				bio: "Cut off his ear"
+				name: 'Picasso',
+				bio: 'Cut off his ear'
 			})
-			.then(newArtist => {
+			.then(() => {
 				request(app)
 				.get('/api/artists')
 				.expect(200)
@@ -36,16 +34,16 @@ describe('api/artists', ()=> {
 
 	})
 
-	describe('GET /:id', ()=> {
+	describe('GET /:id', () => {
 
 
 		it ('returns specific artist', () => {
 
 			Artist.create({
-				name: "Dali",
-				bio: "Moustache"
+				name: 'Dali',
+				bio: 'Moustache'
 			})
-			.then(newArtist => {
+			.then(() => {
 				request(app)
 				.get('/api/artists/2')
 				.expect(200)
