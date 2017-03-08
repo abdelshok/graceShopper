@@ -37,7 +37,7 @@ export default function ShoppingCartComponent (props) {
 				<TableRowColumn>{productLine.product.title}</TableRowColumn>
         <TableRowColumn>${productLine.product.price}</TableRowColumn>
 				<TableRowColumn>{productLine.quantity}</TableRowColumn>
-				<TableRowColumn>${productLine.totalCost}</TableRowColumn>
+				<TableRowColumn>${productLine.quantity * productLine.product.price}</TableRowColumn>
 				<TableRowColumn>
           <RaisedButton label="REMOVE ITEM"  onClick={() => props.onClick(productLine.id)} />
         </TableRowColumn>

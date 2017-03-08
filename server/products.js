@@ -17,8 +17,7 @@ router.get('/', function( req, res, next) {
   .then(function(products) {
     res.send(products) // switch it to jSON??
 
-  }
-  )
+  })
   .catch(next)
 })
 

@@ -42,6 +42,7 @@ checkoutHandler () {
 }
 
 	render() {
+	 console.log('this is the cart', this.props.cart)
 	 if (this.props.productLines && this.props.productLines.length){
 				return (
 					<div className="shopping-cart-container">

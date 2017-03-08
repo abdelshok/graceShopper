@@ -1,6 +1,6 @@
 'use strict'
 import React from 'react'
-import {Router, Route, IndexRedirect, browserHistory} from 'react-router'
+import {Router, Route, IndexRedirect, browserHistory, IndexRoute} from 'react-router'
 import {render} from 'react-dom'
 import {connect, Provider} from 'react-redux'
 
@@ -62,6 +62,7 @@ const onConfirmationEnter = function(nextRouterState) {
 
 const AppRoutes = (
   <Route path="/" component={ExampleApp}>
+    <IndexRoute component={ProductListContainer} />s
     <Route path="/products" component={ProductListContainer} onEnter={onProductEnter} />
     <Route path="/products/:productId" component={SingleProductContainer} onEnter={onSingleProductEnter} />
     <Route path="/cart" component={ShoppingCartContainer} />
