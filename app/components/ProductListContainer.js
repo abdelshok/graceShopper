@@ -5,11 +5,6 @@ import FilterInputComponent from './FilterInputComponent'
 import {loadSelectedProduct} from '../reducers/product'
 import { RadioButton } from 'material-ui/RadioButton'
 
-
-
-
-
-
 const mapStateToProps = ({products}) => {
 	return {
 		products
@@ -52,8 +47,8 @@ class ProductListContainer extends Component {
 	}
 
 	render() {
-		const searchStyles = { display: 'inline-block' }
 		const inputValue = this.state.inputValue
+		const searchStyles = { display: 'inline-block' }
 		const displayStyle = { display: 'inline-block', marginTop: 20, marginLeft: 20}
 		const barStyle = { color: '#606060', fontSize: 30, marginLeft: 20 }
 
@@ -65,7 +60,6 @@ class ProductListContainer extends Component {
 		} else if (this.state.search === 'Color'){
 			filteredProducts = this.props.products.filter(product => {
 				if (inputValue !== ''){
-					console.log(product.tags.map(tags => tags.toLowerCase()), 'these are tags')
 					return product.tags.map(tags => tags.toLowerCase()).includes(inputValue)				
 				}
 				else {
@@ -75,10 +69,10 @@ class ProductListContainer extends Component {
 		} else if (this.state.search === 'Medium'){
 			filteredProducts = this.props.products.filter(product =>  product.medium.toLowerCase().match(inputValue))
 		}
+		
 		return (
 			<div>
 			<h1 style={barStyle} > Browse </h1>
-
 			<FilterInputComponent handleChange={this.handleChange} inputValue={inputValue} searchTerm={this.state.search} />
 			<div style={displayStyle} >
 			<RadioButton label="Artist Name" style={searchStyles} onClick={() => this.onClick('Artist Name')} />

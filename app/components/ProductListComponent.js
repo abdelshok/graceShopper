@@ -13,7 +13,6 @@ const barStyle = {
   textAlign: 'center',
 }
 
-
 export default function ProductListComponent (props) {
     return (
         <div>
@@ -31,7 +30,6 @@ export default function ProductListComponent (props) {
         })}
         </Row>
         </Grid>
-
         </div>
         )
 }
