@@ -80,8 +80,8 @@ class SignInPageContainer extends Component {
 				passwordMismatch: false,
 				message: ''})
 			this.props.createNewUser(this.state)
+			browserHistory.goBack()
 			}
-		browserHistory.goBack()
 		}
 
 

@@ -25,7 +25,9 @@ export default function Order (props) {
     <div>
     <Paper zDepth={4} style={style}>
      <h1 className="shopping-cart-footer">Order Details {currentOrder.updated_at.slice(0, 10)} - {currentOrder.status === 'cart' ? 'Open' : 'Completed' } - ${totalCost}</h1>
+
      <h2 />
+
      <Table displayRowCheckbox={false} >
     <TableHeader displaySelectAll={false}>
      <TableRow>

@@ -6,13 +6,13 @@
 const Sequelize = require('sequelize')
 const db = require('APP/db')
 
-const Product = db.define('products', {
+const product = db.define('products', {
   title: {
     type: Sequelize.STRING,
     validate: {
       notEmpty: true
     }
-    },
+  },
   year: {
     type: Sequelize.INTEGER
   },
@@ -52,7 +52,8 @@ const Product = db.define('products', {
   }, 
   artistName: {
     type: Sequelize.STRING 
-   }
+  }
 })
 
-module.exports = Product
+module.exports = product // changed it from Product to product because UpperCase implies 
+// constructor function

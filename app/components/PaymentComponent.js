@@ -6,14 +6,25 @@ import Subheader from 'material-ui/Subheader'
 import Paper from 'material-ui/Paper'
 
 
+
 const buttonStyle = {
   width: '100%'
+
+const style = {
+  height: 100,
+  width: 100,
+  margin: 12,
+  textAlign: 'center',
+  display: 'inline-block',
 }
+
+
 const containerStyle = {
   width: 300,
   margin: 20,
   display: 'inline-block',
   float: 'left'
+
 }
 
 const styles = {
@@ -39,6 +50,7 @@ const CheckOutInfo = (props) => (
   <div className="payment">
     {!props.auth ? (
       <Paper zDepth={4} style={containerStyle}>
+
         <Subheader>CUSTOMER INFORMATION</Subheader>
           <TextField
               id="name"
@@ -139,6 +151,7 @@ const CheckOutInfo = (props) => (
           /><br />
       </Paper>
       </div>
+
     </div>
 
     <div>

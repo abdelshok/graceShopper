@@ -63,8 +63,9 @@ class ProductListContainer extends Component {
 		} else if (this.state.search === 'Color'){
 			filteredProducts = this.props.products.filter(product => {
 				if (inputValue !== ''){
-					console.log(product.tags.map(tags => tags.toLowerCase()), 'these are tags')
-					return product.tags.map(tags => tags.toLowerCase()).includes(inputValue)
+
+					return product.tags.map(tags => tags.toLowerCase()).includes(inputValue)			
+
 				}
 				else {
 					return filteredProducts = this.props.products.filter(product => product.title.toLowerCase().match(inputValue))
@@ -73,6 +74,7 @@ class ProductListContainer extends Component {
 		} else if (this.state.search === 'Medium'){
 			filteredProducts = this.props.products.filter(product =>  product.medium.toLowerCase().match(inputValue))
 		}
+		
 		return (
 			<div>
 			<JumbotronComponent />
@@ -93,7 +95,7 @@ class ProductListContainer extends Component {
 					</div>
 				</div>
 			</div>
-			<FilterInputComponent handleChange={this.handleChange} inputValue={inputValue} searchTerm={this.state.search} style={searchBar} />
+			<FilterInputComponent handleChange={this.handleChange} inputValue={inputValue} searchTerm={this.state.search} />
 			<ProductListComponent products={filteredProducts} />
 			</div>
 			)

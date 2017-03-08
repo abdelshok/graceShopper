@@ -24,6 +24,7 @@ class OrderConfirmationContainer extends Component {
     }
 
    return (
+
     <div>
       <h1 className="shopping-cart-header">Thank you for your order!</h1>
         <div className="checkout-thankyou-container">
@@ -31,6 +32,9 @@ class OrderConfirmationContainer extends Component {
           {(order[0] !== undefined) && <OrderComponent orders={order} orderNumber={0} totalCost={totalCost} />}
           </div>
         </div>
+
+    </div>
+    </div>
     </div>
 )
 }

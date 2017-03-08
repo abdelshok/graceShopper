@@ -8,7 +8,7 @@ const divStyle = {
     width: 450
 }
 
-const style = {margin: 5}
+const style = {marginTop: 5, marginBottom: 40}
 
 export default function SingleProductComponent (props) {
   const product = props.product.product
@@ -64,6 +64,7 @@ export default function SingleProductComponent (props) {
               open={props.open}
               onRequestClose={props.action}> Added to Cart! </Dialog>
          </div>
+
        </div>
    )
 }

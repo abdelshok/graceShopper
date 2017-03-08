@@ -5,10 +5,12 @@ import {connect} from 'react-redux'
 import WhoAmI from './WhoAmI'
 import RaisedButton from 'material-ui/RaisedButton'
 
+
 const navStyle = {
   textAlign: 'center',
   boxshadow: '10px 10px 5px #888888'
 }
+
 
 const buttonStyle = {
   margin: 20,
@@ -26,7 +28,6 @@ const MapStateToProps = (state) => {
   }
 }
 
-
 class AppContainer extends Component {
 
   constructor(props){
@@ -35,20 +36,19 @@ class AppContainer extends Component {
   }
 
   onClick (value) {
-  browserHistory.push(value)
-}
+    browserHistory.push(value)
+  }
 
   onSignUpClick (){
-  browserHistory.push('/signup')
+    browserHistory.push('/signup')
   }
 
   onLogInClick (){
-  browserHistory.push('/login')
+    browserHistory.push('/login')
   }
 
 
   render() {
-
     return (
             <div>
               <div>
@@ -63,10 +63,11 @@ class AppContainer extends Component {
                 <Tab label="Home"  style={navBar} onActive={() => this.onClick('/products')} />
                 <Tab label="Cart" style={navBar} onActive={() => this.onClick('/cart')} />
                 {this.props.user ? <Tab label="Account" style={navBar} onActive={() => this.onClick(`/accounts/${this.props.user.id}`)} /> : ''}
+
               </Tabs>
             </div>
     )
   }
 }
 
-export default connect(MapStateToProps)(AppContainer)
+  export default connect(MapStateToProps)(AppContainer)

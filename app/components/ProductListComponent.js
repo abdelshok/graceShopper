@@ -7,9 +7,16 @@ const divStyle = {
 	width: 400
 }
 
+const barStyle = {
+  color: '#606060',
+  fontSize: 30,
+  textAlign: 'center',
+}
+
 export default function ProductListComponent (props) {
     return (
         <div>
+
             <h1 className="shop-header"> Shop The Collection </h1>
                 <div className="products-list">
                     <Grid>
@@ -26,6 +33,7 @@ export default function ProductListComponent (props) {
                         </Row>
                     </Grid>
                 </div>
+
         </div>
         )
 }
