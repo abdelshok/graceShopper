@@ -12,7 +12,7 @@ export const WhoAmI = ({ user, logout }) => {
 	
 	return (
 	  <div className="whoami">
-		<List>
+		<List className="whoami-text">
 		    <ListItem
 		      disabled={true}
 		      leftAvatar={

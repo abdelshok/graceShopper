@@ -14,7 +14,7 @@ import SingleProductContainer from './components/SingleProductContainer'
 import PaymentContainer from './components/PaymentContainer'
 import AccountContainer from './components/AccountContainer'
 import OrderConfirmationContainer from './components/OrderConfirmationContainer'
-
+import GuestOrderConfirmationContainer from './components/GuestOrderConfirmationContainer'
 
 import store from './store'
 import AppCont from './components/AppContainer'
@@ -66,6 +66,7 @@ const AppRoutes = (
     <Route path="/products/:productId" component={SingleProductContainer} onEnter={onSingleProductEnter} />
     <Route path="/cart" component={ShoppingCartContainer} />
     <Route path="/payment" component={PaymentContainer} />
+    <Route path="/confirm/guestOrder" component={GuestOrderConfirmationContainer} />
     <Route path="/confirm/:orderId" component={OrderConfirmationContainer} onEnter={onConfirmationEnter}/>
     <Route path="/checkout" component={CheckOutContainer} />
     <Route path="/checkout-login" component={CheckOutLoginContainer} />

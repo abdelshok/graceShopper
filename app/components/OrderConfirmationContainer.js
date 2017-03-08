@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import Paper from 'material-ui/Paper'
 import OrderComponent from './OrderComponent'
 
 
@@ -13,12 +12,7 @@ const MapStateToProps = (state) => {
 
 class OrderConfirmationContainer extends Component {
 
-
-
   render() {
-
-
-
 
     //Put into an array, since that is the input expected by OrderComponent
     const order = [this.props.order]
@@ -31,11 +25,14 @@ class OrderConfirmationContainer extends Component {
       )
     }
 
-
    return (
      <div>
-    <h1>Thank you for your order!</h1>
+    <h1 className="shopping-cart-header">Thank you for your order!</h1>
+    <div className="checkout-thankyou-container">
+    <div className="checkout-thankyou">
     {(order[0] !== undefined) && <OrderComponent orders={order} orderNumber={0} totalCost={totalCost}/>}
+    </div>
+    </div>
     </div>
 )
 }

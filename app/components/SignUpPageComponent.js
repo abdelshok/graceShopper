@@ -1,4 +1,5 @@
 import React from 'react'
+import RaisedButton from 'material-ui/RaisedButton'
 
 export default function SignUpPageComponent (props) {
 	const nameHandleChange = props.nameHandleChange
@@ -7,30 +8,30 @@ export default function SignUpPageComponent (props) {
 	const confirmationPassChange = props.confirmationPassChange
 	const handleSubmit = props.handleSubmit
 
+	const buttonStyle = {
+		  margin: 20,
+		  borderColor: 'white'
+		}
+
 	return (
-		<form onSubmit={handleSubmit} >
-		<label>
-		Name
+		<form>
+		<div className='form-element'>
 		<input type="text" placeholder="Name" onChange={nameHandleChange} />
-		</label>
+		</div>
 
-		<label>
-		Email:
-		<input type="text" placeholder="email" onChange={emailHandleChange} />
-		</label>
+		<div className='form-element'>
+		<input type="text" placeholder="Email" onChange={emailHandleChange} />
+		</div>
 
-		<label>
-		Password:
-		<input type="text" placeholder="password" onChange={passwordHandleChange} />
-		</label>
+		<div className='form-element'>
+		<input type="text" placeholder="Password" onChange={passwordHandleChange} />
+		</div>
 
-		<label>
-		Type password again:
-		<input type="text" placeholder="password" onChange={confirmationPassChange} />
-		</label>
-
-		<input type="submit" value="Submit" />
-
+		<div className='form-element'>
+		<input type="text" placeholder="Re-Type Password" onChange={confirmationPassChange} />
+		</div>
+		<div>
+		<RaisedButton label="Submit" style={buttonStyle} onClick={handleSubmit} /> </div>
 		</form>
 		)
 

@@ -13,15 +13,16 @@ const style = {
   margin: 12,
   textAlign: 'center',
   display: 'inline-block',
-};
+}
 
 const buttonStyle = {
-  margin: 20,
+  width:"100%"
 }
 const containerStyle = {
-  width: 500,
+  width: 300,
   margin: 20,
-  display: 'inline-block'
+  display: 'inline-block',
+  float: 'left'
 }
 
 const styles = {
@@ -40,11 +41,14 @@ const styles = {
   }
 }
 
-const CheckOutInfo= (props) => (
-  <div>
+const CheckOutInfo = (props) => (
+ <div>
+  <div className="payment-container">
+
+  <div className="payment">
     {!props.auth ? (
-      <Paper zDepth={2} style={containerStyle}>
-      <Subheader>CUSTOMER:</Subheader>
+      <Paper zDepth={4} style={containerStyle}>
+      <Subheader>CUSTOMER INFORMATION</Subheader>
       <TextField
         id="name"
         onChange={props.handleChange}
@@ -61,19 +65,22 @@ const CheckOutInfo= (props) => (
       /><br />
       </Paper>
     ) : ''}
+    </div>
+
+    <div className="payment-2">
     <Paper zDepth={2} style={containerStyle}>
-    <Subheader>SHIPPING:</Subheader>
+    <Subheader>SHIPPING ADDRESS</Subheader>
     <TextField
       id="adress1"
       onChange={props.handleChange}
-      floatingLabelText="Adress 1"
+      floatingLabelText="Address 1"
       floatingLabelStyle={styles.floatingLabelStyle}
       floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
     /><br />
     <TextField
       id="adress2"
       onChange={props.handleChange}
-      floatingLabelText="Adress 2"
+      floatingLabelText="Address 2"
       floatingLabelStyle={styles.floatingLabelStyle}
       floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
     /><br />
@@ -99,8 +106,11 @@ const CheckOutInfo= (props) => (
       floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
     /><br/>
     </Paper>
+    </div>
+
+    <div className="payment-2">
     <Paper zDepth={2} style={containerStyle}>
-    <Subheader>PAYMENT:</Subheader>
+    <Subheader>PAYMENT</Subheader>
     <TextField
       id="cardName"
       onChange={props.handleChange}
@@ -137,10 +147,14 @@ const CheckOutInfo= (props) => (
       floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
     /><br/>
     </Paper>
-    <div>
-      <RaisedButton label="Submit" primary={true} style={buttonStyle} onClick={() => props.pushOrder()} />
     </div>
-  </div>
+    </div>
+
+    <div>
+      <RaisedButton label="Submit" default={true} style={buttonStyle} onClick={() => props.pushOrder()} />
+    </div>
+    </div>
+
 )
 
-export default CheckOutInfo;
+export default CheckOutInfo

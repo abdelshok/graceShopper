@@ -1,0 +1,202 @@
+.header{
+	font-family:'Alfa Slab One', cursive;
+	font-size: 60px;
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 0px;
+}
+
+.jumbotron {
+	z-index:1;
+	background: center center;
+}
+
+.jumbotron-image {
+	position:relative;
+	text-align: center;
+	height: 100%;
+	width:100%;
+	margin-top: 0px;
+	margin-bottom:0px;
+}
+
+.search-bar-title{
+	margin-top: 10px;
+	text-align: center;
+	font-family:'Alfa Slab One', cursive;
+	font-size: 40px;
+}
+
+.radio-btn{
+	float:left;	
+	width:100px;
+	height:80px;
+	margin:10px;
+	display:block;
+}
+
+.radio-btn-master{
+	width:100%;
+	vertical-align: center;
+	float:left;
+
+}
+
+.radio-btn-container{
+	padding-left: 35%;
+	padding-right: 35%
+	width:100%;
+	background: #85888E;
+}
+
+.shop-header{
+	margin-top: 100px;
+	margin-bottom: 30px;
+	text-align: center;
+	font-family:'Alfa Slab One', cursive;
+	font-size: 40px;
+}
+
+.products-list{
+	width:100%;
+}
+
+.product-title{
+	text-align: center;
+	font-family:'Alfa Slab One', cursive;
+	font-size: 40px;
+}
+
+.single-product{
+	text-align: center;
+	width:100%;
+}
+
+.product-info{
+	font-size: 20px;
+}
+
+.log-in-title{
+	text-align: center;
+	font-family:'Alfa Slab One', cursive;
+	font-size: 40px;
+}
+
+.log-in-form{
+	text-align: center;
+	padding-top: 40px;
+	width:100%;
+	height:300px;
+	background:#85888E;
+}
+
+.sign-up-title{
+	text-align: center;
+	font-family:'Alfa Slab One', cursive;
+	font-size: 40px;
+}
+
+.sign-up-form{
+	text-align: center;
+	padding-top: 40px;
+	width:100%;
+	height:300px;
+	background:#85888E;
+}
+
+.sign-up-form-element{
+	text-align: center;
+	width:100%;
+}
+
+.login-sign-up-header{
+	text-align: center;
+	height:75px;
+	width:100%;
+	background:#85888E;
+}
+
+.whoami{
+	text-align: center;
+	vertical-align: center;
+}
+
+.whoami-text{
+	float:left;
+	font-size: 10px;
+}
+
+.shopping-cart-header{
+	text-align: center;
+	font-family:'Alfa Slab One', cursive;
+	font-size: 40px;
+}
+
+.shopping-cart-container{
+	width:100%;
+	text-align: center;
+}
+.shopping-cart-footer{
+	text-align: center;
+	padding-top: 25px;
+	font-family:'Alfa Slab One', cursive;
+	font-size: 20px;
+}
+
+.checkout-component{
+	text-align:center;
+	width:100%;
+}
+
+.checkout-footer{
+	text-align: center;
+	font-family:'Alfa Slab One', cursive;
+	font-size: 20px;
+}
+
+.payment-container{
+	width:100%;
+	height:500px;
+	padding-left:20%;
+	text-align: center;
+	position:relative;
+	background: #85888E;
+}
+
+.payment{
+	float:left;
+}
+
+.payment-2{
+	float:left;
+	padding-left:125px;
+}
+
+.checkout-thankyou-container{
+	text-align:center;
+	position:relative;
+	width:100%;
+}
+
+.checkout-thankyou{
+	text-align: center;
+	padding-top: 25px;
+	font-family:'Alfa Slab One', cursive;
+	font-size: 40px;
+	width:100%;
+}
+
+.account-header{
+	text-align: center;
+	font-family:'Alfa Slab One', cursive;
+	font-size: 40px;
+}
+
+.order-component{
+	width:100%;
+}
+
+
+
+
+

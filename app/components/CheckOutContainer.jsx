@@ -40,9 +40,9 @@ class CheckOutContainer extends Component {
 
       <div>
       <CheckOutComponent {...this.props} continue={this.continueHandler} createUser={this.createUserHandler} signInUser={this.signInUserHandler} />
-      <h3>Total Cost: ${this.props.cart.productLines && this.props.cart.productLines.reduce(function(acc, val) {
+      <h1 className="checkout-footer">Total Cost: ${this.props.cart.productLines && this.props.cart.productLines.reduce(function(acc, val) {
               return acc + val.totalCost
-            }, 0)}</h3>
+            }, 0)}</h1>
       </div>
     )
   }

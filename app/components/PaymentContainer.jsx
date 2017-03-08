@@ -60,12 +60,11 @@ class PaymentContainer extends Component {
     event.preventDefault()
     if (this.props.auth !== ''){
       this.props.pushCartToOrderAuth(this.props.cart.id)
-      console.log("ORDER #linking to", this.props.cart.id);
+
       browserHistory.push(`/confirm/${this.props.cart.id}`)
     } else {
       this.props.pushCartToOrderGuest(this.props.cart)
-      console.log("GUEST ORDER #linking to", this.props.cart.id);
-      browserHistory.push(`/confirm/${this.props.cart.id}`)
+      browserHistory.push(`/confirm/guestOrder`)
 
     }
 

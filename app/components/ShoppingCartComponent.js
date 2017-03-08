@@ -17,7 +17,7 @@ export default function ShoppingCartComponent (props) {
 	return (
 		<div>
     <Paper zDepth={4} style={divStyle}>
-		<h3>Shopping Cart</h3>
+		<h1 className="shopping-cart-header">Shopping Cart</h1>
     <Table displayRowCheckbox={false} >
     <TableHeader displaySelectAll={false}>
       <TableRow>
