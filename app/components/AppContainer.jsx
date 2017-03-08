@@ -56,7 +56,7 @@ class AppContainer extends Component {
             <RaisedButton label="Sign Up" style={buttonStyle} onClick={this.onSignUpClick} />
             <RaisedButton label="Log in" style={buttonStyle} onClick={this.onLogInClick} /> </div>} </div>
              </div> 
-              <Tabs style={navStyle}>
+              <Tabs style={navBar}>
                 <Tab label="Home"  style={navBar} onActive={()=> this.onClick('/products')}/>
                 <Tab label="Cart" style={navBar} onActive={()=> this.onClick('/cart')} />
                 {this.props.user ? <Tab label="Account" style={navBar} onActive={()=> this.onClick(`/accounts/${this.props.user.id}`)}/> : ''}
@@ -66,5 +66,6 @@ class AppContainer extends Component {
             </div>
     )
   }
+}
 
   export default connect(MapStateToProps)(AppContainer)

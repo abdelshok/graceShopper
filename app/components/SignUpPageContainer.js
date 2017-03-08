@@ -81,8 +81,8 @@ class SignInPageContainer extends Component {
 				passwordMismatch: false,
 				message: ''})
 			this.props.createNewUser(this.state)
+			browserHistory.goBack()
 			}
-		browserHistory.goBack()
 		}
 
 
@@ -95,7 +95,6 @@ class SignInPageContainer extends Component {
 			userMessage = <h5> User already exists </h5>
 		} 
 		
-
 		return (
 			<div>
 			<div className="sign-up-form">

@@ -8,7 +8,7 @@ import ListItem from 'material-ui/List/ListItem'
 
 export const WhoAmI = ({ user, logout }) => {
 	const firstLetter = user.name[0].toUpperCase()
-	const style = {margin: 5}
+	const style = {margin: 5, float: 'right'}
 	
 	return (
 	  <div className="whoami">

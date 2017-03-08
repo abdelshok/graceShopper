@@ -11,7 +11,7 @@ const divStyle = {
 }
 
 
-const style = {margin: 5}
+const style = {marginTop: 5, marginBottom: 40}
 
 
 export default function SingleProductComponent (props) {

@@ -89,7 +89,7 @@ class ProductListContainer extends Component {
 			</div>
 			</div>
 			</div>
-			<FilterInputComponent handleChange={this.handleChange} inputValue={inputValue} searchTerm={this.state.search} style={searchBar} />
+			<FilterInputComponent handleChange={this.handleChange} inputValue={inputValue} searchTerm={this.state.search} />
 			<ProductListComponent products={filteredProducts} />
 			</div>
 			)

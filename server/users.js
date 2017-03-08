@@ -13,8 +13,8 @@ module.exports = require('express').Router() // eslint-disable-line new-cap
   .post('/', (req, res, next) =>
     User.create(req.body)
     .then(user => res.status(201).json(user))
-    .catch(() => res.status(500).json('error') // we send this back to action creator
-      )) // so that it handles the error and changes the state of the userExists
+    .catch(() => res.status(500).json('error'))) // we send this back to action creator
+       // so that it handles the error and changes the state of the userExists
     // to true, so that our message can be displayed
     .get('/:id', mustBeLoggedIn, (req, res, next) =>
     User.findById(req.params.id)

@@ -9,7 +9,6 @@ export default function FilterInputComponent (props) {
 	return (
 		<form>
 		<input
-		style={searchBarStyle} 
 		onChange={handleChange}
 		value={inputValue}
 		className="form-control"

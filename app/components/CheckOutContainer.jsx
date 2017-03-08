@@ -27,7 +27,7 @@ class CheckOutContainer extends Component {
 
   createUserHandler () {
     event.preventDefault()
-    browserHistory.push('/checkout-signup')
+    browserHistory.push('/signup')
   }
 
   signInUserHandler (){

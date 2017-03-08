@@ -22,7 +22,7 @@ const containerStyle = {
   width: 300,
   margin: 20,
   display: 'inline-block',
-  float: 'left'
+  float: 'left',
 }
 
 const styles = {

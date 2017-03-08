@@ -44,6 +44,7 @@ export const createUser = (newUser) =>
 			// here, if the user already exists, it will catch the error
 			// sent by our express route and dispatch this action creator
 			// which will change the state and show a message in our view
+			console.log('user exists')
 			if (response.data === undefined) {
 				dispatch(userAlreadyExists())
 			}
@@ -52,10 +53,12 @@ export const createUser = (newUser) =>
 
 const reducer = (state = initialState, action) => {
 
+	const userStatus = initialState.userExists
+
 	switch (action.type) {
 
 		case USER_EXISTS:
-		return Object.assign({}, state, {userExists: true})
+		return Object.assign({}, state, {userExists: !userStatus })
 
 		default:
 		return state
