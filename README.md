@@ -6,7 +6,7 @@
   The Art Shop
 </h2>
 
-E-Commerce Platform selling minimalist art created throughout our time at [Fullstack Academy](https://www.fullstackacademy.com/). Users authenticate through OAuth, sort through a list of art pieces, filter by artist name, color,title, and medium, add items to their shopping cart, and purchase them with fictional debit or credit cards. 
+E-Commerce Platform selling minimalist art created for a project during our time at [Fullstack Academy](https://www.fullstackacademy.com/). Users authenticate through OAuth, sort through a list of art pieces, filter by artist name, color, title, and medium, add items to their shopping cart, and purchase them with fictional debit or credit cards. 
 
 
 <div align="center">
