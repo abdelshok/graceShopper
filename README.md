@@ -1,10 +1,34 @@
-# Art Minimal Store
+<div align="center">
+  <img alt="Logo" src="https://user-images.githubusercontent.com/20652426/83822564-66078080-a69f-11ea-838c-0b5164a85631.png" width="100" />
+</div>
 
-## I need node >= 6.7.0
+<h2 align="center">
+  Politics Ajar
+</h2>
 
-If you don't have it, I'll complain and tell you how to install it.
+<p align="center">
+E-Commerce Platform selling minimalist art created throughout our time at [Fullstack Academy](https://www.fullstackacademy.com/). Users authenticate through OAuth, sort through a list of art pieces, filter by artist name, color,title, and medium, add items to their shopping cart, and purchase them with fictional debit or credit cards. 
+</p>
 
-## Start
+
+<div align="center">
+  <img alt="artShop" src="https://user-images.githubusercontent.com/20652426/83822518-44a69480-a69f-11ea-8620-e640acc091b7.png"/>
+</div>
+
+<h3 marginTop="20px">
+These technologies were used:
+</h3>
+
+- [React](https://reactjs.org/)
+- [React-Redux](https://react-redux.js.org/)
+- [Redux](https://redux.js.org/)
+- [Express JS](https://expressjs.com/)
+- [Sequelize](https://sequelize.org/)
+- [PostgreSQL](https://www.postgresql.org/)
+
+## Documentation
+
+### Start
 
 Short and sweet:
 
@@ -27,7 +51,7 @@ npm run build-dev
 
 In two separate terminals. The vanilla `npm start` is for production — you won't use it in development!
 
-## Anatomy
+### Anatomy
 
 `/app` has the React/Redux setup. `main.jsx` is the entry point.
 
@@ -38,7 +62,7 @@ assuming you're using postgres.
 
 `/bin` has scripts. (Right now it has *one* script that creates a useful symlink.)
 
-## Conventions
+### Conventions
 
 I use `require` and `module.exports` in `.js` files.
 
@@ -47,7 +71,7 @@ I use `import` and `export` in `.jsx` files, unless `require` makes for cleaner 
 I use two spaces, no semi-colons, and trailing commas where possible. I'll
 have a linter someday soon.
 
-## Quick Heroku deployment
+### Quick Heroku deployment
 
 1. Set up the [Heroku command line tools](https://devcenter.heroku.com/articles/heroku-cli) and install [Yarn](https://yarnpkg.com/en/) if you haven't already (`npm install -g yarn`)
 2. `heroku login`
