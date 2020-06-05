@@ -1,14 +1,12 @@
 <div align="center">
-  <img alt="Logo" src="https://user-images.githubusercontent.com/20652426/83822564-66078080-a69f-11ea-838c-0b5164a85631.png" width="100" />
+  <img alt="Logo" src="https://user-images.githubusercontent.com/20652426/83822564-66078080-a69f-11ea-838c-0b5164a85631.png" width="300" />
 </div>
 
 <h2 align="center">
-  Politics Ajar
+  The Art Shop
 </h2>
 
-<p align="center">
 E-Commerce Platform selling minimalist art created throughout our time at [Fullstack Academy](https://www.fullstackacademy.com/). Users authenticate through OAuth, sort through a list of art pieces, filter by artist name, color,title, and medium, add items to their shopping cart, and purchase them with fictional debit or credit cards. 
-</p>
 
 
 <div align="center">
@@ -71,7 +69,7 @@ I use `import` and `export` in `.jsx` files, unless `require` makes for cleaner 
 I use two spaces, no semi-colons, and trailing commas where possible. I'll
 have a linter someday soon.
 
-### Quick Heroku deployment
+###g Quick Heroku deployment
 
 1. Set up the [Heroku command line tools](https://devcenter.heroku.com/articles/heroku-cli) and install [Yarn](https://yarnpkg.com/en/) if you haven't already (`npm install -g yarn`)
 2. `heroku login`
